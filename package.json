@@ -42,8 +42,10 @@
     "@nguniversal/common": "^7.0.2",
     "@nguniversal/express-engine": "^7.0.2",
     "@nguniversal/module-map-ngfactory-loader": "^7.0.2",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "express": "^4.15.2",
+    "raven-js": "^3.27.0",
     "reflect-metadata": "^0.1.10",
     "zone.js": "^0.8.26"
   },
