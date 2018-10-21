@@ -1,0 +1,69 @@
+{
+  "name": "vincent-p",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.we-program-it.com:10022/websites/VPecquerie/www-vincent-p-fr.git"
+  },
+  "contributors": [
+    "Vincent PECQUERIE <contact@vincent-p.fr>"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:client-and-server-bundles": "ng build --prod && ng run vincent-p:server:production",
+    "build:prerender": "npm run build:client-and-server-bundles && npm run compile:server && npm run generate:prerender",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "compile:server": "tsc -p server.tsconfig.json",
+    "generate:prerender": "cd dist && node prerender",
+    "serve:prerender": "cd dist/browser && http-server",
+    "serve:ssr": "node dist/server",
+    "test": "npm run lint",
+    "lint": "npm run lint:ts && npm run lint:html && npm run lint:css",
+    "lint:ts": "./node_modules/.bin/ng lint vincent-p",
+    "lint:html": "./node_modules/.bin/htmllint src/app/**/*.html",
+    "lint:css": "./node_modules/.bin/stylelint src/app/**/*.scss"
+  },
+  "pre-commit": [],
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^7.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@angular/http": "^7.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@angular/platform-server": "^7.0.0",
+    "@angular/router": "^7.0.0",
+    "@nguniversal/common": "^7.0.2",
+    "@nguniversal/express-engine": "^7.0.2",
+    "@nguniversal/module-map-ngfactory-loader": "^7.0.2",
+    "core-js": "^2.4.1",
+    "express": "^4.15.2",
+    "reflect-metadata": "^0.1.10",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.10.2",
+    "@angular/cli": "7.0.2",
+    "@angular/compiler-cli": "^7.0.0",
+    "@angular/language-service": "^7.0.0",
+    "@types/node": "^10.12.0",
+    "codelyzer": "^4.0.2",
+    "htmllint": "^0.7.2",
+    "htmllint-cli": "0.0.7",
+    "http-server": "^0.11.1",
+    "pre-commit": "^1.2.2",
+    "rxjs": "^6.3.3",
+    "stylelint": "^9.6.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.3.1",
+    "ts-loader": "^5.2.2",
+    "tslint": "^5.7.0",
+    "typescript": "~3.1.3"
+  }
+}

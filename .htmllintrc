@@ -1,0 +1,10 @@
+{
+    "plugins": [],
+    "indent-width": 4,
+    "attr-name-style": false,
+    "class-style": false,
+    "id-class-style": false,
+    "tag-bans": ["iframe"],
+    "attr-req-value": false,
+    "line-end-style": false
+}
