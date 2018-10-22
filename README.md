@@ -24,13 +24,17 @@ See deployment for notes on how to deploy the project on a live system.
 ### Test
 
 After installed the project, you can run lint tests.
-Thanks to the Makefile, just run `npm run lint`. 
+Thanks to the package.json file, just run `npm run lint`. 
 This will do the following step for you : 
 
 1. Run [HtmlLint](https://github.com/htmllint/htmllint) test.
 2. Run [StyleLint](https://github.com/stylelint/stylelint) test.
 3. Run [TsLint](https://github.com/palantir/tslint) test.
 
+### Documentation
+
+I used compodoc to documentate my code. 
+Thanks to the package.json file, just run `npm run build:doc` to build the documentation or `npm run serve:doc` to start the documentation with live reload functionnalities. 
 
 ## Angular Universal "Gotchas"
 Moved to [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)

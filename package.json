@@ -24,7 +24,10 @@
     "lint": "npm run lint:ts && npm run lint:html && npm run lint:css",
     "lint:ts": "./node_modules/.bin/ng lint vincent-p",
     "lint:html": "./node_modules/.bin/htmllint src/app/**/*.html",
-    "lint:css": "./node_modules/.bin/stylelint src/app/**/*.scss"
+    "lint:css": "./node_modules/.bin/stylelint src/app/**/*.scss",
+    "build:doc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -d ./dist/documentation --theme material",
+    "serve:doc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -d ./dist/documentation --theme material -s -r 4201 -w"
+
   },
   "pre-commit": [],
   "private": true,
@@ -54,6 +57,7 @@
     "@angular/cli": "7.0.2",
     "@angular/compiler-cli": "^7.0.0",
     "@angular/language-service": "^7.0.0",
+    "@compodoc/compodoc": "^1.1.5",
     "@types/node": "^10.12.0",
     "codelyzer": "^4.0.2",
     "htmllint": "^0.7.2",
