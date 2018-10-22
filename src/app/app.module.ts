@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import {TransferHttpCacheModule} from '@nguniversal/common';
 import { RavenErrorHandler } from './services/errors/raven.error.handler';
+import { MyMaterialModule } from './my-material/my-material.module';
 
 
 
@@ -28,6 +29,7 @@ Raven
       { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
     ]),
     TransferHttpCacheModule,
+    MyMaterialModule
   ],
   providers: [ { provide: ErrorHandler, useClass: RavenErrorHandler } ],
   bootstrap: [AppComponent]
