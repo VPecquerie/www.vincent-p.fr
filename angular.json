@@ -23,9 +23,25 @@
               },
               {
                 "glob": "favicon.ico",
-                "input": "src",
+                "input": "src/assets",
+                "output": "favicon.ico"
+              },
+              {
+                "glob": "manifest.json",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "src/assets",
                 "output": "/"
               }
+
             ],
             "styles": [
               "src/styles.scss"
