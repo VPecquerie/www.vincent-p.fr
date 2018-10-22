@@ -5,12 +5,11 @@ import {RouterModule} from '@angular/router';
 import * as Raven from 'raven-js';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import {TransferHttpCacheModule} from '@nguniversal/common';
 import { RavenErrorHandler } from './services/errors/raven.error.handler';
 import { MyMaterialModule } from './my-material/my-material.module';
 
-
+import { HomeComponent} from './home/home.component';
 
 Raven
   .config('https://67482976a2124dd8bffbebaa5aa2eee6@sentry.we-program-it.com/2')
