@@ -66,3 +66,9 @@ html {
    -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
    box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
+
+.loader-container {
+    .mat-progress-spinner circle, .mat-spinner circle {
+        stroke: #fff;
+    }
+}

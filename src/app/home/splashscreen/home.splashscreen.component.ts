@@ -6,5 +6,5 @@ import {Component} from '@angular/core';
     styleUrls: ['./home.splashscreen.component.scss']
 })
 export class HomeSplashScreenComponent {
-
+    public isLoading = true;
 }
