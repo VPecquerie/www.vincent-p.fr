@@ -63,23 +63,6 @@
         .navbar-nav > li.nav-item > a.nav-link:focus:hover {
             color: #fff;
         }
-        .navbar-shrink {
-            border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-            background-color: #fff;
-        }
-        .navbar-shrink .navbar-brand {
-            color: #F05F40;
-        }
-        .navbar-shrink .navbar-brand:focus, .navbar-shrink .navbar-brand:hover {
-            color: #f05f40;
-        }
-        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
-        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
-            color: #212529;
-        }
-        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
-        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-            color: #F05F40;
-        }
+
     }
 }
