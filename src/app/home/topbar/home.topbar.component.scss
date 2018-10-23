@@ -1,0 +1,85 @@
+#topbar {
+    border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+    background-color: #fff;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+
+   .navbar-brand {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #F05F40;
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .navbar-brand:focus, .navbar-brand:hover {
+        color: #f05f40;
+    }
+
+    .navbar-nav > li.nav-item > a.nav-link,
+    .navbar-nav > li.nav-item > a.nav-link:focus {
+      font-size: .9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #212529;
+    }
+    
+    .navbar-nav > li.nav-item > a.nav-link:hover,
+    .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+      color: #F05F40;
+    }
+    
+    .navbar-nav > li.nav-item > a.nav-link.active,
+    .navbar-nav > li.nav-item > a.nav-link:focus.active {
+      color: #F05F40 !important;
+      background-color: transparent;
+    }
+    
+    .navbar-nav > li.nav-item > a.nav-link.active:hover,
+    .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
+      background-color: transparent;
+    }  
+ }
+
+ @media (min-width: 992px) {
+    #topbar {
+        border-color: transparent;
+        background-color: transparent;
+
+        .navbar-brand {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .navbar-brand:focus, .navbar-brand:hover {
+            color: #fff;
+        }
+        .navbar-nav > li.nav-item > a.nav-link {
+            padding: 0.5rem 1rem;
+        }
+        .navbar-nav > li.nav-item > a.nav-link,
+        .navbar-nav > li.nav-item > a.nav-link:focus {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .navbar-nav > li.nav-item > a.nav-link:hover,
+        .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+            color: #fff;
+        }
+        .navbar-shrink {
+            border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+            background-color: #fff;
+        }
+        .navbar-shrink .navbar-brand {
+            color: #F05F40;
+        }
+        .navbar-shrink .navbar-brand:focus, .navbar-shrink .navbar-brand:hover {
+            color: #f05f40;
+        }
+        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
+        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
+            color: #212529;
+        }
+        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
+        .navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+            color: #F05F40;
+        }
+    }
+}
