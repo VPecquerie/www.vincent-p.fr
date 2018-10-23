@@ -50,3 +50,26 @@ header.masthead hr {
   .service-box {
     max-width: 400px;
   }
+
+
+  .home-arrow {
+    a {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      color: #fff;
+      display: inline-block;
+      height: 46px;
+      outline-style: none !important;
+      position: relative;
+      text-decoration: none;
+      width: 46px;
+      transition: all .3s ease-in-out;
+      z-index: 2;
+    }
+    i {
+      animation: floating-arrow 1.6s infinite ease-in-out 0s;
+      display: block;
+      padding: 12px 0;
+      height: 34px;
+    }
+  }

@@ -2,10 +2,38 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+@keyframes floating-arrow {
+    from {
+        transform: translateY(-4px);
+    }
+    65% {
+        transform: translateY(4px);
+    }
+    to {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes floating-arrow-up {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(4px);
+    }
+    75% {
+        transform: translateY(-4px);
+    }
+}
+
 body,
 html {
    width: 100%;
    height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
 }
  
 .text-primary {
