@@ -3,28 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
 import { Experience } from '../../entities/experience';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
+import { CommonHttpService } from '../../services/common.http.service';
 
 @Injectable()
-export class HomeExperienceService {
-    constructor(protected http: HttpClient) {}
+export class HomeExperienceService extends CommonHttpService {
+    constructor(protected http: HttpClient) {
+        super(http);
+    }
 
-    getExperiences(): Promise<Experience[]> {
-        const self = this;
+    getExperiences(): Observable<Experience[]> {
         const url = environment.api.url + environment.api.entities.experiences;
-        const promise = new Promise<Experience[]>((resolve, reject) => {
-            self.http
-                .get(url)
-                .toPromise()
-                .then((apiResult: any) => {
-                    let entities = Experience.deserializeArray(apiResult);
-                    entities = _.orderBy(entities, ['Start'], ['desc']);
-                    resolve(entities);
-                })
-                .catch(() => {
-                    reject([]);
-                });
-        });
-
-        return promise;
+        return this.http.get<Experience[]>(url).pipe(
+            map(experiences => _.orderBy(experiences, ['Start'], ['desc'])),
+            tap(h => {
+                const outcome = h ? `fetched` : `did not find`;
+            }),
+            catchError(this.handleError<Experience[]>(`Get Experiences`))
+        );
     }
 }

@@ -16,11 +16,6 @@ export class HomeExperienceComponent implements OnInit {
         const self = this;
         this.experienceService
             .getExperiences()
-            .then((experiences: Experience[]) => {
-                self.experiences = experiences;
-            })
-            .catch(() => {
-                self.experiences = [];
-            });
+            .subscribe(experiences => (this.experiences = experiences));
     }
 }

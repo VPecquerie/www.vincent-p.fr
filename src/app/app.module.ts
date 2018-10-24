@@ -27,6 +27,7 @@ import { HomeExperienceService } from './home/experience/home.experience.service
 import { MomentJsPipe } from './pipes/momentjs.pipe';
 import { HomeSkillsComponent } from './home/skills/home.skills.component';
 import { HomeSkillsService } from './home/skills/home.skills.service';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,7 @@ import { HomeSkillsService } from './home/skills/home.skills.service';
         TransferHttpCacheModule,
         MyMaterialModule,
         ScrollToModule.forRoot(),
-        RouterModule.forRoot(routes, { enableTracing: true }),
+        RouterModule.forRoot(routes, { enableTracing: !environment.production }),
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule
