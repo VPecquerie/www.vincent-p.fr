@@ -27,7 +27,8 @@ import { HomeExperienceService } from './home/experience/home.experience.service
 import { MomentJsPipe } from './pipes/momentjs.pipe';
 import { HomeSkillsComponent } from './home/skills/home.skills.component';
 import { HomeSkillsService } from './home/skills/home.skills.service';
-import { environment } from '../environments/environment.prod';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { environment } from '../environments/environment.prod';
         RouterModule.forRoot(routes, { enableTracing: !environment.production }),
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [
         { provide: ErrorHandler, useClass: RavenErrorHandler },

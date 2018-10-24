@@ -1,7 +1,7 @@
 import { entities } from './config.entities';
 
 export const environment = {
-  production: false,
+  production: true,
   api: {
     url: 'https://api.vincent-p.fr',
     entities: entities
