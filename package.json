@@ -9,6 +9,29 @@
   "contributors": [
     "Vincent PECQUERIE <contact@vincent-p.fr>"
   ],
+  "watch": {
+    "lint:ts": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts",
+      "quiet": true
+    }, 
+    "lint:html": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "html",
+      "quiet": true
+    }, 
+    "lint:css": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "css,scss",
+      "quiet": true
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,6 +43,7 @@
     "generate:prerender": "cd dist && node prerender",
     "serve:prerender": "cd dist/browser && http-server",
     "serve:ssr": "node dist/server",
+    "serve:lint": "./node_modules/.bin/npm-watch",
     "test": "npm run lint",
     "lint": "npm run lint:ts && npm run lint:html && npm run lint:css",
     "lint:ts": "./node_modules/.bin/ng lint vincent-p",
@@ -81,6 +105,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.4",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^1.3.1",
+    "npm-watch": "^0.4.0",
     "pre-commit": "^1.2.2",
     "protractor": "^5.4.1",
     "rxjs": "^6.3.3",
