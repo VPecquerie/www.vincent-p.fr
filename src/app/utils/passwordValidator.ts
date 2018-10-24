@@ -8,7 +8,7 @@ export class PasswordValidator {
             'passwordValidation'
         );
         if (passwordField != null && confirmationField != null) {
-            if (passwordField.value != '') {
+            if (passwordField.value !== '') {
                 if (PasswordValidator.isEnoughSecure(passwordField.value)) {
                     return { Weak: true };
                 }

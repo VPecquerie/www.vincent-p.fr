@@ -10,6 +10,11 @@
         text-transform: uppercase;
         color: #F05F40;
         font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+        
+        img {
+            width: 30px;
+            height: 30px;
+        }
     }
 
     .navbar-brand:focus, .navbar-brand:hover {
