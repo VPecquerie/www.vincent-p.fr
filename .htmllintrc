@@ -6,5 +6,6 @@
     "id-class-style": false,
     "tag-bans": ["iframe"],
     "attr-req-value": false,
-    "line-end-style": false
+    "line-end-style": false,
+    "raw-ignore-regex": "/\\*ngIf=\"(.*?)\"/"
 }

@@ -28,9 +28,14 @@ section h3 {
 
 .contact-infos .picto {
     text-align: center;
+    em {
+        font-size: 32px;
+    }
 }
 .contact-infos .content {
     text-align: left;
+    vertical-align: middle;
+    line-height: 32px;
 }
 
 section .form-control-label {

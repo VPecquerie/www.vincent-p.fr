@@ -103,8 +103,11 @@ section h4 {
     }
 }
 
-.date .fa,
-.location .fa {
+.date em {
     float: left;
-    padding-top: 0.25rem;
+    padding-top: 0.5rem;
+}
+.location em {
+    float: left;
+
 }

@@ -19,6 +19,14 @@ import { HomeAboutComponent } from './home/about/home.about.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { CustomHttpHandler } from './services/errors/custom.http.handler';
+import { HomeContactComponent } from './home/contact/home.contact.component';
+import { HomeContactService } from './home/contact/home.contact.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeExperienceComponent } from './home/experience/home.experience.component';
+import { HomeExperienceService } from './home/experience/home.experience.service';
+import { MomentJsPipe } from './pipes/momentjs.pipe';
+import { HomeSkillsComponent } from './home/skills/home.skills.component';
+import { HomeSkillsService } from './home/skills/home.skills.service';
 
 @NgModule({
     declarations: [
@@ -27,6 +35,10 @@ import { CustomHttpHandler } from './services/errors/custom.http.handler';
         HomeTopbarComponent,
         HomeSplashScreenComponent,
         HomeAboutComponent,
+        HomeSkillsComponent,
+        HomeExperienceComponent,
+        HomeContactComponent,
+        MomentJsPipe
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
@@ -35,6 +47,8 @@ import { CustomHttpHandler } from './services/errors/custom.http.handler';
         ScrollToModule.forRoot(),
         RouterModule.forRoot(routes, { enableTracing: true }),
         HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
         { provide: ErrorHandler, useClass: RavenErrorHandler },
@@ -46,6 +60,9 @@ import { CustomHttpHandler } from './services/errors/custom.http.handler';
         TextService,
         HomeAboutService,
         UserService,
+        HomeSkillsService,
+        HomeContactService,
+        HomeExperienceService
     ],
     bootstrap: [AppComponent],
 })

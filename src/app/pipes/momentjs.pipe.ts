@@ -8,7 +8,7 @@ export class MomentJsPipe implements PipeTransform {
     private locale = 'fr';
 
     transform(value, format?: string) {
-        if (isNullOrUndefined(value)) {
+        if (value === null || value === undefined) {
             return '';
         }
         if (!moment(value).isValid()) {
