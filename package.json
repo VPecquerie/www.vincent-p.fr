@@ -74,6 +74,7 @@
     "@types/lodash": "^4.14.117",
     "bootstrap": "^4.1.3",
     "classlist.js": "^1.1.20150312",
+    "compression": "^1.7.3",
     "core-js": "^2.5.7",
     "express": "^4.15.2",
     "hammerjs": "^2.0.8",
