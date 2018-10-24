@@ -13,13 +13,20 @@ import { HomeComponent } from './home/home.component';
 import { HomeTopbarComponent } from './home/topbar/home.topbar.component';
 import { routes } from './app.routes';
 import { HomeSplashScreenComponent } from './home/splashscreen/home.splashscreen.component';
+import { TextService } from './services/text.service';
+import { HomeAboutService } from './home/about/home.about.service.component';
+import { HomeAboutComponent } from './home/about/home.about.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { CustomHttpHandler } from './services/errors/custom.http.handler';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         HomeTopbarComponent,
-        HomeSplashScreenComponent
+        HomeSplashScreenComponent,
+        HomeAboutComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
@@ -27,8 +34,19 @@ import { HomeSplashScreenComponent } from './home/splashscreen/home.splashscreen
         MyMaterialModule,
         ScrollToModule.forRoot(),
         RouterModule.forRoot(routes, { enableTracing: true }),
+        HttpClientModule,
     ],
-    providers: [{ provide: ErrorHandler, useClass: RavenErrorHandler }],
+    providers: [
+        { provide: ErrorHandler, useClass: RavenErrorHandler },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CustomHttpHandler,
+            multi: true,
+        },
+        TextService,
+        HomeAboutService,
+        UserService,
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

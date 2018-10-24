@@ -1,0 +1,18 @@
+<section id="about" role="main" aria-labelledby="about-component-about-header" *ngIf="introduction != null">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 id="about-component-about-header">A Propos</h3>
+                <div class="lead">
+                    <p [innerHTML]="introduction.content"></p>
+                </div>
+                <div class="download-link">
+                    <a class="btn btn-secondary" href="{{rootUrl}}/assets/CV_PECQUERIE_VINCENT_DEVELOPPEUR_WEB_ET_MOBILE.pdf"
+                        target="_blank" rel="noopener noreferrer" download="CV_PECQUERIE_VINCENT_DEVELOPPEUR_WEB_ET_MOBILE.pdf">
+                        Télécharger Mon CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
