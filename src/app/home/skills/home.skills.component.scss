@@ -1,0 +1,53 @@
+section#skills {
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 80px;
+
+    h3 {
+        color: black;
+        font-family: 'Montserrat', serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        letter-spacing: 0.15rem;
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .graph {
+        display: block;
+    }
+
+    .skills-group {
+        padding: 5px 20px;
+        margin-bottom: 20px;
+
+        .progress-bar {
+            height: 25px;
+            background-color: #7e9b9f;
+            text-align: left;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .progress-bar:after {
+            content: ' ';
+            width: 10px;
+            height: 25px;
+            position: absolute;
+            right: -5px;
+            top: 0;
+            display: block;
+            transform: skewX(-20deg);
+            background-color: #7e9b9f;
+        }
+    }
+}
+
+.progress {
+    height: 25px;
+    margin-bottom: 5px;
+}
