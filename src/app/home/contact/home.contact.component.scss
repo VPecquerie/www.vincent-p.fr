@@ -1,0 +1,71 @@
+section {
+    background-color: #252525;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    text-align: left;
+}
+
+section #physical-contact .row,
+section #physical-contact a {
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.2em;
+}
+
+section h3 {
+    text-align: center;
+    font-size: 3em;
+    color: #7e9b9f;
+    font-family: 'Montserrat', serif;
+}
+
+.contact-infos {
+    font-size: 1rem;
+}
+
+.contact-infos .picto {
+    text-align: center;
+}
+.contact-infos .content {
+    text-align: left;
+}
+
+section .form-control-label {
+    color: #7e9b9f;
+}
+
+section .form-control {
+    background-color: transparent;
+    color: white;
+    border-color: #7e9b9f;
+    box-shadow: none;
+}
+
+section .form-control:hover,
+section .form-control:focus {
+    border-color: white;
+}
+
+section button:focus {
+    outline: 0;
+}
+
+section .btn-info {
+    background-color: #7e9b9f;
+    border-color: #7e9b9f;
+    box-shadow: none;
+}
+
+section .btn-info:hover,
+section .btn-info:focus {
+    background-color: #5a8187;
+    border-color: #5a8187;
+}
+
+section h4 {
+    color: white;
+    text-align: center;
+}
