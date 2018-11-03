@@ -9,7 +9,7 @@ import { Training } from '../../entities/training';
 @Injectable()
 export class HomeTrainingService extends CommonHttpService {
 
-  constructor(protected http: HttpClient){
+  constructor(protected http: HttpClient) {
     super(http);
    }
 

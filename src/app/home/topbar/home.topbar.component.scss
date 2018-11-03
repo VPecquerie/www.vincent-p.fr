@@ -31,12 +31,12 @@
     
     .navbar-nav > li.nav-item > a.nav-link:hover,
     .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-      color: #F05F40;
+      color: white;
     }
     
     .navbar-nav > li.nav-item > a.nav-link.active,
     .navbar-nav > li.nav-item > a.nav-link:focus.active {
-      color: #F05F40 !important;
+      color: white !important;
       background-color: transparent;
     }
     
@@ -70,4 +70,9 @@
         }
 
     }
+}
+
+.scrolled {
+    background-color: #252525 !important;
+    transition: background-color 400ms linear;
 }
