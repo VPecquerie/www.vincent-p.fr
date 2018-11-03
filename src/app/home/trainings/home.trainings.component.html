@@ -1,0 +1,32 @@
+<section id="training">
+  <h2>Formation</h2>
+  <div class="container">
+    <div class="qa-formation-list" *ngFor="let training of trainings">
+      <div class="formation-item">
+        <div class="formation-inner">
+          <div class="formation-head clearfix">
+            <div class="user-detail">
+              <h3>{{training.Title}}</h3>
+              <div class="post-meta">
+                <div class="asker-meta">
+                  <span class="qa-formation-what"></span>
+                  <span class="qa-formation-when">
+                    <span class="qa-formation-when-data">{{training.Begin.getFullYear()}} - {{training.End.getFullYear()}}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qa-formation-content">
+            <p [innerHTML]="training.Description"></p>
+          </div>
+          <ul class="skills-group">
+            <li *ngFor="let skill of training.Skills">
+              <em class="fa fa-tag"></em> {{skill.Name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

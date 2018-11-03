@@ -29,6 +29,8 @@ import { HomeSkillsComponent } from './home/skills/home.skills.component';
 import { HomeSkillsService } from './home/skills/home.skills.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
+import { HomeTrainingService } from './home/trainings/home.trainings.service';
 
 @NgModule({
     declarations: [
@@ -40,6 +42,7 @@ import { environment } from '../environments/environment';
         HomeSkillsComponent,
         HomeExperienceComponent,
         HomeContactComponent,
+        HomeTrainingComponent,
         MomentJsPipe
     ],
     imports: [
@@ -65,7 +68,8 @@ import { environment } from '../environments/environment';
         UserService,
         HomeSkillsService,
         HomeContactService,
-        HomeExperienceService
+        HomeExperienceService,
+        HomeTrainingService
     ],
     bootstrap: [AppComponent],
 })

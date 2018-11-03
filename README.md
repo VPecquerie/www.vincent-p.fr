@@ -3,8 +3,6 @@
 This is my personal website on which we can find my resume, experience and skills. 
 It's also a kind of sandbox to test new technologies like Service Workers, accessibility, SEO... 
 
-[![APP Quality Gate](https://sonarqube.we-program-it.com/api/badges/gate?key=www_vincent_p_fr)](https://sonarqube.we-program-it.com/dashboard/index/www_vincent_p_fr)
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
