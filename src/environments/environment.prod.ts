@@ -11,6 +11,6 @@ export const environment = {
     id: 'vincent-p'
   },
   sentry: {
-    configUrl: 'https://67482976a2124dd8bffbebaa5aa2eee6@sentry.we-program-it.com/2'
+    configUrl: 'https://7cc4af3f1927461ea8abb8fd603fe6ce@sentry.io/1315438'
   }
 };
