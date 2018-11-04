@@ -31,6 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
 import { HomeTrainingService } from './home/trainings/home.trainings.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
             useClass: CustomHttpHandler,
             multi: true,
         },
+        NotificationService,
         TextService,
         HomeAboutService,
         UserService,
