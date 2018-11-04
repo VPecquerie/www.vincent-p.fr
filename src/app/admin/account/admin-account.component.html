@@ -1,0 +1,88 @@
+<div class="container-flui">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Editer mon profil</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="accountForm" (submit)="updateProfile()">
+
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col-md-12">
+                                <mat-label>Adresse E-mail...</mat-label>
+                                <input matInput type="email" formControlName="Email" placeholder="Adresse E-mail...">
+                                <mat-icon matPrefix>email</mat-icon>
+                                <mat-hint>
+                                    <div
+                                        *ngIf="accountForm.controls.Email.dirty && accountForm.controls.Email.errors?.required">
+                                        L'adresse e-mail est requise.
+                                    </div>
+                                    <div
+                                        *ngIf="accountForm.controls.Email.dirty && accountForm.controls.Email.errors?.email">
+                                        L'adresse e-mail n'a pas un format valide.
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col-md-6">
+                                <mat-label>Mot de passe...</mat-label>
+                                <input matInput type="password" formControlName="password"
+                                       placeholder="Mot de passe...">
+                                <mat-icon matPrefix>lock_outline</mat-icon>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="col-md-6">
+                                <mat-label>Confirmation...</mat-label>
+                                <input matInput type="password" formControlName="passwordValidation"
+                                       placeholder="Confirmation du mot de passe...">
+                                <mat-icon matPrefix>lock_outline</mat-icon>
+                                <mat-hint>
+
+                                    <div
+                                        *ngIf="accountForm.controls.passwordValidation.dirty && accountForm.errors?.Mismatch">
+                                        Le mot de passe et sa confirmation ne correspondent pas.
+                                    </div>
+                                    <div *ngIf="accountForm.controls.password.dirty && accountForm.errors?.Weak">
+                                        Le mot de passe est trop faible.
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col-md-12">
+                                <mat-label>Prénom...</mat-label>
+                                <input matInput type="email" formControlName="Firstname" placeholder="Prénom...">
+                                <mat-hint>
+                                    <div
+                                        *ngIf="accountForm.controls.Firstname.dirty && accountForm.controls.Firstname.errors?.required">
+                                        Le prénom est requis.
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col-md-12">
+                                <mat-label>Nom...</mat-label>
+                                <input matInput type="email" formControlName="Lastname" placeholder="Nom...">
+                                <mat-hint>
+                                    <div
+                                        *ngIf="accountForm.controls.Lastname.dirty && accountForm.controls.Lastname.errors?.required">
+                                        Le nom est requis.
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <button class="btn btn-info pull-right mat-raised-button" mat-raised-button="" type="submit">
+                            <span class="mat-button-wrapper">Mettre à jour</span>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

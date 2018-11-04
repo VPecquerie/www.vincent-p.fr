@@ -32,6 +32,8 @@ import { environment } from '../environments/environment';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
 import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { NotificationService } from './services/notification.service';
+import { AdminModule } from './admin/admin.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -49,13 +51,15 @@ import { NotificationService } from './services/notification.service';
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
         TransferHttpCacheModule,
-        MyMaterialModule,
         ScrollToModule.forRoot(),
-        RouterModule.forRoot(routes, { enableTracing: !environment.production }),
+        RouterModule.forRoot(routes, { enableTracing: !environment.production || true }),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+        BrowserAnimationsModule,
+        MyMaterialModule,
+        AdminModule
     ],
     providers: [
         { provide: ErrorHandler, useClass: RavenErrorHandler },
