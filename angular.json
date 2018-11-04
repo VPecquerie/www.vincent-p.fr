@@ -42,7 +42,7 @@
                                 "output": "/"
                             }
                         ],
-                        "styles": ["src/styles.scss"],
+                        "styles": ["src/styles/styles.scss"],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.slim.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -94,7 +94,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "src/tsconfig.spec.json",
                         "scripts": [],
-                        "styles": ["src/styles.scss"],
+                        "styles": ["src/styles/styles.scss"],
                         "assets": [
                             {
                                 "glob": "**/*",
