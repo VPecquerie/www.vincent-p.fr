@@ -3,6 +3,7 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 /* You can add global styles to this file, and also import other style files */
+
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
 @import "../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
@@ -18,7 +19,7 @@
 @import "core/forms";
 @import "core/input-group";
 @import "core/images";
-@import "core/navbar";
+// @import "core/navbar";
 @import "core/alerts";
 @import "core/type";
 @import "core/tabs";
@@ -43,7 +44,7 @@
 @import "core/plugins/chartist";
 @import "core/plugins/perfect-scrollbar";
 
-@import "core/responsive";
+// @import "core/responsive";
 
 @keyframes floating-arrow {
     from {
