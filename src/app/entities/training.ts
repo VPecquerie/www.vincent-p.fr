@@ -2,6 +2,7 @@ import { Skill } from './skill';
 import { StringUtils } from '../utils/string';
 
 export class Training {
+    public TrainingId: number;
     public Title: string;
     public Begin: Date;
     public End: Date;
@@ -10,10 +11,10 @@ export class Training {
 
     /**
      * Array Deserialize Method.
-     * @param {{}[]} json
+     * @param {{}} json
      * @returns {Training[]}
      */
-    public static deserializeArray(json: {}[]): Training[] {
+    public static deserializeArray(json): Training[] {
         const instances = [];
         for (const item of json) {
             const instance = new Training(item);
