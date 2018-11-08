@@ -10,7 +10,7 @@ export class Experience {
     public Start: Date;
     public End: Date;
 
-    public static deserializeArray(json: {}[]): Experience[] {
+    public static deserializeArray(json): Experience[] {
         const instances = [];
         for (const item of json) {
             const instance = new Experience(item);

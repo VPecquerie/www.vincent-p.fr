@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Ajouter une expérience</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="experienceForm" (submit)="save()">
+
+                        <mat-form-field appearance="outline" class="col-sm-11">
+                            <mat-label>Entreprise...</mat-label>
+                            <mat-select placeholder="Entreprise..." formControlName="Company">
+                                <mat-option *ngFor="let company of companies" [value]="company">
+                                    {{company.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                        <button class="btn btn-info pull-right mat-raised-button" mat-raised-button="" type="submit">
+                            <span class="mat-button-wrapper">Sauvegarder</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

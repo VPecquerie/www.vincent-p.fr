@@ -22,6 +22,7 @@ import { AdminComponent } from './admin.component';
 import { AdminSkillsService } from './skills/admin-skills.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminTrainingsService } from './trainngs/admin-trainings.service';
+import { AdminExperiencesService } from './experiences/admin-experiences.service';
 
 
 
@@ -54,6 +55,7 @@ import { AdminTrainingsService } from './trainngs/admin-trainings.service';
         AdminAuthgard,
         AdminLoginService,
         AdminSkillsService,
+        AdminExperiencesService,
         AdminTrainingsService
     ],
 })

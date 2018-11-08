@@ -13,7 +13,7 @@ export const adminRoutes = [
     { path: 'trainings', title: 'Formations', icon: 'school', class: '', component: AdminTrainingListComponent },
     { path: 'trainings/create', title: 'Formations', component: AdminTrainingCreateComponent },
     { path: 'experiences', title: 'Experiences', icon: 'work', class: '', component: AdminExperiencesListComponent },
-    { path: 'experiences/create', title: 'Experiences', component: AdminExperiencesCreateComponent },
+    { path: 'experiences/create/:id', title: 'Experiences', component: AdminExperiencesCreateComponent },
     { path: 'skills', title: 'Compétences', icon: 'timeline', class: '', component: AdminSkillsListComponent },
     { path: 'skills/create', title: 'Compétences', component: AdminSkillsCreateComponent },
     { path: '**', redirectTo: '/admin/home', pathMatch: 'full' }
