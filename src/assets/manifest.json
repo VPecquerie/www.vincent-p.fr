@@ -41,6 +41,18 @@
             "sizes": "192x192",
             "type": "image\/png",
             "density": "4.0"
+        },
+        {
+            "src": "\/assets\/images\/apple-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image\/png",
+            "density": "4.0"
+        },
+        {
+            "src": "\/assets\/images\/apple-icon-1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image\/png",
+            "density": "4.0"
         }
     ]
 }
