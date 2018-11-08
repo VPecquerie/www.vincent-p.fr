@@ -54,7 +54,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         BrowserModule.withServerTransition({ appId: 'my-app' }),
         TransferHttpCacheModule,
         ScrollToModule.forRoot(),
-        RouterModule.forRoot(routes, { enableTracing: !environment.production || true }),
+        RouterModule.forRoot(routes, { enableTracing: !environment.production }),
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         HttpClientModule,
         FormsModule,
