@@ -21,6 +21,7 @@ import { AdminSkillsListComponent } from './skills/list/admin-skills-list.compon
 import { AdminComponent } from './admin.component';
 import { AdminSkillsService } from './skills/admin-skills.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminTrainingsService } from './trainngs/admin-trainings.service';
 
 
 
@@ -52,7 +53,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     providers: [
         AdminAuthgard,
         AdminLoginService,
-        AdminSkillsService
+        AdminSkillsService,
+        AdminTrainingsService
     ],
 })
 export class AdminModule {

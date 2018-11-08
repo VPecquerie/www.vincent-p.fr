@@ -1,0 +1,43 @@
+<div class="col-md-12">
+    <div class="card card-plain">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0">Formations</h4>
+            <p class="card-category">Liste des Formations</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="">
+                    <th>ID</th>
+                    <th>Centre de formation</th>
+                    <th>Période</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                    <ng-container *ngFor="let training of trainings">
+                        <tr>
+                            <td>{{training.TrainingId}}</td>
+                            <td>{{training.Title}}</td>
+                            <td>{{training.Begin.getFullYear()}} - {{training.End.getFullYear()}}</td>
+                            <td>
+                                <a href="#" (click)="openEditMode(training);">
+                                    EDIT
+                                </a>
+                                <a href="#" (click)="delete(training);">
+                                    DELETE
+                                </a>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <a routerLink="/admin/skills/create" class="btn btn-danger pull-right mat-raised-button">
+                <span class="material-icon">add</span>
+            </a>
+
+        </div>
+    </div>
+</div>
