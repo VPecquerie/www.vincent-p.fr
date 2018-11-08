@@ -34,10 +34,12 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { NotificationService } from './services/notification.service';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        NotFoundComponent,
         HomeComponent,
         HomeTopbarComponent,
         HomeSplashScreenComponent,

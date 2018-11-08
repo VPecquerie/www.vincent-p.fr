@@ -4,14 +4,18 @@ import { enableProdMode } from '@angular/core';
 
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
+import {REQUEST, RESPONSE} from '@nguniversal/express-engine/tokens';
+import {ValueProvider} from '@angular/core';
+
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import * as compression from 'compression';
 import { join } from 'path';
+import { renderModuleFactory } from '@angular/platform-server';
+import { readFileSync } from 'fs';
 
-// Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
 // Express server
@@ -22,27 +26,29 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./server/main');
+const template = readFileSync(join(__dirname, '..', 'dist', 'browser', 'index.html')).toString();
 
-// Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-app.engine(
-    'html',
-    ngExpressEngine({
-        bootstrap: AppServerModuleNgFactory,
-        providers: [
+app.engine('html', (_, options, callback) => {
+    renderModuleFactory(AppServerModuleNgFactory, {
+        // Our index.html
+        document: template,
+        url: options.req.url,
+        extraProviders: [
             provideModuleMap(LAZY_MODULE_MAP),
-            // In case you want to use an AppShell with SSR and Lazy loading
-            // you'd need to uncomment the below. (see: https://github.com/angular/angular-cli/issues/9202)
-            // {
-            //   provide: NgModuleFactoryLoader,
-            //   useClass: ModuleMapNgFactoryLoader,
-            //   deps: [
-            //     Compiler,
-            //     MODULE_MAP
-            //   ],
-            // },
-        ],
-    })
-);
+            // make req and response accessible when angular app runs on server
+            <ValueProvider>{
+                provide: REQUEST,
+                useValue: options.req
+            },
+            <ValueProvider>{
+                provide: RESPONSE,
+                useValue: options.req.res,
+            },
+        ]
+    }).then(html => {
+        callback(null, html);
+    });
+});
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
@@ -51,16 +57,11 @@ app.use(compression({ filter: shouldCompress }));
 
 function shouldCompress(req, res) {
     if (req.headers['x-no-compression']) {
-        // don't compress responses with this request header
         return false;
     }
-
     // fallback to standard filter function
     return compression.filter(req, res);
 }
-
-// Example Express Rest API endpoints
-// app.get('/api/**', (req, res) => { });
 
 // Server static files from /browser
 app.get(
