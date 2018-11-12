@@ -23,10 +23,10 @@
                             <td>{{experience.Start?.getFullYear()}} - {{experience.End?.getFullYear()}}</td>
                             <td>
                                 <a href="#" (click)="openEditMode(experience);">
-                                    EDIT
+                                    <em class="material-icons">edit</em>
                                 </a>
                                 <a href="#" (click)="delete(experience);">
-                                    DELETE
+                                    <em class="material-icons">remove_circle_outline</em>
                                 </a>
                             </td>
                         </tr>
@@ -37,7 +37,7 @@
             </div>
 
             <a (click)="openEditMode()" class="btn btn-danger pull-right mat-raised-button" >
-                <span class="material-icon">add</span>
+                <span class="material-icons">add</span>
             </a>
         </div>
     </div>

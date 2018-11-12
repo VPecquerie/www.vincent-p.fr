@@ -21,10 +21,10 @@
                             <td>{{training.Begin.getFullYear()}} - {{training.End.getFullYear()}}</td>
                             <td>
                                 <a href="#" (click)="openEditMode(training);">
-                                    EDIT
+                                    <em class="material-icons">edit</em>
                                 </a>
                                 <a href="#" (click)="delete(training);">
-                                    DELETE
+                                    <em class="material-icons">remove_circle_outline</em>
                                 </a>
                             </td>
                         </tr>
@@ -35,7 +35,7 @@
             </div>
 
             <a routerLink="/admin/skills/create" class="btn btn-danger pull-right mat-raised-button">
-                <span class="material-icon">add</span>
+                <span class="material-icons">add</span>
             </a>
 
         </div>
