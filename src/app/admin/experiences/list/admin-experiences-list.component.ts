@@ -3,8 +3,8 @@ import { AdminExperiencesService } from '../admin-experiences.service';
 import { Experience } from '../../../entities/experience';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/src/internal/Subscription';
+import { Subscription } from 'rxjs/internal/Subscription';
+
 @Component({
     templateUrl: './admin-experiences-list.component.html',
     styleUrls: ['./admin-experiences-list.component.scss'],

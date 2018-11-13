@@ -20,7 +20,7 @@ export class Company {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                if (key === 'Experiences') {
+                if (key === 'experiences') {
                     this[
                         StringUtils.Capitalize(key)
                     ] = Experience.deserializeArray(json[key]);

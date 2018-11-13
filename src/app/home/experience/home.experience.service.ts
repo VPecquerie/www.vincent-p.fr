@@ -16,7 +16,7 @@ export class HomeExperienceService extends CommonHttpService {
     getExperiences(): Observable<Experience[]> {
         const url = environment.api.url + environment.api.entities.experiences;
         return this.http.get<Experience[]>(url).pipe(
-            map(experiences => _.orderBy(experiences, ['Start'], ['desc'])),
+            map(experiences => _.orderBy(Experience.deserializeArray(experiences), ['Start'], ['desc'])),
             tap(h => {
                 const outcome = h ? `fetched` : `did not find`;
             }),

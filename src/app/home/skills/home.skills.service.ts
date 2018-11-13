@@ -15,30 +15,11 @@ export class HomeSkillsService extends CommonHttpService {
     getSkills(): Observable<Skillgroup[]> {
         const url = environment.api.url + environment.api.entities.skillGroups;
         return this.http.get<Skillgroup[]>(url).pipe(
-            map(groups => groups),
+            map(groups => Skillgroup.deserializeArray(groups)),
             tap(h => {
                 const outcome = h ? `fetched` : `did not find`;
             }),
             catchError(this.handleError<Skillgroup[]>(`Get Skills`))
         );
     }
-/*
-    getSkills(): Promise<Skillgroup[]> {
-        const self = this;
-        const url = environment.api.url + environment.api.entities.skillGroups;
-        const promise = new Promise<Skillgroup[]>((resolve, reject) => {
-            self.http
-                .get(url)
-                .toPromise()
-                .then((apiResult: any) => {
-                    const entities = Skillgroup.deserializeArray(apiResult);
-                    resolve(entities);
-                })
-                .catch(() => {
-                    reject([]);
-                });
-        });
-
-        return promise;
-    }*/
 }
