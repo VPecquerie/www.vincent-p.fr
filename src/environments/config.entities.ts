@@ -5,6 +5,7 @@ export const entities = {
     experiences: '/Experiences',
     skillGroups: '/SkillGroups',
     skills: '/Skills',
+    companies: '/Companies',
     users: {
         login: '/Users/Authenticate',
         me: '/Users/Me',
