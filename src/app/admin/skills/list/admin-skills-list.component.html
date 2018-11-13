@@ -44,14 +44,14 @@
                                     {{form.SkillId}}
                                 </td>
                                 <td>
-                                    <input type="text" title="Nom de la compétence" [ngModel]="form.Name"/>
+                                    <input type="text" title="Nom de la compétence" [(ngModel)]="form.Name"/>
                                 </td>
                                 <td>
                                     <input type="number" min="0" max="0" step="1"
-                                           title="Niveau de maîtrise de la compétence" [ngModel]="form.Level"/>
+                                           title="Niveau de maîtrise de la compétence" [(ngModel)]="form.Level"/>
                                 </td>
                                 <td>
-                                    <a href="#" (click)="saveSkill(skill);">
+                                    <a href="#" (click)="saveSkill(form);">
                                         <em class="material-icons">save</em>
                                     </a>
                                     <a href="#" (click)="cancelEditMode(skill);">
