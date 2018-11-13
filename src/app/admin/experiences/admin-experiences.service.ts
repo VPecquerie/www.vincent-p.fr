@@ -6,6 +6,7 @@ import { Experience } from '../../entities/experience';
 import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { CommonHttpService } from '../../services/common.http.service';
+import { Company } from '../../entities/company';
 
 @Injectable()
 export class AdminExperiencesService extends CommonHttpService {
@@ -88,5 +89,16 @@ export class AdminExperiencesService extends CommonHttpService {
                 reject(err);
             });
         });
+    }
+
+    getCompanies() {
+        const url = environment.api.url + environment.api.entities.companies;
+        return this.http.get<Company[]>(url).pipe(
+            map(companies => Company.deserializeArray(companies)),
+            tap(h => {
+                const outcome = h ? `fetched` : `did not find`;
+            }),
+            catchError(this.handleError<Company[]>(`Get Companies`))
+        );
     }
 }
