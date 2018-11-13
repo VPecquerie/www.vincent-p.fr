@@ -2,6 +2,7 @@ import { Experience } from './experience';
 import { StringUtils } from '../utils/string';
 
 export class Company {
+    public CompanyId: number;
     public Name: string;
     public Location: string;
     public Logo: string;

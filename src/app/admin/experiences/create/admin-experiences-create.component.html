@@ -9,10 +9,11 @@
                     <form [formGroup]="experienceForm" (submit)="save()">
 
                         <div class="row" *ngIf="!createEnterpriseMode">
+
                             <mat-form-field appearance="outline" class="col-sm-11">
                                 <mat-label>Entreprise...</mat-label>
-                                <mat-select placeholder="Entreprise..." formControlName="Company">
-                                    <mat-option *ngFor="let company of companies" [value]="company">
+                                <mat-select placeholder="Entreprise..." formControlName="CompanyId">
+                                    <mat-option *ngFor="let company of companies" [value]="company.CompanyId">
                                         {{company.Name}}
                                     </mat-option>
                                 </mat-select>

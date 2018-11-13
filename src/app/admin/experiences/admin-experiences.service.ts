@@ -78,7 +78,7 @@ export class AdminExperiencesService extends CommonHttpService {
         });
     }
 
-    deleteSkill(experienceId: number): Promise<any> {
+    deleteExperience(experienceId: number): Promise<any> {
         const self = this;
         return new Promise<Experience>((resolve, reject) => {
             const url = environment.api.url + environment.api.entities.experiences + '/' + experienceId;

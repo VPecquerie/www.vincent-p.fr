@@ -22,7 +22,7 @@
                             <td>{{experience.Title}}</td>
                             <td>{{experience.Start?.getFullYear()}} - {{experience.End?.getFullYear()}}</td>
                             <td>
-                                <a href="#" (click)="openEditMode(experience);">
+                                <a href="#" [href]="'/admin/experiences/edit/' + experience.ExperienceId">
                                     <em class="material-icons">edit</em>
                                 </a>
                                 <a href="#" (click)="delete(experience);">
