@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Ajouter une expérience</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="experienceForm" (submit)="save()">
+
+                        <div class="row" *ngIf="!createEnterpriseMode">
+
+                            <mat-form-field appearance="outline" class="col-sm-11">
+                                <mat-label>Entreprise...</mat-label>
+                                <mat-select placeholder="Entreprise..." formControlName="CompanyId">
+                                    <mat-option *ngFor="let company of companies" [value]="company.CompanyId">
+                                        {{company.Name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="col-sm-1 inline-add-container">
+                                <button mat-icon-button class="btn btn-info"
+                                        (click)="createEnterpriseMode = !createEnterpriseMode" title="Ajouter une entreprise.">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="createEnterpriseMode" [formGroup]="experienceForm.controls['CompanyAdd']">
+                            <div class="input-group col-md-11">
+                                <mat-form-field appearance="outline" class="col-sm-6">
+                                    <mat-label>Nom de l'entreprise</mat-label>
+                                    <input matInput type="text" placeholder="Nom de l'entreprise..." formControlName="Name">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="col-sm-6">
+                                    <mat-label>Localisation de l'entreprise</mat-label>
+                                    <input matInput type="text" placeholder="Localisation de l'entreprise..." formControlName="Location">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-1 inline-add-container">
+                                <button mat-icon-button class="btn btn-warning"
+                                        (click)="createEnterpriseMode = !createEnterpriseMode" title="Annuler">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <mat-form-field appearance="outline" class="col-md-12">
+                                    <mat-label>Intitulé de la nouvelle experience...</mat-label>
+                                    <input matInput type="text" placeholder="Intitulé de la nouvelle experience..."
+                                           formControlName="Title">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-group">
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                    <mat-label>Date de début de la nouvelle experience...</mat-label>
+                                    <input matInput type="date" placeholder="Date de début de la nouvelle experience..."
+                                           formControlName="Start">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                    <mat-label>Date de fin de la nouvelle experience...</mat-label>
+                                    <input matInput type="date" placeholder="Date de fin de la nouvelle experience..."
+                                           formControlName="End">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <mat-form-field appearance="outline" class="col-md-12">
+                                    <mat-label>Description de la nouvelle experience...</mat-label>
+                                    <textarea matInput class="form-control input-sm input-inverse"
+                                        formControlName="Description"
+                                        placeholder="Description de la nouvelle experience..." rows="5">
+                                    </textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-info pull-right mat-raised-button" mat-raised-button="" type="submit">
+                            <span class="mat-button-wrapper">Sauvegarder</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

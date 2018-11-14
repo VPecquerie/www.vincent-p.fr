@@ -21,7 +21,7 @@
                             </th>
                             <th>
                                 <a href="#" (click)="deleteGroup(group);">
-                                    DELETE
+                                    <em class="material-icons">remove_circle_outline</em>
                                 </a>
                             </th>
                         </tr>
@@ -32,10 +32,10 @@
                                 <td>{{skill.Level}}</td>
                                 <td>
                                     <a href="#" (click)="openEditMode(skill);">
-                                        EDIT
+                                        <em class="material-icons">edit</em>
                                     </a>
                                     <a href="#" (click)="deleteSkill(skill);">
-                                        DELETE
+                                        <em class="material-icons">remove_circle_outline</em>
                                     </a>
                                 </td>
                             </tr>
@@ -44,18 +44,18 @@
                                     {{form.SkillId}}
                                 </td>
                                 <td>
-                                    <input type="text" title="Nom de la compétence" [ngModel]="form.Name"/>
+                                    <input type="text" title="Nom de la compétence" [(ngModel)]="form.Name"/>
                                 </td>
                                 <td>
                                     <input type="number" min="0" max="0" step="1"
-                                           title="Niveau de maîtrise de la compétence" [ngModel]="form.Level"/>
+                                           title="Niveau de maîtrise de la compétence" [(ngModel)]="form.Level"/>
                                 </td>
                                 <td>
-                                    <a href="#" (click)="saveSkill(skill)">
-                                        Save
+                                    <a href="#" (click)="saveSkill(form);">
+                                        <em class="material-icons">save</em>
                                     </a>
-                                    <a href="#" (click)="cancelEditMode(skill)">
-                                        Cancel
+                                    <a href="#" (click)="cancelEditMode(skill);">
+                                        <em class="material-icons">cancel</em>
                                     </a>
                                 </td>
                             </tr>
@@ -67,7 +67,7 @@
             </div>
 
             <a routerLink="/admin/skills/create" class="btn btn-danger pull-right mat-raised-button">
-                <span class="material-icon">add</span>
+                <em class="material-icons">add</em>
             </a>
 
         </div>

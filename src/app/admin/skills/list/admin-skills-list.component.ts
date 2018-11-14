@@ -37,18 +37,22 @@ export class AdminSkillsListComponent implements OnInit {
         return false;
     }
 
-    async saveSkill(skill: Skill): Promise<boolean> {
+    saveSkill(skill: Skill) {
+        const self = this;
         const postData = {
             Name: skill.Name,
             Level: skill.Level,
         };
-        skill = await this.service.updateSkill(skill.SkillId, postData);
+        this.service.updateSkill(skill.SkillId, postData).then(() => {
+            self.loadSkills();
+        });
+
         return false;
     }
 
     deleteSkill(skill: Skill) {
         const self = this;
-        const result = this.service.deleteSkill(skill.SkillId).then(() => {
+        this.service.deleteSkill(skill.SkillId).then(() => {
             self.loadSkills();
         });
 
@@ -57,7 +61,7 @@ export class AdminSkillsListComponent implements OnInit {
 
     deleteGroup(group: Skillgroup) {
         const self = this;
-        const result = this.service.deleteGroup(group.SkillGroupId).then(() => {
+        this.service.deleteGroup(group.SkillGroupId).then(() => {
             self.loadSkills();
         });
 

@@ -45,7 +45,8 @@
                         "styles": ["src/styles/styles.scss"],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.slim.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                            "node_modules/bootstrap-notify/bootstrap-notify.min.js"
                         ]
                     },
                     "configurations": {
@@ -66,6 +67,24 @@
                                 }
                             ],
                             "serviceWorker": true
+                        },
+                        "dev": {
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": true,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.dev.ts"
+                                }
+                            ],
+                            "serviceWorker": false
                         }
                     }
                 },
@@ -77,6 +96,9 @@
                     "configurations": {
                         "production": {
                             "browserTarget": "vincent-p:build:production"
+                        },
+                        "dev": {
+                            "browserTarget": "vincent-p:build:dev"
                         }
                     }
                 },

@@ -18,6 +18,6 @@ export class HomeAboutComponent implements OnInit {
 
     ngOnInit(): void {
         const self = this;
-        this.homeAboutService.getIntroduction().subscribe((text) => this.introduction = text);
+        this.homeAboutService.getIntroduction().subscribe((text) => this.introduction = new TextEntity(text));
     }
 }

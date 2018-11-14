@@ -4,13 +4,14 @@ import { StringUtils } from '../utils/string';
 
 export class Experience {
     public ExperienceId: number;
+    public Title: string;
     public Company: Company;
     public Description: string;
     public Skills: Skill[];
     public Start: Date;
     public End: Date;
 
-    public static deserializeArray(json: {}[]): Experience[] {
+    public static deserializeArray(json): Experience[] {
         const instances = [];
         for (const item of json) {
             const instance = new Experience(item);
@@ -21,22 +22,22 @@ export class Experience {
 
     public constructor(json: {}) {
         for (const key in json) {
-            if (json.hasOwnProperty(key)) {
+            if (json.hasOwnProperty(key) && json[key] != null) {
                 switch (key) {
-                    case 'Skills':
+                    case 'skills':
                         this[
                             StringUtils.Capitalize(key)
                         ] = Skill.deserializeArray(json[key]);
                         break;
 
-                    case 'Company':
+                    case 'company':
                         this[
                             StringUtils.Capitalize(key)
                         ] = new Company(json[key]);
                         break;
 
-                    case 'Start':
-                    case 'End':
+                    case 'start':
+                    case 'end':
                         if (json[key] != null) {
                             this[StringUtils.Capitalize(key)] = new Date(
                                 json[key]
