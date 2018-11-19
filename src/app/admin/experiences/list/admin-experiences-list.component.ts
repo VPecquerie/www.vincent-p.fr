@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 export class AdminExperiencesListComponent implements OnInit, OnDestroy {
 
     private suscription: Subscription;
-    private experiences: Experience[];
+    public experiences: Experience[];
 
     constructor(private service: AdminExperiencesService, private router: Router) {
     }

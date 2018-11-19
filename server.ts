@@ -3,7 +3,6 @@ import 'reflect-metadata';
 import { enableProdMode } from '@angular/core';
 
 // Express Engine
-import { ngExpressEngine } from '@nguniversal/express-engine';
 import {REQUEST, RESPONSE} from '@nguniversal/express-engine/tokens';
 import {ValueProvider} from '@angular/core';
 
@@ -16,10 +15,26 @@ import { join } from 'path';
 import { renderModuleFactory } from '@angular/platform-server';
 import { readFileSync } from 'fs';
 
+import * as minifyHTML from 'express-minify-html';
+
 enableProdMode();
 
 // Express server
 const app = express();
+
+app.use(minifyHTML({
+    override:      true,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments:            true,
+        collapseWhitespace:        true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes:     true,
+        removeEmptyAttributes:     true,
+        minifyJS:                  true
+    }
+}));
+
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -27,6 +42,7 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./server/main');
 const template = readFileSync(join(__dirname, '..', 'dist', 'browser', 'index.html')).toString();
+
 
 app.engine('html', (_, options, callback) => {
     renderModuleFactory(AppServerModuleNgFactory, {
@@ -49,6 +65,8 @@ app.engine('html', (_, options, callback) => {
         callback(null, html);
     });
 });
+
+
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
