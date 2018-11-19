@@ -35,7 +35,6 @@ app.use(minifyHTML({
     }
 }));
 
-
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
@@ -65,8 +64,6 @@ app.engine('html', (_, options, callback) => {
         callback(null, html);
     });
 });
-
-
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));

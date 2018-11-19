@@ -8,6 +8,7 @@ RUN npm install -g @angular/cli
 USER node
 WORKDIR /app
 
+ENV NODE_ENV=production
 ARG ANGULAR_CONFIGURATION=Production
 ENV ANGULAR_CONFIGURATION ${ANGULAR_CONFIGURATION}
 COPY --chown=node:node . .
