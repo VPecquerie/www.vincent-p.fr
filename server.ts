@@ -16,6 +16,8 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { readFileSync } from 'fs';
 
 import * as minifyHTML from 'express-minify-html';
+import * as spdy from 'spdy';
+import * as fs from 'fs';
 
 enableProdMode();
 
@@ -37,6 +39,11 @@ app.use(minifyHTML({
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
+
+const options = {
+    key: fs.readFileSync(DIST_FOLDER + '/server.key'),
+    cert:  fs.readFileSync(DIST_FOLDER + '/server.crt')
+}
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./server/main');
@@ -92,6 +99,17 @@ app.get('*', (req, res) => {
 });
 
 // Start up the Node server
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
     console.log(`Node Express server listening on http://localhost:${PORT}`);
 });
+*/
+spdy
+    .createServer(options, app)
+    .listen(PORT, (error) => {
+        if (error) {
+            console.error(error);
+            return process.exit(1);
+        } else {
+            console.log('Listening on port: ' + PORT + '.');
+        }
+    });
