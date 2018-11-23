@@ -13,7 +13,8 @@ ARG ANGULAR_CONFIGURATION=Production
 ENV ANGULAR_CONFIGURATION ${ANGULAR_CONFIGURATION}
 COPY --chown=node:node . .
 
-RUN yarn install && npm run build:ssr
+RUN yarn install --production=false
+RUN npm run build:ssr
 
 EXPOSE 4000
 CMD [ "npm", "run", "serve:ssr" ]
