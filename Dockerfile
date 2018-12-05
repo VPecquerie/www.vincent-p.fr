@@ -13,7 +13,11 @@ ARG ANGULAR_CONFIGURATION=Production
 ENV ANGULAR_CONFIGURATION ${ANGULAR_CONFIGURATION}
 COPY --chown=node:node . .
 
-RUN yarn install && npm run build:ssr
+RUN yarn install --production=false
+# Detailled Building package.
+RUN ./node_modules/.bin/ngw build --prod -c ${ANGULAR_CONFIGURATION}
+RUN ./node_modules/.bin/ngw run vincent-p:server:${ANGULAR_CONFIGURATION}
+RUN ./node_modules/.bin/tsc -p server.tsconfig.json
 
 EXPOSE 4000
 CMD [ "npm", "run", "serve:ssr" ]
