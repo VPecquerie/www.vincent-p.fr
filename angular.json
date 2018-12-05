@@ -69,22 +69,40 @@
                             "serviceWorker": true
                         },
                         "dev": {
-                            "optimization": false,
+                            "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": true,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": false,
+                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
-                            "buildOptimizer": false,
+                            "buildOptimizer": true,
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
                                     "with": "src/environments/environment.dev.ts"
                                 }
                             ],
-                            "serviceWorker": false
+                            "serviceWorker": true
+                        },
+                        "beta": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": true,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.beta.ts"
+                                }
+                            ],
+                            "serviceWorker": true
                         }
                     }
                 },
@@ -151,6 +169,22 @@
                                 {
                                     "replace": "src/environments/environment.ts",
                                     "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "dev": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.dev.ts"
+                                }
+                            ]
+                        },
+                        "beta": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.beta.ts"
                                 }
                             ]
                         }
