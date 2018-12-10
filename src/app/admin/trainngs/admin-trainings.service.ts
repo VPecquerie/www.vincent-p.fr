@@ -5,8 +5,7 @@ import { Skill } from '../../entities/skill';
 import { Training } from '../../entities/training';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { tap } from 'rxjs/internal/operators/tap';
-import * as _ from 'lodash';
+import { Experience } from '../../entities/experience';
 
 @Injectable()
 export class AdminTrainingsService {
@@ -14,14 +13,10 @@ export class AdminTrainingsService {
     }
 
     getTrainings(): Observable<Training[]> {
-        const self = this;
         const url = environment.api.url + environment.api.entities.trainings;
 
         return this.http.get<Training[]>(url).pipe(
             map(trainings => Training.deserializeArray(trainings)),
-            tap(h => {
-                const outcome = h ? `fetched` : `did not find`;
-            })
         );
     }
 
@@ -43,8 +38,30 @@ export class AdminTrainingsService {
         const self = this;
         return new Promise<Skill>((resolve, reject) => {
             const url = environment.api.url + environment.api.entities.trainings + '/' + trainingId;
-            self.http.delete(url).toPromise().then((result) => {
+            self.http.delete(url).toPromise().then(() => {
                 resolve();
+            }).catch((err) => {
+                console.error(err);
+                reject(err);
+            });
+        });
+    }
+
+    getTraining(id: number) {
+        const url = environment.api.url + environment.api.entities.trainings + '/' + id;
+
+        return this.http.get<Training>(url).pipe(
+            map(training => new Training(training)),
+        );
+    }
+
+    updateTraining(id: number, data: any) {
+        const self = this;
+        return new Promise<Training>((resolve, reject) => {
+            const url = environment.api.url + environment.api.entities.trainings + '/' + id;
+            self.http.put(url, data).toPromise().then((result) => {
+                const experience = new Training(result);
+                resolve(experience);
             }).catch((err) => {
                 console.error(err);
                 reject(err);

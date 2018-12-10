@@ -9,8 +9,9 @@
                     <div class="row" *ngFor="let skill of group.Skills">
                         <div class="col-sm-12">
                             <div class="progress skill-bar">
-                                <div class="progress-bar" aria-valuemax="100" aria-valuemin="0" [attr.aria-valuenow]="skill.Level"
-                                    role="progressbar" [style.width.%]="skill.Level">
+                                <div class="progress-bar" aria-valuemax="100" aria-valuemin="0"
+                                     [attr.aria-valuenow]="skill.Level" [style.width.%]="skill.Level"
+                                     role="progressbar">
                                     {{skill.Name}}
                                 </div>
                             </div>

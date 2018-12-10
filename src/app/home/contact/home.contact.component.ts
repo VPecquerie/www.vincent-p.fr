@@ -30,7 +30,4 @@ export class HomeContactComponent {
             });
     }
 
-    showForm() {
-        return !this.success && !this.error;
-    }
 }

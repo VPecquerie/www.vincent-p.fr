@@ -1,81 +1,86 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-header-info">
-                    <h4 class="card-title">Ajouter une compétence</h4>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="skillForm" (submit)="save()">
+<app-admin-layout>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Ajouter une compétence</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="skillForm" (submit)="save()">
 
-                        <div class="row" *ngIf="!createGroupMode">
-                            <mat-form-field appearance="outline" class="col-sm-11">
-                                <mat-label>Groupe...</mat-label>
-                                <mat-select placeholder="Groupe..." formControlName="group">
-                                    <mat-option *ngFor="let group of groups" [value]="group">
-                                        {{group.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>
-                                    <div
-                                        *ngIf="skillForm.controls.group.dirty && skillForm.controls.group.errors?.required">
-                                        Le groupe est requis.
-                                    </div>
-                                </mat-hint>
-                            </mat-form-field>
-                            <div class="col-sm-1 inline-add-container">
-                                <button mat-icon-button class="btn btn-info"
-                                        (click)="createGroupMode = !createGroupMode" title="Ajouter un groupe.">
-                                    <mat-icon>add</mat-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row" *ngIf="createGroupMode" [formGroup]="skillForm.controls['groupAdd']">
-                            <div class="input-group col-md-11">
-                                <mat-form-field appearance="outline" class="col-sm-6">
-                                    <mat-label>Nom du Groupe</mat-label>
-                                    <input matInput type="text" placeholder="Nom du groupe..." formControlName="Name">
+                            <div class="row" *ngIf="!createGroupMode">
+                                <mat-form-field appearance="outline" class="col-sm-11">
+                                    <mat-label>Groupe...</mat-label>
+                                    <mat-select placeholder="Groupe..." formControlName="group">
+                                        <mat-option *ngFor="let group of groups" [value]="group">
+                                            {{group.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>
+                                        <div
+                                            *ngIf="skillForm.controls.group.dirty && skillForm.controls.group.errors?.required">
+                                            Le groupe est requis.
+                                        </div>
+                                    </mat-hint>
                                 </mat-form-field>
+                                <div class="col-sm-1 inline-add-container">
+                                    <button mat-icon-button class="btn btn-info"
+                                            (click)="createGroupMode = !createGroupMode" title="Ajouter un groupe.">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="createGroupMode" [formGroup]="skillForm.controls['groupAdd']">
+                                <div class="input-group col-md-11">
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>Nom du Groupe</mat-label>
+                                        <input matInput type="text" placeholder="Nom du groupe..."
+                                               formControlName="Name">
+                                    </mat-form-field>
 
-                                <mat-form-field appearance="outline" class="col-sm-6">
-                                    <mat-label>Icône du Groupe</mat-label>
-                                    <input matInput type="text" placeholder="Icône du groupe..." formControlName="Icon">
-                                </mat-form-field>
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>Icône du Groupe</mat-label>
+                                        <input matInput type="text" placeholder="Icône du groupe..."
+                                               formControlName="Icon">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-1 inline-add-container">
+                                    <button mat-icon-button class="btn btn-warning"
+                                            (click)="createGroupMode = !createGroupMode" title="Annuler">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-sm-1 inline-add-container">
-                                <button mat-icon-button class="btn btn-warning"
-                                        (click)="createGroupMode = !createGroupMode" title="Annuler">
-                                    <mat-icon>close</mat-icon>
-                                </button>
+                            <div class="row">
+                                <div class="input-group">
+                                    <mat-form-field appearance="outline" class="col-md-12">
+                                        <mat-label>Intitulé de la nouvelle compétence...</mat-label>
+                                        <input matInput type="text" placeholder="Intitulé de la nouvelle compétence..."
+                                               formControlName="name">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group">
-                                <mat-form-field appearance="outline" class="col-md-12">
-                                    <mat-label>Intitulé de la nouvelle compétence...</mat-label>
-                                    <input matInput type="text" placeholder="Intitulé de la nouvelle compétence..."
-                                           formControlName="name">
-                                </mat-form-field>
+                            <div class="row">
+                                <div class="input-group">
+                                    <mat-form-field appearance="outline" class="col-md-12">
+                                        <mat-label>Niveau de maîtrise de la nouvelle compétence...</mat-label>
+                                        <input matInput type="number" min="0" max="100"
+                                               placeholder="Niveau de maîtrise de la nouvelle compétence..."
+                                               formControlName="level">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group">
-                                <mat-form-field appearance="outline" class="col-md-12">
-                                    <mat-label>Niveau de maîtrise de la nouvelle compétence...</mat-label>
-                                    <input matInput type="number" min="0" max="100"
-                                           placeholder="Niveau de maîtrise de la nouvelle compétence..."
-                                           formControlName="level">
-                                </mat-form-field>
-                            </div>
-                        </div>
 
-                        <button class="btn btn-info pull-right mat-raised-button" mat-raised-button="" type="submit">
-                            <span class="mat-button-wrapper">Sauvegarder</span>
-                        </button>
+                            <button class="btn btn-info pull-right mat-raised-button" mat-raised-button=""
+                                    type="submit">
+                                <span class="mat-button-wrapper">Sauvegarder</span>
+                            </button>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</app-admin-layout>

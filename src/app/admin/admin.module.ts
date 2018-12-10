@@ -18,12 +18,11 @@ import { AdminTrainingCreateComponent } from './trainngs/create/admin-training-c
 import { AdminSkillsCreateComponent } from './skills/create/admin-skills-create.component';
 import { AdminAccountComponent } from './account/admin-account.component';
 import { AdminSkillsListComponent } from './skills/list/admin-skills-list.component';
-import { AdminComponent } from './admin.component';
 import { AdminSkillsService } from './skills/admin-skills.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminTrainingsService } from './trainngs/admin-trainings.service';
 import { AdminExperiencesService } from './experiences/admin-experiences.service';
-
+import { AdminRoutingModule } from './admin.routes';
+import { AdminLayoutComponent } from './layout/admin.layout.component';
 
 
 @NgModule({
@@ -31,7 +30,7 @@ import { AdminExperiencesService } from './experiences/admin-experiences.service
         NavbarComponent,
         SidebarComponent,
         FooterComponent,
-        AdminComponent,
+        AdminLayoutComponent,
         AdminHomeComponent,
         AdminLoginComponent,
         AdminAccountComponent,
@@ -44,9 +43,9 @@ import { AdminExperiencesService } from './experiences/admin-experiences.service
     ],
     imports: [
         CommonModule,
+        AdminRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
         HttpClientModule,
         RouterModule,
         MyMaterialModule,

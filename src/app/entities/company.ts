@@ -1,5 +1,4 @@
 import { Experience } from './experience';
-import { StringUtils } from '../utils/string';
 
 export class Company {
     public CompanyId: number;
@@ -20,12 +19,10 @@ export class Company {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                if (key === 'experiences') {
-                    this[
-                        StringUtils.Capitalize(key)
-                    ] = Experience.deserializeArray(json[key]);
+                if (key === 'Experiences') {
+                    this[key] = Experience.deserializeArray(json[key]);
                 } else {
-                    this[StringUtils.Capitalize(key)] = json[key];
+                    this[key] = json[key];
                 }
             }
         }

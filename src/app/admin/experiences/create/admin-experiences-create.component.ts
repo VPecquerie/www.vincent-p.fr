@@ -26,7 +26,7 @@ export class AdminExperiencesCreateComponent implements OnInit {
         CompanyAdd: new FormGroup({
             Name: new FormControl('', []),
             Location: new FormControl('', []),
-            Logo: new FormControl('', [])
+            Logo: new FormControl('', []),
         }),
     });
 
@@ -36,28 +36,29 @@ export class AdminExperiencesCreateComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.id = params.id;
-            this.service.getExperience(this.id).subscribe(data => {
-
-                this.experience = new Experience(data);
-                this.experienceForm.setValue({
-                    Title: this.experience.Title,
-                    Description: this.experience.Description,
-                    Start: moment(this.experience.Start).format('YYYY-MM-DD'),
-                    End: moment(this.experience.End).format('YYYY-MM-DD'),
-                    CompanyId: this.experience.Company != null ? this.experience.Company.CompanyId : -1,
-                    CompanyAdd: {
-                        Name: null,
-                        Location: null,
-                        Logo: null
-                    }
+            if (this.id !== null && this.id !== undefined) {
+                this.service.getExperience(this.id).subscribe(data => {
+                    this.experience = new Experience(data);
+                    this.experienceForm.setValue({
+                        Title: this.experience.Title,
+                        Description: this.experience.Description,
+                        Start: moment(this.experience.Start).format('YYYY-MM-DD'),
+                        End: moment(this.experience.End).format('YYYY-MM-DD'),
+                        CompanyId: this.experience.Company != null ? this.experience.Company.CompanyId : -1,
+                        CompanyAdd: {
+                            Name: null,
+                            Location: null,
+                            Logo: null,
+                        },
+                    });
                 });
-            });
+            }
             this.service.getCompanies().subscribe(companies => this.companies = companies);
         });
     }
 
     save() {
-        if (this.experienceForm.valid) {
+        if (this.experienceForm.valid) {
             const self = this;
             if (this.id == null) {
                 this.service.createExperience(this.experienceForm.getRawValue()).then(() => {

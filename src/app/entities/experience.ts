@@ -1,6 +1,5 @@
 import { Skill } from './skill';
 import { Company } from './company';
-import { StringUtils } from '../utils/string';
 
 export class Experience {
     public ExperienceId: number;
@@ -24,31 +23,25 @@ export class Experience {
         for (const key in json) {
             if (json.hasOwnProperty(key) && json[key] != null) {
                 switch (key) {
-                    case 'skills':
-                        this[
-                            StringUtils.Capitalize(key)
-                        ] = Skill.deserializeArray(json[key]);
+                    case 'Skills':
+                        this[key] = Skill.deserializeArray(json[key]);
                         break;
 
-                    case 'company':
-                        this[
-                            StringUtils.Capitalize(key)
-                        ] = new Company(json[key]);
+                    case 'Company':
+                        this[key] = new Company(json[key]);
                         break;
 
-                    case 'start':
-                    case 'end':
+                    case 'Start':
+                    case 'End':
                         if (json[key] != null) {
-                            this[StringUtils.Capitalize(key)] = new Date(
-                                json[key]
-                            );
+                            this[key] = new Date(json[key]);
                         } else {
-                            this[StringUtils.Capitalize(key)] = null;
+                            this[key] = null;
                         }
                         break;
 
                     default:
-                        this[StringUtils.Capitalize(key)] = json[key];
+                        this[key] = json[key];
                         break;
                 }
             }

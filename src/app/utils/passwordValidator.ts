@@ -5,7 +5,7 @@ export class PasswordValidator {
     static MatchPassword(passwordFormSubGroup: FormGroup) {
         const passwordField = passwordFormSubGroup.get('password');
         const confirmationField = passwordFormSubGroup.get(
-            'passwordValidation'
+            'passwordValidation',
         );
         if (passwordField != null && confirmationField != null) {
             if (passwordField.value !== '') {
