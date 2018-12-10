@@ -12,12 +12,8 @@ export class CommonHttpService {
      */
     protected handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            this.log(`${operation} failed: ${error.message}`);
+            console.error(`${operation} failed: ${error.message}`);
             return of(result as T);
         };
-    }
-
-    protected log(message: string) {
-        console.log(message);
     }
 }

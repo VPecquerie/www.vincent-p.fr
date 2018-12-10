@@ -13,7 +13,6 @@ export class HomeExperienceComponent implements OnInit {
     constructor(private experienceService: HomeExperienceService) {}
 
     ngOnInit(): void {
-        const self = this;
         this.experienceService
             .getExperiences()
             .subscribe(experiences => (this.experiences = experiences));

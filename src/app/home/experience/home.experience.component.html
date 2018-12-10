@@ -17,10 +17,10 @@
                                 <em class="material-icons">timelapse</em>
                                 {{experience.Start|momentjs:'MMM YYYY'}}
                                 <br />
-                                <ng-container *ngIf="experience.End === null">
+                                <ng-container *ngIf="experience.End == null">
                                     Aujourd'hui
                                 </ng-container>
-                                <ng-container *ngIf="experience.End !== null">
+                                <ng-container *ngIf="experience.End != null">
                                     {{experience.End|momentjs:'MMM YYYY'}}
                                 </ng-container>
 

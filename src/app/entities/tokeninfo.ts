@@ -1,5 +1,3 @@
-import { StringUtils } from '../utils/string';
-
 export class TokenInfo {
     public AccessToken: string;
     public ExpiresAt: Date;
@@ -16,15 +14,15 @@ export class TokenInfo {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                if (StringUtils.Capitalize(key) === 'ExpiresIn') {
+                if (key === 'ExpiresIn') {
                     const currentDate = new Date();
                     this.ExpiresAt = new Date(
-                        currentDate.getTime() + json[key] * 1000
+                        currentDate.getTime() + json[key] * 1000,
                     );
-                } else if (StringUtils.Capitalize(key) === 'ExpiresAt') {
+                } else if (key === 'ExpiresAt') {
                     this.ExpiresAt = new Date(json[key]);
                 } else {
-                    this[StringUtils.Capitalize(key)] = json[key];
+                    this[key] = json[key];
                 }
             }
         }

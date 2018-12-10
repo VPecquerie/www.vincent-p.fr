@@ -1,5 +1,3 @@
-import { StringUtils } from '../utils/string';
-
 export class Skill {
     public SkillId: number;
     public Name: string;
@@ -26,7 +24,7 @@ export class Skill {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                this[StringUtils.Capitalize(key)] = json[key];
+                this[key] = json[key];
             }
         }
 

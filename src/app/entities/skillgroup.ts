@@ -1,5 +1,4 @@
 import { Skill } from './skill';
-import { StringUtils } from '../utils/string';
 
 export class Skillgroup {
     public SkillGroupId: number;
@@ -19,12 +18,10 @@ export class Skillgroup {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                if (StringUtils.Capitalize(key) === 'Skills') {
-                    this[StringUtils.Capitalize(key)] = Skill.deserializeArray(
-                        json[key]
-                    );
+                if (key === 'Skills') {
+                    this[key] = Skill.deserializeArray(json[key]);
                 } else {
-                    this[StringUtils.Capitalize(key)] = json[key];
+                    this[key] = json[key];
                 }
             }
         }

@@ -14,6 +14,7 @@ export class HomeSkillsComponent implements OnInit {
 
     ngOnInit(): void {
         this.skillsService
-            .getSkills().subscribe((groups) => this.skillsGroups = groups);
+            .getSkills()
+            .subscribe((groups) => this.skillsGroups = groups);
     }
 }

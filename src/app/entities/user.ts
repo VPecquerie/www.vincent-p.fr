@@ -1,5 +1,4 @@
 import { TokenInfo } from './tokeninfo';
-import { StringUtils } from '../utils/string';
 
 export class User {
     public UserId: number;
@@ -30,12 +29,12 @@ export class User {
     public constructor(json: {}) {
         for (const key in json) {
             if (json.hasOwnProperty(key)) {
-                if (StringUtils.Capitalize(key) === 'Token') {
-                    this[StringUtils.Capitalize(key)] = new TokenInfo(
+                if (key === 'Token') {
+                    this[key] = new TokenInfo(
                         json[key]
                     );
                 } else {
-                    this[StringUtils.Capitalize(key)] = json[key];
+                    this[key] = json[key];
                 }
             }
         }

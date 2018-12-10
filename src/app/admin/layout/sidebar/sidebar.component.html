@@ -1,57 +1,46 @@
-<div class="logo">
-    <a href="/" class="simple-text">
-        <div class="logo-img">
-            <img src="/assets/images/icons/favicon-32x32.png"/>
-        </div>
-        Admin
-    </a>
-</div>
-<div class="sidebar-wrapper">
-  <div *ngIf="isMobileMenu()">
-    <form class="navbar-form">
-      <span class="bmd-form-group">
-        <div class="input-group no-border">
-          <input type="text" value="" class="form-control" placeholder="Search...">
-          <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-            <i class="material-icons">search</i>
-            <div class="ripple-container"></div>
-          </button>
-        </div>
-      </span>
-    </form>
-    <ul class="nav navbar-nav nav-mobile-menu">
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="http://www.vincent-p.fr/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">notifications</i>
-                <span class="notification">5</span>
-                <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                <a class="dropdown-item" href="#">Another Notification</a>
-                <a class="dropdown-item" href="#">Another One</a>
-            </div>
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Administration</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>Vincent P</p>
+        <!--
+        <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#">Home 1</a>
+                </li>
+                <li>
+                    <a href="#">Home 2</a>
+                </li>
+                <li>
+                    <a href="#">Home 3</a>
+                </li>
+            </ul>
+        </li> -->
+        <li routerLink="/admin/skills" routerLinkActive="active">
+            <a routerLink="/admin/skills" routerLinkActive="active">Compétences</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#pablo">
-                <i class="material-icons">person</i>
-                <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                </p>
-            </a>
+        <li routerLink="/admin/experiences" routerLinkActive="active">
+            <a routerLink="/admin/experiences" routerLinkActive="active">Experiences</a>
+        </li>
+        <li routerLink="/admin/trainings" routerLinkActive="active">
+            <a  routerLink="/admin/trainings">Formation</a>
         </li>
     </ul>
-  </div>
-    <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
-            </a>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://gitlab.com/vincent-p/www-vincent-p-fr" class="download">Gitlab Front</a>
+        </li>
+        <li>
+            <a href="https://gitlab.com/vincent-p/api-vincent-p-fr" class="download">Gitlab Back</a>
+        </li>
+        <li>
+            <a routerLink="/" class="article">Retour au site</a>
         </li>
     </ul>
-</div>
+</nav>

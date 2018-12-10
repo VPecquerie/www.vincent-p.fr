@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AdminAuthgard implements CanActivate {
 
-    constructor(private userService: UserService, private router: Router) { }
+    constructor(private userService: UserService, private router: Router) {
+    }
 
     canActivate() {
         const user = this.userService.getUser();

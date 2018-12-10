@@ -4,7 +4,8 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class UserService {
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    }
 
     public getUser(): User {
         if (isPlatformBrowser(this.platformId)) {
@@ -18,6 +19,7 @@ export class UserService {
             return null;
         }
     }
+
     public setUser(value: User) {
         if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem('user', JSON.stringify(value));
