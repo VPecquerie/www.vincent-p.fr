@@ -41,6 +41,7 @@ import { HomeSkillsComponent } from './home/skills/home.skills.component';
 import { HomeSkillsService } from './home/skills/home.skills.service';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
 import { HomeTrainingService } from './home/trainings/home.trainings.service';
+import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
         HomeExperienceComponent,
         HomeContactComponent,
         HomeTrainingComponent,
+        LegalMentionsComponent,
         MomentJsPipe
     ],
     imports: [
