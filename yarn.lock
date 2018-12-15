@@ -6159,6 +6159,11 @@ ngw@^7.0.0:
   dependencies:
     ts-node "^7.0.1"
 
+ngx-cookie-service@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-2.1.0.tgz#8023f9edfcd8bd4f0b299b1f0c263112dbb0e261"
+  integrity sha512-7g7NEo7dYp6ap0j5qZ4Nf6nrU4WVdx8ycRQbWyLPps6mrR/+5vKU73ie0CMuKzl625bDTBjjJ60AmqTsp4l+AQ==
+
 ngx-raven@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ngx-raven/-/ngx-raven-1.0.5.tgz#c3d57f411a6e03581943b703d1df83f84aab0857"

@@ -8,7 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RavenModule } from 'ngx-raven';
-
+import { CookieService } from 'ngx-cookie-service';
 // Common Modules :
 import { MyMaterialModule } from './my-material/my-material.module';
 
@@ -42,6 +42,7 @@ import { HomeSkillsService } from './home/skills/home.skills.service';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
 import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
+import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.com
         HomeExperienceComponent,
         HomeContactComponent,
         HomeTrainingComponent,
+        HomeCookieComponent,
         LegalMentionsComponent,
         MomentJsPipe
     ],
@@ -81,6 +83,7 @@ import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.com
             useClass: CustomHttpHandler,
             multi: true,
         },
+        CookieService,
         NotificationService,
         TextService,
         HomeAboutService,
