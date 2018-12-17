@@ -2,17 +2,21 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { NavigationEnd, Router } from '@angular/router';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
     selector: 'app-home-cookie',
     templateUrl: './home.cookie.component.html',
-    styleUrls: ['./home.cookie.component.scss']
+    styleUrls: ['./home.cookie.component.scss'],
 })
 export class HomeCookieComponent implements OnInit {
     public visible = false;
     public accepted = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: string, private cookieService: CookieService, private router: Router) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: string,
+                private cookieService: CookieService,
+                private routingService: RoutingService) {
+    }
 
     ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {
@@ -25,17 +29,9 @@ export class HomeCookieComponent implements OnInit {
             }
 
             if (this.accepted) {
-                this.router.events.subscribe(event => {
-                    if (event instanceof NavigationEnd) {
-                        (<any>window).ga('set', 'page', event.urlAfterRedirects);
-                        (<any>window).ga('send', 'pageview');
-                    }
-                });
+                this.routingService.recordEvents();
             }
         }
     }
 
-    valid(state: boolean) {
-
-    }
 }

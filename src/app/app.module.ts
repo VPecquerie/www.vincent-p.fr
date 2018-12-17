@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
-import { RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { TextService } from './services/text.service';
 import { UserService } from './services/user.service';
 import { CustomHttpHandler } from './services/errors/custom.http.handler';
 import { NotificationService } from './services/notification.service';
+import { RoutingService } from './services/routing.service';
 
 // Common Pipes :
 import { MomentJsPipe } from './pipes/momentjs.pipe';
@@ -44,6 +45,7 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -58,7 +60,7 @@ import { HomeCookieComponent } from './home/cookie/home.cookie.component';
         HomeTrainingComponent,
         HomeCookieComponent,
         LegalMentionsComponent,
-        MomentJsPipe
+        MomentJsPipe,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
@@ -69,13 +71,13 @@ import { HomeCookieComponent } from './home/cookie/home.cookie.component';
         RavenModule.forRoot({
             dsn: environment.sentry.configUrl,
             reportDialog: true, // optional, false by default
-            enabled: environment.production
+            enabled: environment.production,
         }),
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule
+        MyMaterialModule,
     ],
     providers: [
         {
@@ -91,8 +93,10 @@ import { HomeCookieComponent } from './home/cookie/home.cookie.component';
         HomeSkillsService,
         HomeContactService,
         HomeExperienceService,
-        HomeTrainingService
+        HomeTrainingService,
+        RoutingService,
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
