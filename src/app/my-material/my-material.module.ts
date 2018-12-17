@@ -37,8 +37,8 @@ import {
     MatTreeModule,
 } from '@angular/material';
 
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 @NgModule({
     imports: [
@@ -117,7 +117,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-        MatTreeModule
-    ]
+        MatTreeModule,
+    ],
 })
-export class MyMaterialModule { }
+export class MyMaterialModule {
+}

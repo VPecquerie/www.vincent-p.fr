@@ -2,7 +2,7 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { RoutingService } from '../../services/routing.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-home-cookie',
@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./home.cookie.component.scss'],
 })
 export class HomeCookieComponent implements OnInit {
-    private cookieName: string = 'cookies_user_preferences';
+    private cookieName = 'cookies_user_preferences';
     public visible = false;
     public accepted = false;
 

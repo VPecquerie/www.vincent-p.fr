@@ -5,7 +5,8 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class HomeContactService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     saveForm(model: HomeContactComponentFormModel): Promise<any> {
         const url = environment.api.url + environment.api.entities.contact;

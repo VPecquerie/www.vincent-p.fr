@@ -17,7 +17,7 @@ export class HomeExperienceService extends CommonHttpService {
         const url = environment.api.url + environment.api.entities.experiences;
         return this.http.get<Experience[]>(url).pipe(
             map(experiences => _.orderBy(Experience.deserializeArray(experiences), ['Start'], ['desc'])),
-            catchError(this.handleError<Experience[]>(`Get Experiences`))
+            catchError(this.handleError<Experience[]>(`Get Experiences`)),
         );
     }
 }

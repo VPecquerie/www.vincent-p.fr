@@ -4,17 +4,18 @@ import { isPlatformBrowser } from '@angular/common';
 @Component({
     selector: 'app-home-topbar',
     templateUrl: './home.topbar.component.html',
-    styleUrls: ['./home.topbar.component.scss']
+    styleUrls: ['./home.topbar.component.scss'],
 })
 export class HomeTopbarComponent implements OnInit {
 
-    constructor(@Inject(PLATFORM_ID) private platformId: string) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: string) {
+    }
 
 
     ngOnInit(): void {
 
         if (isPlatformBrowser(this.platformId)) {
-            window['$'](document).scroll(function () {
+            window['$'](document).scroll(function() {
                 const nav = window['$']('#topbar');
                 nav.toggleClass('scrolled', window['$'](this).scrollTop() > nav.height());
             });

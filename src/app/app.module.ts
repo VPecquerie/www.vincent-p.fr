@@ -5,28 +5,19 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RavenModule } from 'ngx-raven';
 import { CookieService } from 'ngx-cookie-service';
-// Common Modules :
 import { MyMaterialModule } from './my-material/my-material.module';
-
-// Common Services :
 import { TextService } from './services/text.service';
 import { UserService } from './services/user.service';
 import { CustomHttpHandler } from './services/errors/custom.http.handler';
 import { NotificationService } from './services/notification.service';
 import { RoutingService } from './services/routing.service';
-
-// Common Pipes :
 import { MomentJsPipe } from './pipes/momentjs.pipe';
-
-// Config :
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
-
-// Components:
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';

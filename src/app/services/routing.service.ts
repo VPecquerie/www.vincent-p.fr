@@ -4,8 +4,8 @@ import { NavigationEnd, Router } from '@angular/router';
 @Injectable()
 export class RoutingService {
 
-    private isRouterTrackingEnabled: boolean = false;
-    private isGoogleAnalyticsEnabled: boolean = false;
+    private isRouterTrackingEnabled = false;
+    private isGoogleAnalyticsEnabled = false;
 
     constructor(private router: Router) {
 
