@@ -1,8 +1,8 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
 import { RoutingService } from '../../services/routing.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
     selector: 'app-home-cookie',
