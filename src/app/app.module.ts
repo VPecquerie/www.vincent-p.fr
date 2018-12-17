@@ -66,7 +66,7 @@ import { HomeCookieComponent } from './home/cookie/home.cookie.component';
         BrowserModule.withServerTransition({ appId: 'my-app' }),
         TransferHttpCacheModule,
         ScrollToModule.forRoot(),
-        RouterModule.forRoot(routes, { enableTracing: !environment.production }),
+        RouterModule.forRoot(routes),
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         RavenModule.forRoot({
             dsn: environment.sentry.configUrl,

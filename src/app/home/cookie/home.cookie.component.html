@@ -11,24 +11,24 @@
             <div class="modal-body">
                 <p>
                 Ce site utilise collecte des données personnelles pour son fonctionnement.
-                Le Règlement Général sur la Protection des Données (RGPD), vous laisse le droit de choisir quels données
-                ce site peut collecter. Pour cela, veuillez cocher la / les cases correspondant aux données que vous nous
-                autoriser de collecter. Sans action de votre part, aucune données ne sera collecter.
+                Le Règlement Général sur la Protection des Données (RGPD), vous laisse le droit de choisir quelle(s) donnée(s)
+                ce site peut collecter. Pour cela, veuillez cocher la / les case(s) correspondant aux données que vous nous
+                autorisez de collecter. Sans action de votre part, aucune donnée ne sera collecter.
                 </p>
 
-                <form>
+                <form [formGroup]="form">
                     <div class="form-group">
                         <label class="col-md-12 control-label strong" for="rgpd">Je conscent: </label>
                         <div class="col-md-12">
                             <div class="checkbox">
                                 <label for="rgpd-0">
-                                    <input type="checkbox" name="rgpd" id="rgpd-0" value="browser">
-                                    A autoriser la collecte d'informations technique sur mon navigateur à des fins statistiques.
+                                    <input type="checkbox" name="rgpd" id="rgpd-0" formControlName="canUseAnalytics">
+                                    A autoriser la collecte d'informations techniques à des fins statistiques.
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label for="rgpd-1">
-                                    <input type="checkbox" name="rgpd" id="rgpd-1" value="navigation">
+                                    <input type="checkbox" name="rgpd" id="rgpd-1"  formControlName="canTrackUserActions">
                                     A autoriser la collecte des actions que je pourrais faire sur ce site.
                                 </label>
                             </div>
