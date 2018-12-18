@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminTrainingsService } from '../admin-trainings.service';
-import { Experience } from '../../../entities/experience';
 import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Training } from '../../../entities/training';

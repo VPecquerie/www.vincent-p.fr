@@ -5,7 +5,6 @@ import { PasswordValidator } from '../../utils/passwordValidator';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../services/user.service';
 
-
 @Component({
     templateUrl: './admin-account.component.html',
     styleUrls: ['./admin-account.component.scss'],

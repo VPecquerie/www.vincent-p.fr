@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class AdminExperiencesListComponent implements OnInit, OnDestroy {
 
-    private suscription: Subscription;
+    private subscription: Subscription;
     public experiences: Experience[];
 
     constructor(private service: AdminExperiencesService, private router: Router) {
@@ -22,11 +22,11 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.suscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 
     getExperiences() {
-        this.suscription = this.service.getExperiences().subscribe(experiences => this.experiences = experiences);
+        this.subscription = this.service.getExperiences().subscribe(experiences => this.experiences = experiences);
     }
 
     delete(experience): boolean {

@@ -14,7 +14,8 @@ export class HomeContactComponent {
 
     public model: HomeContactComponentFormModel = new HomeContactComponentFormModel();
 
-    constructor(private service: HomeContactService) {}
+    constructor(private service: HomeContactService) {
+    }
 
     onSubmit() {
         const self = this;

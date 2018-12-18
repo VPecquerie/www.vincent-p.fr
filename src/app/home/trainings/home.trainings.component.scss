@@ -1,175 +1,175 @@
 section {
-  background-color: white;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  color: black;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: black;
 }
 
 section .row {
-  margin: 0;
-  position: relative;
+    margin: 0;
+    position: relative;
 }
 
 .pipeline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background-color: #ff0000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #ff0000;
 }
 
-section  h2 {
-  color: black;
-  font-family: 'Montserrat', serif;
-  font-size: 2.5em;
-  font-weight: 600;
-  letter-spacing: -1px;
-  text-align: center;
-  margin-bottom: 70px;
+section h2 {
+    color: black;
+    font-family: 'Montserrat', serif;
+    font-size: 2.5em;
+    font-weight: 600;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 70px;
 }
 
 section .skills-group li {
-  font-size: 1.2rem;
-  display: inline-block;
-  padding: 5px;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 5px;
 }
 
 
 .formation-item {
-  margin-bottom: 25px;
-  margin-left: 40px;
-  position: relative;
+    margin-bottom: 25px;
+    margin-left: 40px;
+    position: relative;
 }
 
 .formation-item .formation-inner {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  padding: 10px 20px;
-  position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 20px;
+    position: relative;
 }
 
 .formation-item .formation-inner:before {
-  border: 10px solid;
-  border-right-color: #ddd;
-  color: rgba(0,0,0,0);
-  content: '';
-  display: block;
-  height: 0;
-  position: absolute;
-  left: -20px;
-  top: 6px;
-  width: 0;
+    border: 10px solid;
+    border-right-color: #ddd;
+    color: rgba(0, 0, 0, 0);
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 0;
 }
 
 .formation-item .formation-inner:after {
-  border: 10px solid;
-  border-right-color: #fff;
-  color: rgba(0,0,0,0);
-  content: '';
-  display: block;
-  height: 0;
-  position: absolute;
-  left: -18px;
-  top: 6px;
-  width: 0;
+    border: 10px solid;
+    border-right-color: #fff;
+    color: rgba(0, 0, 0, 0);
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    left: -18px;
+    top: 6px;
+    width: 0;
 }
 
 .formation-item:before {
-  background: #fff;
-  border-radius: 2px;
-  bottom: -30px;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
-  content: '';
-  height: 100%;
-  left: -30px;
-  position: absolute;
-  width: 3px;
+    background: #fff;
+    border-radius: 2px;
+    bottom: -30px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    content: '';
+    height: 100%;
+    left: -30px;
+    position: absolute;
+    width: 3px;
 }
 
 .formation-item:after {
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  content: '';
-  height: 15px;
-  left: -36px;
-  position: absolute;
-  top: 10px;
-  width: 15px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    content: '';
+    height: 15px;
+    left: -36px;
+    position: absolute;
+    top: 10px;
+    width: 15px;
 }
 
 .clearfix:before, .clearfix:after {
-  content: ' ';
-  display: table;
+    content: ' ';
+    display: table;
 }
 
 .formation-item .formation-head {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 20px;
-  padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
 }
 
 .qa-formation-list:nth-child(odd) .formation-item:before {
-  background-color: #7e9b9f;
+    background-color: #7e9b9f;
 }
 
 .qa-formation-list:nth-child(odd) .formation-item .fa-tag {
-  color: #7e9b9f;
+    color: #7e9b9f;
 }
 
 .qa-formation-list:nth-child(even) .formation-item:before {
-  background-color: #5a8187;
+    background-color: #5a8187;
 }
 
 .qa-formation-list:nth-child(even) .formation-item .fa-tag {
-  color: #5a8187;
+    color: #5a8187;
 }
 
 .formation-item .qa-formation-content {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 8px;
-  padding-bottom: 20px;
-  text-align: justify;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    padding-bottom: 20px;
+    text-align: justify;
 }
 
 .formation-item .qa-formation-content p {
-  margin: 0;
+    margin: 0;
 }
 
 .formation-item .formation-head .avatar {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 .formation-item .formation-head .user-detail {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .formation-item .formation-head .user-detail h5 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .post-meta > div {
-   color: #777;
-   font-size: 12px;
-   line-height: 22px;
+    color: #777;
+    font-size: 12px;
+    line-height: 22px;
 }
 
 .formation-item .formation-head .post-meta {
-  float: left;
-  padding: 0 15px 0 0;
+    float: left;
+    padding: 0 15px 0 0;
 }
 
-.formation-item .formation-head .post-meta >div {
-  color: #333;
-  font-weight: bold;
-  text-align: right;
+.formation-item .formation-head .post-meta > div {
+    color: #333;
+    font-weight: bold;
+    text-align: right;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
     section .skills-group li {
-      display: block;
+        display: block;
     }
 }
