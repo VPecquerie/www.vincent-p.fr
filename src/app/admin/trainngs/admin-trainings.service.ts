@@ -5,7 +5,6 @@ import { Skill } from '../../entities/skill';
 import { Training } from '../../entities/training';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { Experience } from '../../entities/experience';
 
 @Injectable()
 export class AdminTrainingsService {

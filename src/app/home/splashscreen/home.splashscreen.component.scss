@@ -3,7 +3,7 @@ header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
     background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-        url('/assets/images/splash-home.jpg');
+    url('/assets/images/splash-home.jpg');
     background-position: center center;
     background-size: cover;
 }
@@ -63,6 +63,7 @@ header.masthead p {
         transition: all 0.3s ease-in-out;
         z-index: 2;
     }
+
     i {
         animation: floating-arrow 1.6s infinite ease-in-out 0s;
         display: block;

@@ -1,31 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
-import { RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RavenModule } from 'ngx-raven';
-
-// Common Modules :
 import { MyMaterialModule } from './my-material/my-material.module';
-
-// Common Services :
 import { TextService } from './services/text.service';
 import { UserService } from './services/user.service';
 import { CustomHttpHandler } from './services/errors/custom.http.handler';
 import { NotificationService } from './services/notification.service';
-
-// Common Pipes :
+import { RoutingService } from './services/routing.service';
 import { MomentJsPipe } from './pipes/momentjs.pipe';
-
-// Config :
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
-
-// Components:
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
@@ -42,6 +33,9 @@ import { HomeSkillsService } from './home/skills/home.skills.service';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
 import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
+import { HomeCookieComponent } from './home/cookie/home.cookie.component';
+import { CookieService } from './services/cookie.service';
+
 
 @NgModule({
     declarations: [
@@ -55,25 +49,26 @@ import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.com
         HomeExperienceComponent,
         HomeContactComponent,
         HomeTrainingComponent,
+        HomeCookieComponent,
         LegalMentionsComponent,
-        MomentJsPipe
+        MomentJsPipe,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
         TransferHttpCacheModule,
         ScrollToModule.forRoot(),
-        RouterModule.forRoot(routes, { enableTracing: !environment.production }),
+        RouterModule.forRoot(routes),
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         RavenModule.forRoot({
             dsn: environment.sentry.configUrl,
             reportDialog: true, // optional, false by default
-            enabled: environment.production
+            enabled: environment.production,
         }),
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule
+        MyMaterialModule,
     ],
     providers: [
         {
@@ -81,6 +76,7 @@ import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.com
             useClass: CustomHttpHandler,
             multi: true,
         },
+        CookieService,
         NotificationService,
         TextService,
         HomeAboutService,
@@ -88,8 +84,10 @@ import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.com
         HomeSkillsService,
         HomeContactService,
         HomeExperienceService,
-        HomeTrainingService
+        HomeTrainingService,
+        RoutingService,
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -39,7 +39,7 @@ import { AdminLayoutComponent } from './layout/admin.layout.component';
         AdminExperiencesListComponent,
         AdminExperiencesCreateComponent,
         AdminSkillsListComponent,
-        AdminSkillsCreateComponent
+        AdminSkillsCreateComponent,
     ],
     imports: [
         CommonModule,
@@ -55,7 +55,7 @@ import { AdminLayoutComponent } from './layout/admin.layout.component';
         AdminLoginService,
         AdminSkillsService,
         AdminExperiencesService,
-        AdminTrainingsService
+        AdminTrainingsService,
     ],
 })
 export class AdminModule {

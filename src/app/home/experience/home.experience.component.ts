@@ -10,7 +10,8 @@ import { Experience } from '../../entities/experience';
 export class HomeExperienceComponent implements OnInit {
     public experiences: Experience[];
 
-    constructor(private experienceService: HomeExperienceService) {}
+    constructor(private experienceService: HomeExperienceService) {
+    }
 
     ngOnInit(): void {
         this.experienceService

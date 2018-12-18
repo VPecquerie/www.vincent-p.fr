@@ -10,7 +10,8 @@ import { isPlatformBrowser } from '@angular/common';
 export class HomeSplashScreenComponent implements OnInit {
     public isLoading;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    }
 
     ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {

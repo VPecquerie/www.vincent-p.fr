@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Skillgroup } from '../../entities/skillgroup';
 import { environment } from '../../../environments/environment';
 import { CommonHttpService } from '../../services/common.http.service';
-import { catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class HomeSkillsService extends CommonHttpService {
         const url = environment.api.url + environment.api.entities.skillGroups;
         return this.http.get<Skillgroup[]>(url).pipe(
             map(groups => Skillgroup.deserializeArray(groups)),
-            catchError(this.handleError<Skillgroup[]>(`Get Skills`))
+            catchError(this.handleError<Skillgroup[]>(`Get Skills`)),
         );
     }
 }

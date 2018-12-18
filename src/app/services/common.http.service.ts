@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 export class CommonHttpService {
-    constructor(protected http: HttpClient) {}
+    constructor(protected http: HttpClient) {
+    }
 
     /**
      * Handle Http operation that failed.

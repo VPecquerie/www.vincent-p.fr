@@ -5,12 +5,12 @@
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
 
-   .navbar-brand {
+    .navbar-brand {
         font-weight: 700;
         text-transform: uppercase;
         color: #F05F40;
         font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-        
+
         img {
             width: 30px;
             height: 30px;
@@ -23,30 +23,30 @@
 
     .navbar-nav > li.nav-item > a.nav-link,
     .navbar-nav > li.nav-item > a.nav-link:focus {
-      font-size: .9rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: white;
+        font-size: .9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
     }
-    
+
     .navbar-nav > li.nav-item > a.nav-link:hover,
     .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-      color: white;
+        color: white;
     }
-    
+
     .navbar-nav > li.nav-item > a.nav-link.active,
     .navbar-nav > li.nav-item > a.nav-link:focus.active {
-      color: white !important;
-      background-color: transparent;
+        color: white !important;
+        background-color: transparent;
     }
-    
+
     .navbar-nav > li.nav-item > a.nav-link.active:hover,
     .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
-      background-color: transparent;
-    }  
- }
+        background-color: transparent;
+    }
+}
 
- @media (min-width: 992px) {
+@media (min-width: 992px) {
     #topbar {
         border-color: transparent !important;
         background-color: transparent !important;
@@ -55,16 +55,20 @@
         .navbar-brand {
             color: rgba(255, 255, 255, 0.7);
         }
+
         .navbar-brand:focus, .navbar-brand:hover {
             color: #fff;
         }
+
         .navbar-nav > li.nav-item > a.nav-link {
             padding: 0.5rem 1rem;
         }
+
         .navbar-nav > li.nav-item > a.nav-link,
         .navbar-nav > li.nav-item > a.nav-link:focus {
             color: rgba(255, 255, 255, 0.7);
         }
+
         .navbar-nav > li.nav-item > a.nav-link:hover,
         .navbar-nav > li.nav-item > a.nav-link:focus:hover {
             color: #fff;

@@ -10,7 +10,8 @@ import { Skillgroup } from '../../entities/skillgroup';
 export class HomeSkillsComponent implements OnInit {
     public skillsGroups: Skillgroup[];
 
-    constructor(private skillsService: HomeSkillsService) {}
+    constructor(private skillsService: HomeSkillsService) {
+    }
 
     ngOnInit(): void {
         this.skillsService

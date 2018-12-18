@@ -17,11 +17,12 @@ export class CustomHttpHandler implements HttpInterceptor {
     private static nbOfQueries = 0;
     public static onLoad: EventEmitter<any> = new EventEmitter();
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router) {
+    }
 
     intercept(
         request: HttpRequest<any>,
-        next: HttpHandler
+        next: HttpHandler,
     ): Observable<HttpEvent<any>> {
         this.setNumberOfQueries(+1);
         const user = this.userService.getUser();
@@ -46,8 +47,8 @@ export class CustomHttpHandler implements HttpInterceptor {
                             this.router.navigate(['/login']);
                         }
                     }
-                }
-            )
+                },
+            ),
         );
     }
 

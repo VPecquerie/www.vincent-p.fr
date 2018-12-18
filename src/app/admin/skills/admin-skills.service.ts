@@ -41,7 +41,7 @@ export class AdminSkillsService {
         const self = this;
         return new Promise<Skill>((resolve, reject) => {
             const url = environment.api.url + environment.api.entities.skillGroups + '/' + groupId;
-            self.http.delete(url).toPromise().then((result) => {
+            self.http.delete(url).toPromise().then(() => {
                 resolve();
             }).catch((err) => {
                 console.error(err);
@@ -96,7 +96,7 @@ export class AdminSkillsService {
         const self = this;
         return new Promise<Skill>((resolve, reject) => {
             const url = environment.api.url + environment.api.entities.skills + '/' + skillId;
-            self.http.delete(url).toPromise().then((result) => {
+            self.http.delete(url).toPromise().then(() => {
                 resolve();
             }).catch((err) => {
                 console.error(err);
