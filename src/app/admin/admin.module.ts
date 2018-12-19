@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -23,6 +23,7 @@ import { AdminTrainingsService } from './trainngs/admin-trainings.service';
 import { AdminExperiencesService } from './experiences/admin-experiences.service';
 import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
+import { CustomHttpHandler } from '../services/errors/custom.http.handler';
 
 
 @NgModule({
@@ -51,6 +52,11 @@ import { AdminLayoutComponent } from './layout/admin.layout.component';
         MyMaterialModule,
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CustomHttpHandler,
+            multi: true,
+        },
         AdminAuthgard,
         AdminLoginService,
         AdminSkillsService,
