@@ -47,7 +47,7 @@ export class HomeCookieComponent implements OnInit {
     valid() {
         if (this.form.valid) {
             const values = this.form.getRawValue();
-            this.cookieService.set(this.cookieName, JSON.stringify(values));
+            this.cookieService.set(this.cookieName, JSON.stringify(values), new Date(new Date().setFullYear(new Date().getFullYear() + 1)));
         }
     }
 
