@@ -1,59 +1,53 @@
 services:
-  - docker:dind
+    - docker:dind
 
-stages: 
-  - pre_test
-  - test
-  - build
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-  - node_modules/
+stages:
+    - test
+    - build
 
-node_modules:
-  image: node:alpine
-  stage: pre_test
-  script: 
-    - apk add --no-cache python g++ make
-    - yarn install --network-timeout 100000
 
 lint-html:
-  image: node:alpine
-  stage: test
-  script:
-    - ls -lsa
-    - npm run lint:html
+    image: node:alpine
+    stage: test
+    script:
+        - apk add --no-cache python g++ make
+        - rm -rf node_modules && rm yarn.lock && yarn install --network-timeout 100000 --verbose
+        - npm run lint:html
 
 lint-css:
-  image: node:alpine
-  stage: test
-  script:
-    - npm run lint:css
+    image: node:alpine
+    stage: test
+    script:
+        - apk add --no-cache python g++ make
+        - rm -rf node_modules && rm yarn.lock && yarn install --network-timeout 100000 --verbose
+        - npm run lint:css
 
 lint-ts:
-  image: node:alpine
-  stage: test
-  script:
-    - npm run lint:ts
+    image: node:alpine
+    stage: test
+    script:
+        - apk add --no-cache python g++ make
+        - rm -rf node_modules && rm yarn.lock && yarn install --network-timeout 100000 --verbose
+        - npm run lint:ts
 
 build-master:
-  image: docker:dind
-  stage: build
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - master
+    image: docker:dind
+    stage: build
+    before_script:
+        - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    script:
+        - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+        - docker push "$CI_REGISTRY_IMAGE"
+    only:
+        - master
 
 build:
-  image: docker:dind
-  stage: build
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --build-arg ANGULAR_CONFIGURATION=beta --pull -t "$CI_REGISTRY_IMAGE:beta" .
-    - docker push "$CI_REGISTRY_IMAGE:beta"
-  except:
-    - master
+    image: docker:dind
+    stage: build
+    before_script:
+        - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    script:
+        - docker build --build-arg ANGULAR_CONFIGURATION=beta --pull -t "$CI_REGISTRY_IMAGE:beta" .
+        - docker push "$CI_REGISTRY_IMAGE:beta"
+    except:
+        - master
