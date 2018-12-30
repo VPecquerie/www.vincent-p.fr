@@ -1,0 +1,105 @@
+version: '3.3'
+services:
+  front:
+    image: registry.gitlab.com/vincent-p/www-vincent-p-fr:${VERSION}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=front-${COMPOSE_PROJECT_NAME}"
+      - "traefik.frontend.rule=Host:${FRONT_HOST}"
+      - "traefik.port=4000"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.SSLHost=${FRONT_HOST}"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.contentSecurityPolicy=default-src 'none'; img-src 'self' data: https:; script-src 'self' https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src * 'self' data: https://fonts.gstatic.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; manifest-src 'self'; connect-src 'self' https://${BACK_HOST} https://fonts.googleapis.com https://fonts.gstatic.com;"
+      - "traefik.frontend.headers.customFrameOptionsValue=DENY"
+      - "traefik.frontend.headers.referrerPolicy=no-referrer, strict-origin-when-cross-origin"
+      - com.centurylinklabs.watchtower.enable=true
+    restart: always
+    depends_on:
+      - back
+    networks:
+      - default
+      - traefik_proxy
+
+  back:
+    image: registry.gitlab.com/vincent-p/api-vincent-p-fr:${VERSION}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=back-${COMPOSE_PROJECT_NAME}"
+      - "traefik.frontend.rule=Host:${BACK_HOST}"
+      - "traefik.port=5000"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.SSLHost=${BACK_HOST}"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.customResponseHeaders=Access-Control-Allow-Origin:*"
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${BACK_ENVIRONMENT}
+      - BACK_ENVIRONMENT=${BACK_ENVIRONMENT}
+      
+      # EMAIL Settings
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_EMAIL=${EMAIL_EMAIL}
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+
+      # Database Settings: 
+      - ACCEPT_EULA=${ACCEPT_EULA}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_PREFIX=${DATABASE_PREFIX}
+
+      # Security Settings
+      - SECURITY_TOKEN_SECRET=${SECURITY_TOKEN_SECRET}
+      - SECURITY_TOKEN_ISSUER=${SECURITY_TOKEN_ISSUER}
+      - SECURITY_TOKEN_AUDIENCE=${SECURITY_TOKEN_AUDIENCE}
+      - SECURITY_TOKEN_PATH=${SECURITY_TOKEN_PATH}
+      - SECURITY_TOKEN_COOKIENAME=${SECURITY_TOKEN_COOKIENAME}
+      - SECURITY_TOKEN_LIFETIME=${SECURITY_TOKEN_LIFETIME}
+      - SECURITY_PASSWORD_SALT=${SECURITY_PASSWORD_SALT}
+
+      # Default admin account settings.
+      - ADMIN_FIRSTNAME=${ADMIN_FIRSTNAME}
+      - ADMIN_LASTNAME=${ADMIN_LASTNAME}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - default
+      - traefik_proxy
+
+  database:
+    image: microsoft/mssql-server-linux:latest
+    environment:
+      - SA_PASSWORD=${DATABASE_PASSWORD}
+      - ACCEPT_EULA=${ACCEPT_EULA}
+    volumes:
+      - database-volume:/var/opt/mssql/data
+    networks:
+      - default
+
+volumes:
+  database-volume:
+
+networks:
+  traefik_proxy:
+    external: true
+  default:
