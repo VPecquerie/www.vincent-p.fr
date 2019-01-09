@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { MatomoTracker } from 'ngx-matomo';
 
 @Injectable()
 export class RoutingService {
@@ -7,18 +8,17 @@ export class RoutingService {
     private isRouterTrackingEnabled = false;
     private isAnalyticsEnabled = false;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private matomoTracker: MatomoTracker) {
 
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 if (this.isRouterTrackingEnabled) {
-                    console.log(event);
+                    this.matomoTracker.trackEvent('tracking', 'navigation', event.urlAfterRedirects, event.id);
                 }
 
                 if (this.isAnalyticsEnabled) {
-                    // @TODO: Record events. !
+                    // @TODO: Récupérer des infos sur les gens !
                 }
-
             }
         });
 

@@ -35,6 +35,7 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 import { CookieService } from './services/cookie.service';
+import { MatomoModule } from 'ngx-matomo';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { CookieService } from './services/cookie.service';
         ReactiveFormsModule,
         BrowserAnimationsModule,
         MyMaterialModule,
+        MatomoModule
     ],
     providers: [
         {
