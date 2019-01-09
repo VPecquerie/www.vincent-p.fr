@@ -5,7 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class RoutingService {
 
     private isRouterTrackingEnabled = false;
-    private isGoogleAnalyticsEnabled = false;
+    private isAnalyticsEnabled = false;
 
     constructor(private router: Router) {
 
@@ -15,9 +15,8 @@ export class RoutingService {
                     console.log(event);
                 }
 
-                if (this.isGoogleAnalyticsEnabled) {
-                    (<any>window).ga('set', 'page', event.urlAfterRedirects);
-                    (<any>window).ga('send', 'pageview');
+                if (this.isAnalyticsEnabled) {
+                    // @TODO: Record events. !
                 }
 
             }
@@ -25,8 +24,8 @@ export class RoutingService {
 
     }
 
-    enableGoogleAnalytics() {
-        this.isGoogleAnalyticsEnabled = true;
+    enableAnalytics() {
+        this.isAnalyticsEnabled = true;
     }
 
     enableRouterTracing() {

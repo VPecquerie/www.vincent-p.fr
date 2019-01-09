@@ -38,7 +38,7 @@ export class HomeCookieComponent implements OnInit {
                     this.routingService.enableRouterTracing();
                 }
                 if (value.canUseAnalytics) {
-                    this.routingService.enableGoogleAnalytics();
+                    this.routingService.enableAnalytics();
                 }
             }
         }
