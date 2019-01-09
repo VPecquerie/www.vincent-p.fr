@@ -6195,6 +6195,11 @@ ngw@^7.0.0:
   dependencies:
     ts-node "^7.0.1"
 
+ngx-matomo@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-matomo/-/ngx-matomo-0.1.1.tgz#81991e05944758a19f53facdc5a78af0430c73a1"
+  integrity sha512-8MwX83HWgwLL1xzMoNLPRPz4HSESEmRF5uMJdtJV/6AHDWlEJ6CyTqxCWv7vhfRWC6rLwHrwEgssFnaQ6TwsBw==
+
 ngx-raven@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ngx-raven/-/ngx-raven-1.0.5.tgz#c3d57f411a6e03581943b703d1df83f84aab0857"
