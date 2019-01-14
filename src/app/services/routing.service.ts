@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatomoTracker } from 'ngx-matomo';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class RoutingService {
@@ -8,16 +9,12 @@ export class RoutingService {
     private isRouterTrackingEnabled = false;
     private isAnalyticsEnabled = false;
 
-    constructor(private router: Router, private matomoTracker: MatomoTracker) {
+    constructor(@Inject(PLATFORM_ID) private platformId, private router: Router, private matomoTracker: MatomoTracker) {
 
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
-                if (this.isRouterTrackingEnabled) {
+                if (this.isRouterTrackingEnabled && isPlatformBrowser(platformId)) {
                     this.matomoTracker.trackEvent('tracking', 'navigation', event.urlAfterRedirects, event.id);
-                }
-
-                if (this.isAnalyticsEnabled) {
-                    // @TODO: Récupérer des infos sur les gens !
                 }
             }
         });
