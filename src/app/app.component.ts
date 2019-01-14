@@ -1,7 +1,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { MatomoInjector } from 'ngx-matomo';
 import { environment } from '../environments/environment';
 import { isPlatformBrowser } from '@angular/common';
+import { MatomoInjector } from '../matomo/service/matomo-injector.service';
 
 @Component({
     selector: 'app-root',

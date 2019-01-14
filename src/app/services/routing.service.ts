@@ -1,7 +1,7 @@
-import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MatomoTracker } from 'ngx-matomo';
 import { isPlatformBrowser } from '@angular/common';
+import { MatomoTracker } from '../../matomo/service/matomo-tracker.service';
 
 @Injectable()
 export class RoutingService {

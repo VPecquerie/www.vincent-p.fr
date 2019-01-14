@@ -35,7 +35,8 @@ import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 import { CookieService } from './services/cookie.service';
-import { MatomoModule } from 'ngx-matomo';
+import { MatomoInjector } from '../matomo/service/matomo-injector.service';
+import { MatomoTracker } from '../matomo/service/matomo-tracker.service';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MatomoModule } from 'ngx-matomo';
         HomeCookieComponent,
         LegalMentionsComponent,
         MomentJsPipe,
+
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'my-app' }),
@@ -69,8 +71,7 @@ import { MatomoModule } from 'ngx-matomo';
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule,
-        MatomoModule
+        MyMaterialModule
     ],
     providers: [
         {
@@ -88,6 +89,8 @@ import { MatomoModule } from 'ngx-matomo';
         HomeExperienceService,
         HomeTrainingService,
         RoutingService,
+        MatomoInjector,
+        MatomoTracker
     ],
     bootstrap: [AppComponent],
 })
