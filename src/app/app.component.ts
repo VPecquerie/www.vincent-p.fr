@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { environment } from '../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
+import { MatomoInjector } from '../matomo/service/matomo-injector.service';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
         <router-outlet></router-outlet>`,
 })
 export class AppComponent {
-
+    constructor(@Inject(PLATFORM_ID) private platformId, private matomoInjector: MatomoInjector) {
+        if (isPlatformBrowser(platformId)) {
+            this.matomoInjector.init(environment.matomo.url, environment.matomo.id);
+        }
+    }
 }
