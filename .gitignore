@@ -27,3 +27,7 @@ webpack.records.json
 *.ngsummary.json
 *.metadata.json
 *.shim.ngstyle.ts
+
+src/matomo/service/matomo-injector\.service\.js
+
+src/matomo/service/matomo-injector\.service\.js\.map
