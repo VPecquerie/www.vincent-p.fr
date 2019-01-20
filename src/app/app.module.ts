@@ -64,7 +64,7 @@ import { MatomoTracker } from '../matomo/service/matomo-tracker.service';
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         RavenModule.forRoot({
             dsn: environment.sentry.configUrl,
-            reportDialog: true, // optional, false by default
+            reportDialog: !environment.production, // optional, false by default
             enabled: environment.production,
         }),
         HttpClientModule,
