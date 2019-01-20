@@ -1,10 +1,5 @@
-import { Injectable } from '@angular/core';
-
-declare var window: {
-    [key: string]: any;
-    prototype: Window;
-    new (): Window;
-};
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 /**
  * Wrapper for functions available for the Matomo Javascript tracker.
@@ -13,13 +8,23 @@ declare var window: {
  */
 @Injectable()
 export class MatomoTracker {
+
+    private scope: any;
+
     /**
      * Creates an instance of MatomoTracker.
      *
      * @memberof MatomoTracker
      */
-    constructor() {
-        if (typeof window._paq === 'undefined') {
+    constructor(@Inject(PLATFORM_ID) private platformId: object) {
+        if (!isPlatformBrowser(platformId)) {
+            console.warn('Matomo is not compatible on server side');
+            this.scope = {};
+        } else {
+            this.scope = window['_paq'];
+        }
+
+        if (typeof this.scope === 'undefined') {
             console.warn('Matomo has not yet been initialized! (Did you forget to inject it?)');
         }
     }
@@ -43,7 +48,7 @@ export class MatomoTracker {
             if (!!value) {
                 args.push(value);
             }
-            window._paq.push(['trackEvent', ...args]);
+            this.scope.push(['trackEvent', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -63,7 +68,7 @@ export class MatomoTracker {
             if (!!customTitle) {
                 args.push(customTitle);
             }
-            window._paq.push(['trackPageView', ...args]);
+            this.scope.push(['trackPageView', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -89,7 +94,7 @@ export class MatomoTracker {
             if (!!resultsCount) {
                 args.push(resultsCount);
             }
-            window._paq.push(['trackSiteSearch', ...args]);
+            this.scope.push(['trackSiteSearch', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -110,7 +115,7 @@ export class MatomoTracker {
             if (!!customRevenue) {
                 args.push(customRevenue);
             }
-            window._paq.push(['trackGoal', ...args]);
+            this.scope.push(['trackGoal', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -128,7 +133,7 @@ export class MatomoTracker {
     trackLink(url: string, linkType: string): void {
         try {
             const args: any[] = [url, linkType];
-            window._paq.push(['trackLink', ...args]);
+            this.scope.push(['trackLink', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -143,7 +148,7 @@ export class MatomoTracker {
      */
     trackAllContentImpressions(): void {
         try {
-            window._paq.push(['trackAllContentImpressions']);
+            this.scope.push(['trackAllContentImpressions']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -162,7 +167,7 @@ export class MatomoTracker {
     trackVisibleContentImpressions(checkOnScroll: boolean, timeIntervalInMs: number): void {
         try {
             const args: any[] = [checkOnScroll, timeIntervalInMs];
-            window._paq.push(['trackVisibleContentImpressions', ...args]);
+            this.scope.push(['trackVisibleContentImpressions', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -180,7 +185,7 @@ export class MatomoTracker {
     trackContentImpressionsWithinNode(domNode: Node): void {
         try {
             const args: any[] = [domNode];
-            window._paq.push(['trackContentImpressionsWithinNode', ...args]);
+            this.scope.push(['trackContentImpressionsWithinNode', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -198,7 +203,7 @@ export class MatomoTracker {
     trackContentInteractionNode(domNode: Node, contentInteraction: string): void {
         try {
             const args: any[] = [domNode, contentInteraction];
-            window._paq.push(['trackContentInteractionNode', ...args]);
+            this.scope.push(['trackContentInteractionNode', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -217,7 +222,7 @@ export class MatomoTracker {
     trackContentImpression(contentName: string, contentPiece: string, contentTarget: string): void {
         try {
             const args: any[] = [contentName, contentPiece, contentTarget];
-            window._paq.push(['trackContentImpression', ...args]);
+            this.scope.push(['trackContentImpression', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -242,7 +247,7 @@ export class MatomoTracker {
     ): void {
         try {
             const args: any[] = [contentInteraction, contentName, contentPiece, contentTarget];
-            window._paq.push(['trackContentInteraction', ...args]);
+            this.scope.push(['trackContentInteraction', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -257,7 +262,7 @@ export class MatomoTracker {
      */
     logAllContentBlocksOnPage(): void {
         try {
-            window._paq.push(['logAllContentBlocksOnPage']);
+            this.scope.push(['logAllContentBlocksOnPage']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -277,7 +282,7 @@ export class MatomoTracker {
     enableLinkTracking(enable: boolean): void {
         try {
             const args: any[] = [enable];
-            window._paq.push(['enableLinkTracking', ...args]);
+            this.scope.push(['enableLinkTracking', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -297,7 +302,7 @@ export class MatomoTracker {
     enableHeartBeatTimer(delayInSeconds: number): void {
         try {
             const args: any[] = [delayInSeconds];
-            window._paq.push(['enableHeartBeatTimer', ...args]);
+            this.scope.push(['enableHeartBeatTimer', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -316,7 +321,7 @@ export class MatomoTracker {
      */
     enableCrossDomainLinking(): void {
         try {
-            window._paq.push(['enableCrossDomainLinking']);
+            this.scope.push(['enableCrossDomainLinking']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -334,7 +339,7 @@ export class MatomoTracker {
     setCrossDomainLinkingTimeout(timeout: number): void {
         try {
             const args: any[] = [timeout];
-            window._paq.push(['setCrossDomainLinkingTimeout', ...args]);
+            this.scope.push(['setCrossDomainLinkingTimeout', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -351,7 +356,7 @@ export class MatomoTracker {
     setDocumentTitle(title: string): void {
         try {
             const args: any[] = [title];
-            window._paq.push(['setDocumentTitle', ...args]);
+            this.scope.push(['setDocumentTitle', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -370,7 +375,7 @@ export class MatomoTracker {
     setDomains(domains: string[]): void {
         try {
             const args: any[] = [domains];
-            window._paq.push(['setDomains', ...args]);
+            this.scope.push(['setDomains', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -387,7 +392,7 @@ export class MatomoTracker {
     setCustomUrl(url: string): void {
         try {
             const args: any[] = [url];
-            window._paq.push(['setCustomUrl', ...args]);
+            this.scope.push(['setCustomUrl', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -404,7 +409,7 @@ export class MatomoTracker {
     setReferrerUrl(url: string): void {
         try {
             const args: any[] = [url];
-            window._paq.push(['setReferrerUrl', ...args]);
+            this.scope.push(['setReferrerUrl', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -422,7 +427,7 @@ export class MatomoTracker {
     setSiteId(siteId: number): void {
         try {
             const args: any[] = [siteId];
-            window._paq.push(['setSiteId', ...args]);
+            this.scope.push(['setSiteId', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -442,7 +447,7 @@ export class MatomoTracker {
     setApiUrl(url: string): void {
         try {
             const args: any[] = [url];
-            window._paq.push(['setApiUrl', ...args]);
+            this.scope.push(['setApiUrl', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -460,7 +465,7 @@ export class MatomoTracker {
     setTrackerUrl(url: string): void {
         try {
             const args: any[] = [url];
-            window._paq.push(['setTrackerUrl', ...args]);
+            this.scope.push(['setTrackerUrl', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -476,7 +481,7 @@ export class MatomoTracker {
     getPiwikUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getPiwikUrl())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getPiwikUrl())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -494,7 +499,7 @@ export class MatomoTracker {
     getCurrentUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getCurrentUrl())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getCurrentUrl())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -512,7 +517,7 @@ export class MatomoTracker {
     setDownloadClasses(classes: string | string[]): void {
         try {
             const args: any[] = [classes];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -530,7 +535,7 @@ export class MatomoTracker {
     setDownloadExtensions(extensions: string | string[]): void {
         try {
             const args: any[] = [extensions];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -548,7 +553,7 @@ export class MatomoTracker {
     addDownloadExtensions(extensions: string | string[]): void {
         try {
             const args: any[] = [extensions];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -566,7 +571,7 @@ export class MatomoTracker {
     removeDownloadExtensions(extensions: string | string[]): void {
         try {
             const args: any[] = [extensions];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -583,7 +588,7 @@ export class MatomoTracker {
     setIgnoreClasses(classes: string | string[]): void {
         try {
             const args: any[] = [classes];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -600,7 +605,7 @@ export class MatomoTracker {
     setLinkClasses(classes: string | string[]): void {
         try {
             const args: any[] = [classes];
-            window._paq.push(['setDownloadClasses', ...args]);
+            this.scope.push(['setDownloadClasses', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -617,7 +622,7 @@ export class MatomoTracker {
     setLinkTrackingTimer(delay: number): void {
         try {
             const args: any[] = [delay];
-            window._paq.push(['setLinkTrackingTimer', ...args]);
+            this.scope.push(['setLinkTrackingTimer', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -633,7 +638,7 @@ export class MatomoTracker {
     getLinkTrackingTimer(): Promise<number> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getLinkTrackingTimer())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getLinkTrackingTimer())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -651,7 +656,7 @@ export class MatomoTracker {
     discardHashTag(value: boolean): void {
         try {
             const args: any[] = [value];
-            window._paq.push(['discardHashTag', ...args]);
+            this.scope.push(['discardHashTag', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -669,7 +674,7 @@ export class MatomoTracker {
     setGenerationTimeMs(generationTime: number): void {
         try {
             const args: any[] = [generationTime];
-            window._paq.push(['setGenerationTimeMs', ...args]);
+            this.scope.push(['setGenerationTimeMs', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -686,7 +691,7 @@ export class MatomoTracker {
     appendToTrackingUrl(appendToUrl: string): void {
         try {
             const args: any[] = [appendToUrl];
-            window._paq.push(['appendToTrackingUrl', ...args]);
+            this.scope.push(['appendToTrackingUrl', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -703,7 +708,7 @@ export class MatomoTracker {
     setDoNotTrack(doNotTrack: boolean): void {
         try {
             const args: any[] = [doNotTrack];
-            window._paq.push(['setDoNotTrack', ...args]);
+            this.scope.push(['setDoNotTrack', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -718,7 +723,7 @@ export class MatomoTracker {
      */
     killFrame(): void {
         try {
-            window._paq.push(['killFrame']);
+            this.scope.push(['killFrame']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -735,7 +740,7 @@ export class MatomoTracker {
     redirectFile(url: string): void {
         try {
             const args: any[] = [url];
-            window._paq.push(['redirectFile', ...args]);
+            this.scope.push(['redirectFile', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -754,7 +759,7 @@ export class MatomoTracker {
     setHeartBeatTimer(minimumVisitLength: number, heartBeatDelay: number): void {
         try {
             const args: any[] = [minimumVisitLength, heartBeatDelay];
-            window._paq.push(['setHeartBeatTimer', ...args]);
+            this.scope.push(['setHeartBeatTimer', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -770,7 +775,7 @@ export class MatomoTracker {
     getVisitorId(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getVisitorId())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getVisitorId())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -787,7 +792,7 @@ export class MatomoTracker {
     getVisitorInfo(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getVisitorInfo())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getVisitorInfo())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -806,7 +811,7 @@ export class MatomoTracker {
     getAttributionInfo(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionInfo())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getAttributionInfo())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -823,8 +828,8 @@ export class MatomoTracker {
     getAttributionCampaignName(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionCampaignName())
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignName())
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -842,8 +847,8 @@ export class MatomoTracker {
     getAttributionCampaignKeyword(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionCampaignKeyword())
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignKeyword())
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -861,8 +866,8 @@ export class MatomoTracker {
     getAttributionReferrerTimestamp(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionReferrerTimestamp())
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerTimestamp())
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -880,8 +885,8 @@ export class MatomoTracker {
     getAttributionReferrerUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionReferrerUrl())
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerUrl())
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -899,7 +904,7 @@ export class MatomoTracker {
     getUserId(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getUserId())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().getUserId())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -917,7 +922,7 @@ export class MatomoTracker {
     setUserId(userId: string): void {
         try {
             const args: any[] = [userId];
-            window._paq.push(['setUserId', ...args]);
+            this.scope.push(['setUserId', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -932,7 +937,7 @@ export class MatomoTracker {
      */
     resetUserId(): void {
         try {
-            window._paq.push(['resetUserId']);
+            this.scope.push(['resetUserId']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -952,7 +957,7 @@ export class MatomoTracker {
     setCustomVariable(index: number, name: string, value: string, scope: string): void {
         try {
             const args: any[] = [index, name, value, scope];
-            window._paq.push(['setCustomVariable', ...args]);
+            this.scope.push(['setCustomVariable', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -970,7 +975,7 @@ export class MatomoTracker {
     deleteCustomVariable(index: number, scope: string): void {
         try {
             const args: any[] = [index, scope];
-            window._paq.push(['deleteCustomVariable', ...args]);
+            this.scope.push(['deleteCustomVariable', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -988,8 +993,8 @@ export class MatomoTracker {
     getCustomVariable(index: number, scope: string): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getCustomVariable(index, scope))
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getCustomVariable(index, scope))
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1008,7 +1013,7 @@ export class MatomoTracker {
      */
     storeCustomVariablesInCookie(): void {
         try {
-            window._paq.push(['storeCustomVariablesInCookie']);
+            this.scope.push(['storeCustomVariablesInCookie']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1027,7 +1032,7 @@ export class MatomoTracker {
     setCustomDimension(customDimensionId: number, customDimensionValue: string): void {
         try {
             const args: any[] = [customDimensionId, customDimensionValue];
-            window._paq.push(['setCustomDimension', ...args]);
+            this.scope.push(['setCustomDimension', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1045,7 +1050,7 @@ export class MatomoTracker {
     deleteCustomDimension(customDimensionId: number): void {
         try {
             const args: any[] = [customDimensionId];
-            window._paq.push(['deleteCustomDimension', ...args]);
+            this.scope.push(['deleteCustomDimension', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1063,8 +1068,8 @@ export class MatomoTracker {
     getCustomDimension(customDimensionId: number): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getCustomDimension(customDimensionId))
+                this.scope.push([
+                    () => resolve(window['Piwik'].getTracker().getCustomDimension(customDimensionId))
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1083,7 +1088,7 @@ export class MatomoTracker {
     setCampaignNameKey(name: string): void {
         try {
             const args: any[] = [name];
-            window._paq.push(['setCampaignNameKey', ...args]);
+            this.scope.push(['setCampaignNameKey', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1100,7 +1105,7 @@ export class MatomoTracker {
     setCampaignKeywordKey(keyword: string): void {
         try {
             const args: any[] = [keyword];
-            window._paq.push(['setCampaignKeywordKey', ...args]);
+            this.scope.push(['setCampaignKeywordKey', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1118,7 +1123,7 @@ export class MatomoTracker {
     setConversionAttributionFirstReferrer(conversionToFirstReferrer: boolean): void {
         try {
             const args: any[] = [conversionToFirstReferrer];
-            window._paq.push(['setConversionAttributionFirstReferrer', ...args]);
+            this.scope.push(['setConversionAttributionFirstReferrer', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1144,7 +1149,7 @@ export class MatomoTracker {
     ): void {
         try {
             const args: any[] = [productSKU, productName, categoryName, price];
-            window._paq.push(['setEcommerceView', ...args]);
+            this.scope.push(['setEcommerceView', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1183,7 +1188,7 @@ export class MatomoTracker {
             if (!!quantity) {
                 args.push(quantity);
             }
-            window._paq.push(['addEcommerceItem', ...args]);
+            this.scope.push(['addEcommerceItem', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1200,7 +1205,7 @@ export class MatomoTracker {
     trackEcommerceCartUpdate(grandTotal: number): void {
         try {
             const args: any[] = [grandTotal];
-            window._paq.push(['trackEcommerceCartUpdate', ...args]);
+            this.scope.push(['trackEcommerceCartUpdate', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1242,7 +1247,7 @@ export class MatomoTracker {
             if (!!discount) {
                 args.push(discount);
             }
-            window._paq.push(['trackEcommerceOrder', ...args]);
+            this.scope.push(['trackEcommerceOrder', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1257,7 +1262,7 @@ export class MatomoTracker {
      */
     disableCookies(): void {
         try {
-            window._paq.push(['disableCookies']);
+            this.scope.push(['disableCookies']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1272,7 +1277,7 @@ export class MatomoTracker {
      */
     deleteCookies(): void {
         try {
-            window._paq.push(['deleteCookies']);
+            this.scope.push(['deleteCookies']);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1288,7 +1293,7 @@ export class MatomoTracker {
     hasCookies(): Promise<boolean> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().hasCookies())]);
+                this.scope.push([() => resolve(window['Piwik'].getTracker().hasCookies())]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -1307,7 +1312,7 @@ export class MatomoTracker {
     setCookieNamePrefix(prefix: string): void {
         try {
             const args: any[] = [prefix];
-            window._paq.push(['setCookieNamePrefix', ...args]);
+            this.scope.push(['setCookieNamePrefix', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1326,7 +1331,7 @@ export class MatomoTracker {
     setCookieDomain(domain: string): void {
         try {
             const args: any[] = [domain];
-            window._paq.push(['setCookieDomain', ...args]);
+            this.scope.push(['setCookieDomain', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1344,7 +1349,7 @@ export class MatomoTracker {
     setCookiePath(path: string): void {
         try {
             const args: any[] = [path];
-            window._paq.push(['setCookiePath', ...args]);
+            this.scope.push(['setCookiePath', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1362,7 +1367,7 @@ export class MatomoTracker {
     setSecureCookie(secure: boolean): void {
         try {
             const args: any[] = [secure];
-            window._paq.push(['setSecureCookie', ...args]);
+            this.scope.push(['setSecureCookie', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1380,7 +1385,7 @@ export class MatomoTracker {
     setVisitorCookieTimeout(seconds: number): void {
         try {
             const args: any[] = [seconds];
-            window._paq.push(['setVisitorCookieTimeout', ...args]);
+            this.scope.push(['setVisitorCookieTimeout', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1398,7 +1403,7 @@ export class MatomoTracker {
     setReferralCookieTimeout(seconds: number): void {
         try {
             const args: any[] = [seconds];
-            window._paq.push(['setReferralCookieTimeout', ...args]);
+            this.scope.push(['setReferralCookieTimeout', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1416,7 +1421,7 @@ export class MatomoTracker {
     setSessionCookieTimeout(seconds: number): void {
         try {
             const args: any[] = [seconds];
-            window._paq.push(['setSessionCookieTimeout', ...args]);
+            this.scope.push(['setSessionCookieTimeout', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1433,7 +1438,7 @@ export class MatomoTracker {
     addListener(element: Element): void {
         try {
             const args: any[] = [element];
-            window._paq.push(['addListener', ...args]);
+            this.scope.push(['addListener', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1453,7 +1458,7 @@ export class MatomoTracker {
     setRequestMethod(method: string): void {
         try {
             const args: any[] = [method];
-            window._paq.push(['setRequestMethod', ...args]);
+            this.scope.push(['setRequestMethod', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1471,7 +1476,7 @@ export class MatomoTracker {
     setCustomRequestProcessing(callback: (queryParameters: string) => void): void {
         try {
             const args: any[] = [callback];
-            window._paq.push(['setCustomRequestProcessing', ...args]);
+            this.scope.push(['setCustomRequestProcessing', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
@@ -1489,7 +1494,7 @@ export class MatomoTracker {
     setRequestContentType(contentType: string): void {
         try {
             const args: any[] = [contentType];
-            window._paq.push(['setRequestContentType', ...args]);
+            this.scope.push(['setRequestContentType', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
                 throw e;
