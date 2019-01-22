@@ -54,10 +54,9 @@ import { MatomoTracker } from '../matomo/service/matomo-tracker.service';
         HomeCookieComponent,
         LegalMentionsComponent,
         MomentJsPipe,
-
     ],
     imports: [
-        BrowserModule.withServerTransition({ appId: 'my-app' }),
+        BrowserModule.withServerTransition({ appId: 'www-vincent-p-fr' }),
         TransferHttpCacheModule,
         ScrollToModule.forRoot(),
         RouterModule.forRoot(routes),
