@@ -1,12 +1,12 @@
 export const entities = {
-    texts: '/Texts',
-    contact: '/Contact',
-    trainings: '/Trainings',
-    experiences: '/Experiences',
-    skillGroups: '/SkillGroups',
-    skills: '/Skills',
-    companies: '/Companies',
-    users: {
+    TextEntity: '/Texts',
+    Contact: '/Contact',
+    Training: '/Trainings',
+    Experience: '/Experiences',
+    Skillgroup: '/SkillGroups',
+    Skill: '/Skills',
+    Company: '/Companies',
+    Users: {
         login: '/Users/Authenticate',
         me: '/Users/Me',
         entity: '/Users'
