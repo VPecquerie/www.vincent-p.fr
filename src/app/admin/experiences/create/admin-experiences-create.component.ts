@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Experience } from '../../../entities/experience';
-import { AdminExperiencesService } from '../admin-experiences.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../../../entities/company';
 import * as moment from 'moment';
+import { CreateExperienceForm } from './admin-experiences-create.form-group.component';
+import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
+import { CompanyHttpService } from '../../../services/entities/company.http.service';
 
 @Component({
     templateUrl: './admin-experiences-create.component.html',
@@ -17,28 +18,20 @@ export class AdminExperiencesCreateComponent implements OnInit {
     public companies: Company[];
     public createEnterpriseMode = false;
 
-    public experienceForm = new FormGroup({
-        Title: new FormControl('', [Validators.required]),
-        Description: new FormControl('', [Validators.required]),
-        Start: new FormControl('', [Validators.required]),
-        End: new FormControl('', []),
-        CompanyId: new FormControl(''),
-        CompanyAdd: new FormGroup({
-            Name: new FormControl('', []),
-            Location: new FormControl('', []),
-            Logo: new FormControl('', []),
-        }),
-    });
+    public experienceForm = CreateExperienceForm;
 
-    public constructor(private service: AdminExperiencesService, private route: ActivatedRoute, private router: Router) {
+    public constructor(private experienceHttpService: ExperienceHttpService,
+                       private companyHttpService: CompanyHttpService,
+                       private route: ActivatedRoute,
+                       private router: Router) {
     }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.id = params.id;
             if (this.id !== null && this.id !== undefined) {
-                this.service.getExperience(this.id).subscribe(data => {
-                    this.experience = new Experience(data);
+                this.experienceHttpService.readOne(this.id).subscribe(experience => {
+                    this.experience = experience;
                     this.experienceForm.setValue({
                         Title: this.experience.Title,
                         Description: this.experience.Description,
@@ -53,7 +46,10 @@ export class AdminExperiencesCreateComponent implements OnInit {
                     });
                 });
             }
-            this.service.getCompanies().subscribe(companies => this.companies = companies);
+
+            this.companyHttpService
+                .readAll()
+                .subscribe(companies => this.companies = companies);
         });
     }
 
@@ -61,11 +57,11 @@ export class AdminExperiencesCreateComponent implements OnInit {
         if (this.experienceForm.valid) {
             const self = this;
             if (this.id == null) {
-                this.service.createExperience(this.experienceForm.getRawValue()).then(() => {
+                this.experienceHttpService.create(this.experienceForm.getRawValue()).subscribe(() => {
                     self.router.navigate(['/admin/experiences']);
                 });
             } else {
-                this.service.updateExperience(this.id, this.experienceForm.getRawValue()).then(() => {
+                this.experienceHttpService.update(this.id, this.experienceForm.getRawValue()).subscribe(() => {
                     self.router.navigate(['/admin/experiences']);
                 });
             }

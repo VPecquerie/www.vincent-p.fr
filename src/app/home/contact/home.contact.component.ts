@@ -14,6 +14,7 @@ export class HomeContactComponent {
 
     public model: HomeContactComponentFormModel = new HomeContactComponentFormModel();
 
+    // @TODO: Complete refacto de tout ca.
     constructor(private service: HomeContactService) {
     }
 

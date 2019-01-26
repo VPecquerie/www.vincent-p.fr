@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AdminExperiencesService } from '../admin-experiences.service';
 import { Experience } from '../../../entities/experience';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
 
 @Component({
     templateUrl: './admin-experiences-list.component.html',
@@ -14,7 +14,7 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
     public experiences: Experience[];
 
-    constructor(private service: AdminExperiencesService, private router: Router) {
+    constructor(private experienceHttpService: ExperienceHttpService, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -26,18 +26,19 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     }
 
     getExperiences() {
-        this.subscription = this.service.getExperiences().subscribe(experiences => this.experiences = experiences);
+        this.subscription = this.experienceHttpService
+            .readAll()
+            .subscribe(experiences => this.experiences = experiences);
     }
 
     delete(experience): boolean {
         const self = this;
-        this.service.deleteExperience(experience.ExperienceId).then(() => {
+        this.experienceHttpService.delete(experience.ExperienceId).subscribe(() => {
 
             const index = _.indexOf(this.experiences, experience);
             self.experiences.splice(index, 1);
             self.router.navigate(['/admin/experiences']);
         });
-
         return false;
     }
 

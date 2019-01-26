@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { User } from '../../entities/user';
-import { AdminLoginService } from './admin-login.service';
 import { NotificationService } from '../../services/notification.service';
+import { AdminLoginFormGroupComponent } from './admin-login.form-group.component';
+import { UserHttpService } from '../../services/entities/user.http.service';
 
 @Component({
     selector: 'app-admin-login',
@@ -13,14 +12,10 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-    public loginForm = new FormGroup({
-        username: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required]),
-        rememberMe: new FormControl(),
-    });
+    public loginForm = AdminLoginFormGroupComponent;
 
     public constructor(private userService: UserService,
-                       private service: AdminLoginService,
+                       private userHttpService: UserHttpService,
                        private router: Router,
                        private notificationService: NotificationService) {
     }
@@ -38,12 +33,9 @@ export class AdminLoginComponent implements OnInit {
 
     login() {
         if (this.loginForm.valid) {
-            this.service.login(this.loginForm.value).then((result) => {
-                const user = new User(result);
+            this.userHttpService.login(this.loginForm.value).subscribe((user) => {
                 this.userService.setUser(user);
                 this.router.navigate(['/admin']);
-            }).catch((error) => {
-                console.error(error);
             });
         }
     }

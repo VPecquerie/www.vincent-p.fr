@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from '../../../entities/training';
-import { AdminTrainingsService } from '../admin-trainings.service';
 import { Router } from '@angular/router';
+import { TrainingHttpService } from '../../../services/entities/training.http.service';
 
 @Component({
     templateUrl: './admin-training-list.component.html',
@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 export class AdminTrainingListComponent implements OnInit {
     public trainings: Training[];
 
-    public constructor(private service: AdminTrainingsService, private router: Router) {
-    }
+    public constructor(private trainingHttpService: TrainingHttpService, private router: Router) { }
 
     ngOnInit(): void {
-        this.service.getTrainings().subscribe((trainings) => this.trainings = trainings);
+        this.trainingHttpService
+            .readAll()
+            .subscribe((trainings) => this.trainings = trainings);
     }
 
     openEditMode(training: Training) {

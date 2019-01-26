@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminSkillsService } from '../admin-skills.service';
-import * as _ from 'lodash';
 import { Skillgroup } from '../../../entities/skillgroup';
 import { Skill } from '../../../entities/skill';
+import { SkillgroupHttpService } from '../../../services/entities/skillgroup.http.service';
+import { SkillHttpService } from '../../../services/entities/skill.http.service';
+
+import * as _ from 'lodash';
 
 @Component({
     templateUrl: './admin-skills-list.component.html',
@@ -12,7 +14,8 @@ export class AdminSkillsListComponent implements OnInit {
     public skillsGroups: Skillgroup[];
     public form: Skill;
 
-    constructor(private service: AdminSkillsService) {
+    constructor(private skillgroupHttpService: SkillgroupHttpService,
+                private skillHttpService: SkillHttpService) {
     }
 
     ngOnInit(): void {
@@ -21,7 +24,7 @@ export class AdminSkillsListComponent implements OnInit {
 
     loadSkills() {
         const self = this;
-        this.service.getSkillsGroups().then((groups) => self.skillsGroups = groups);
+        this.skillgroupHttpService.readAll().subscribe((groups) => self.skillsGroups = groups);
     }
 
     openEditMode(skill): boolean {
@@ -39,32 +42,25 @@ export class AdminSkillsListComponent implements OnInit {
 
     saveSkill(skill: Skill) {
         const self = this;
-        const postData = {
-            Name: skill.Name,
-            Level: skill.Level,
-        };
-        this.service.updateSkill(skill.SkillId, postData).then(() => {
+        this.skillHttpService.update(skill.SkillId, skill).subscribe(() => {
             self.loadSkills();
         });
-
         return false;
     }
 
     deleteSkill(skill: Skill) {
         const self = this;
-        this.service.deleteSkill(skill.SkillId).then(() => {
+        this.skillHttpService.delete(skill.SkillId).subscribe(() => {
             self.loadSkills();
         });
-
         return false;
     }
 
     deleteGroup(group: Skillgroup) {
         const self = this;
-        this.service.deleteGroup(group.SkillGroupId).then(() => {
+        this.skillgroupHttpService.delete(group.SkillGroupId).subscribe(() => {
             self.loadSkills();
         });
-
         return false;
     }
 }

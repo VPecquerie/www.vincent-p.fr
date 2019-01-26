@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeExperienceService } from './home.experience.service';
 import { Experience } from '../../entities/experience';
+import { ExperienceHttpService } from '../../services/entities/experience.http.service';
 
 @Component({
     selector: 'app-home-experience',
@@ -10,12 +10,11 @@ import { Experience } from '../../entities/experience';
 export class HomeExperienceComponent implements OnInit {
     public experiences: Experience[];
 
-    constructor(private experienceService: HomeExperienceService) {
+    constructor(private experienceHttpService: ExperienceHttpService) {
     }
 
     ngOnInit(): void {
-        this.experienceService
-            .getExperiences()
+        this.experienceHttpService.readAll()
             .subscribe(experiences => (this.experiences = experiences));
     }
 }
