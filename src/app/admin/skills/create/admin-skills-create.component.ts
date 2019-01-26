@@ -1,54 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdminSkillsService } from '../admin-skills.service';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { Skillgroup } from '../../../entities/skillgroup';
 import { NotificationService } from '../../../services/notification.service';
+import { SkillForm } from './admin-skills-create.form-group';
+import { SkillgroupHttpService } from '../../../services/entities/skillgroup.http.service';
+import { SkillHttpService } from '../../../services/entities/skill.http.service';
 
 @Component({
     templateUrl: './admin-skills-create.component.html',
     styleUrls: ['./admin-skills-create.component.scss'],
 })
-export class AdminSkillsCreateComponent implements OnInit {
+export class AdminSkillsCreateComponent {
 
     public groups: Skillgroup[];
-
     public createGroupMode = false;
+    public skillForm = SkillForm;
 
-    public skillForm = new FormGroup({
-        group: new FormControl('', []),
-        name: new FormControl('', [Validators.required]),
-        level: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
-        groupAdd: new FormGroup({
-            Name: new FormControl('', []),
-            Icon: new FormControl('', []),
-        }),
-    });
+    public constructor(private skillgroupHttpService: SkillgroupHttpService,
+                       private skillHttpService: SkillHttpService,
+                       private notification: NotificationService,
+                       private router: Router) {
 
-    public constructor(private service: AdminSkillsService, private notification: NotificationService, private router: Router) {
-    }
-
-    async ngOnInit() {
-        this.groups = await this.service.getSkillsGroups();
+        this.skillgroupHttpService
+            .readAll()
+            .subscribe(groups => this.groups = groups);
     }
 
     public async save() {
         const self = this;
         if (this.skillForm.valid) {
-            let groupId = this.skillForm.value.group.SkillGroupId;
 
+            let groupId = this.skillForm.value.group.SkillGroupId;
             if (this.createGroupMode && this.skillForm.controls['groupAdd'].valid) {
                 const data = this.skillForm.controls['groupAdd'].value;
-                const group = await this.service.createGroup(data);
+                const group = await this.skillgroupHttpService.create(data).toPromise();
                 groupId = group.SkillGroupId;
             }
+
             const postData = {
                 Name: this.skillForm.value.name,
                 Level: this.skillForm.value.level,
                 SkillGroupId: groupId,
             };
 
-            this.service.createSkill(postData).then(() => {
+            this.skillHttpService.create(postData).subscribe(() => {
                 self.router.navigate(['/admin/skills']);
             });
 

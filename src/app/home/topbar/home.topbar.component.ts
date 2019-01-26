@@ -11,7 +11,6 @@ export class HomeTopbarComponent implements OnInit {
     constructor(@Inject(PLATFORM_ID) private platformId: string, private router: Router) {
     }
 
-
     ngOnInit(): void {
 
         if (isPlatformBrowser(this.platformId)) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeSkillsService } from './home.skills.service';
 import { Skillgroup } from '../../entities/skillgroup';
+import { SkillgroupHttpService } from '../../services/entities/skillgroup.http.service';
 
 @Component({
     selector: 'app-home-skills',
@@ -10,12 +10,12 @@ import { Skillgroup } from '../../entities/skillgroup';
 export class HomeSkillsComponent implements OnInit {
     public skillsGroups: Skillgroup[];
 
-    constructor(private skillsService: HomeSkillsService) {
+    constructor(private skillgroupHttpService: SkillgroupHttpService) {
     }
 
     ngOnInit(): void {
-        this.skillsService
-            .getSkills()
+        this.skillgroupHttpService
+            .readAll()
             .subscribe((groups) => this.skillsGroups = groups);
     }
 }

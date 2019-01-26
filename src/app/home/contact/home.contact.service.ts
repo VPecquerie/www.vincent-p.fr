@@ -9,7 +9,7 @@ export class HomeContactService {
     }
 
     saveForm(model: HomeContactComponentFormModel): Promise<any> {
-        const url = environment.api.url + environment.api.entities.contact;
+        const url = environment.api.url + environment.api.entities.Contact;
         const headers: HttpHeaders = new HttpHeaders({
             'Content-Type': 'application/json',
         });

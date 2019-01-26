@@ -1,7 +1,7 @@
 import { User } from '../entities/user';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
+import { Deserialize } from 'cerialize';
 @Injectable()
 export class UserService {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -11,7 +11,7 @@ export class UserService {
         if (isPlatformBrowser(this.platformId)) {
             const storedUser = localStorage.getItem('user');
             if (storedUser != null) {
-                return new User(JSON.parse(storedUser));
+                return Deserialize(JSON.parse(storedUser), User);
             } else {
                 return null;
             }

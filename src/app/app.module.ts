@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RavenModule } from 'ngx-raven';
 import { MyMaterialModule } from './my-material/my-material.module';
-import { TextService } from './services/text.service';
 import { UserService } from './services/user.service';
 import { CustomHttpHandler } from './services/errors/custom.http.handler';
 import { NotificationService } from './services/notification.service';
@@ -22,21 +21,25 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { HomeTopbarComponent } from './home/topbar/home.topbar.component';
 import { HomeSplashScreenComponent } from './home/splashscreen/home.splashscreen.component';
-import { HomeAboutService } from './home/about/home.about.service.component';
 import { HomeAboutComponent } from './home/about/home.about.component';
 import { HomeContactComponent } from './home/contact/home.contact.component';
 import { HomeContactService } from './home/contact/home.contact.service';
 import { HomeExperienceComponent } from './home/experience/home.experience.component';
-import { HomeExperienceService } from './home/experience/home.experience.service';
 import { HomeSkillsComponent } from './home/skills/home.skills.component';
-import { HomeSkillsService } from './home/skills/home.skills.service';
 import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
-import { HomeTrainingService } from './home/trainings/home.trainings.service';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 import { CookieService } from './services/cookie.service';
 import { MatomoInjector } from '../matomo/service/matomo-injector.service';
 import { MatomoTracker } from '../matomo/service/matomo-tracker.service';
+import { CompanyHttpService } from './services/entities/company.http.service';
+import { ExperienceHttpService } from './services/entities/experience.http.service';
+import { SkillHttpService } from './services/entities/skill.http.service';
+import { SkillgroupHttpService } from './services/entities/skillgroup.http.service';
+import { TextEntityHttpService } from './services/entities/text.entity.http.service';
+import { TokeninfoHttpService } from './services/entities/tokeninfo.http.service';
+import { TrainingHttpService } from './services/entities/training.http.service';
+import { UserHttpService } from './services/entities/user.http.service';
 
 
 @NgModule({
@@ -80,16 +83,19 @@ import { MatomoTracker } from '../matomo/service/matomo-tracker.service';
         },
         CookieService,
         NotificationService,
-        TextService,
-        HomeAboutService,
         UserService,
-        HomeSkillsService,
         HomeContactService,
-        HomeExperienceService,
-        HomeTrainingService,
         RoutingService,
         MatomoInjector,
-        MatomoTracker
+        MatomoTracker,
+        CompanyHttpService,
+        ExperienceHttpService,
+        SkillHttpService,
+        SkillgroupHttpService,
+        TextEntityHttpService,
+        TokeninfoHttpService,
+        TrainingHttpService,
+        UserHttpService
     ],
     bootstrap: [AppComponent],
 })

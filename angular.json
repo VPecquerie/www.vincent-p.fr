@@ -56,10 +56,12 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "evalSourceMap": false,
+              "vendorSourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": true,
+              "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
               "fileReplacements": [
@@ -119,6 +121,9 @@
             },
             "dev": {
               "browserTarget": "vincent-p:build:dev"
+            },
+            "beta": {
+              "browserTarget": "vincent-p:build:beta"
             }
           }
         },

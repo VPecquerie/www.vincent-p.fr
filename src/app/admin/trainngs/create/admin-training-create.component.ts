@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdminTrainingsService } from '../admin-trainings.service';
-import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Training } from '../../../entities/training';
+import { TrainingForm } from './admin-training-create.form-group';
+import { TrainingHttpService } from '../../../services/entities/training.http.service';
+
+import * as moment from 'moment';
 
 @Component({
     templateUrl: './admin-training-create.component.html',
@@ -13,23 +14,18 @@ export class AdminTrainingCreateComponent implements OnInit {
 
     private id: number;
     private training: Training;
-    public trainingForm = new FormGroup({
-        Title: new FormControl('', [Validators.required]),
-        Description: new FormControl('', [Validators.required]),
-        Begin: new FormControl('', [Validators.required]),
-        End: new FormControl('', [])
-    });
+    public trainingForm = TrainingForm;
 
-
-    constructor(private service: AdminTrainingsService, private route: ActivatedRoute, private router: Router) {
-    }
+    constructor(private trainingHttpService: TrainingHttpService,
+                private route: ActivatedRoute,
+                private router: Router) { }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.id = params.id;
             if (this.id !== null && this.id !== undefined) {
-                this.service.getTraining(this.id).subscribe(data => {
-                    this.training = new Training(data);
+                this.trainingHttpService.readOne(this.id).subscribe(training => {
+                    this.training = training;
                     this.trainingForm.setValue({
                         Title: this.training.Title,
                         Description: this.training.Description,
@@ -46,11 +42,11 @@ export class AdminTrainingCreateComponent implements OnInit {
         if (this.trainingForm.valid) {
             const self = this;
             if (this.id == null) {
-                this.service.createTraining(this.trainingForm.getRawValue()).then(() => {
+                this.trainingHttpService.create(this.trainingForm.getRawValue()).subscribe(() => {
                     self.router.navigate(['/admin/trainings']);
                 });
             } else {
-                this.service.updateTraining(this.id, this.trainingForm.getRawValue()).then(() => {
+                this.trainingHttpService.update(this.id, this.trainingForm.getRawValue()).subscribe(() => {
                     self.router.navigate(['/admin/trainings']);
                 });
             }
