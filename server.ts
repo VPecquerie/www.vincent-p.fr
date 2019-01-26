@@ -35,7 +35,6 @@ app.use(minifyHTML({
     }
 }));
 
-const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -68,20 +67,11 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
-app.use(compression({ filter: shouldCompress }));
+app.use(compression());
 
-function shouldCompress(req, res) {
-    if (req.headers['x-no-compression']) {
-        return false;
-    }
-    // fallback to standard filter function
-    return compression.filter(req, res);
-}
 
 // Server static files from /browser
-app.get(
-    '*.*',
-    express.static(join(DIST_FOLDER, 'browser'), {
+app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
         maxAge: '1y',
     })
 );
@@ -92,6 +82,6 @@ app.get('*', (req, res) => {
 });
 
 // Start up the Node server
-app.listen(PORT, () => {
-    console.log(`Node Express server listening on http://localhost:${PORT}`);
+app.listen(4000, () => {
+    console.log(`Node Express server listening on http://localhost:4000`);
 });
