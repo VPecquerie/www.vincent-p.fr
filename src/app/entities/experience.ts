@@ -1,51 +1,37 @@
 import { Skill } from './skill';
 import { Company } from './company';
+import { autoserialize, autoserializeAs } from 'cerialize';
 
 export class Experience {
+
+    @autoserialize
     public ExperienceId: number;
+
+    @autoserialize
     public Title: string;
+
+    @autoserializeAs(Company)
     public Company: Company;
+
+    @autoserialize
     public Description: string;
+
+    @autoserializeAs(Skill)
     public Skills: Skill[];
+
+    @autoserializeAs(Date)
     public Start: Date;
+
+    @autoserializeAs(Date)
     public End: Date;
 
-    public static deserializeArray(json): Experience[] {
-        const instances = [];
-        for (const item of json) {
-            const instance = new Experience(item);
-            instances.push(instance);
-        }
-        return instances;
-    }
-
-    public constructor(json: {}) {
-        for (const key in json) {
-            if (json.hasOwnProperty(key) && json[key] != null) {
-                switch (key) {
-                    case 'Skills':
-                        this[key] = Skill.deserializeArray(json[key]);
-                        break;
-
-                    case 'Company':
-                        this[key] = new Company(json[key]);
-                        break;
-
-                    case 'Start':
-                    case 'End':
-                        if (json[key] != null) {
-                            this[key] = new Date(json[key]);
-                        } else {
-                            this[key] = null;
-                        }
-                        break;
-
-                    default:
-                        this[key] = json[key];
-                        break;
-                }
-            }
-        }
-        return this;
+    constructor(experienceId: number, title: string, company: Company, description: string, skills: Skill[], start: Date, end: Date) {
+        this.ExperienceId = experienceId;
+        this.Title = title;
+        this.Company = company;
+        this.Description = description;
+        this.Skills = skills;
+        this.Start = start;
+        this.End = end;
     }
 }

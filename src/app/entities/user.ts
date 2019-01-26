@@ -1,43 +1,21 @@
 import { TokenInfo } from './tokeninfo';
+import { autoserialize, autoserializeAs } from 'cerialize';
 
 export class User {
+
+    @autoserialize
     public UserId: number;
+
+    @autoserialize
     public Firstname: string;
+
+    @autoserialize
     public Lastname: string;
+
+    @autoserialize
     public Email: string;
+
+    @autoserializeAs(TokenInfo)
     public Token: TokenInfo;
 
-    /**
-     * Array Deserialize Method.
-     * @param {{}[]} json
-     * @returns {Training[]}
-     */
-    public static deserializeArray(json: {}[]): User[] {
-        const instances = [];
-        for (const item of json) {
-            const instance = new User(item);
-            instances.push(instance);
-        }
-        return instances;
-    }
-
-    /**
-     * Deserialize Method.
-     * @param {{}} json
-     * @returns {this}
-     */
-    public constructor(json: {}) {
-        for (const key in json) {
-            if (json.hasOwnProperty(key)) {
-                if (key === 'Token') {
-                    this[key] = new TokenInfo(
-                        json[key]
-                    );
-                } else {
-                    this[key] = json[key];
-                }
-            }
-        }
-        return this;
-    }
 }

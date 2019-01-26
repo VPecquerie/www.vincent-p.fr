@@ -5,18 +5,6 @@
                 <form [formGroup]="loginForm" (submit)="login()">
                     <div class="card-header card-header-primary text-center">
                         <h4 class="card-title">Connexion</h4>
-                        <!--
-                        <div class="social-line">
-                            <a href="#pablo" class="btn btn-just-icon btn-link">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                        </div> -->
                     </div>
 
                     <div class="card-body">
@@ -26,12 +14,10 @@
                                 <input matInput formControlName="username" placeholder="Nom d'utilisateur...">
                                 <mat-icon matPrefix>face</mat-icon>
                                 <mat-hint>
-                                    <div
-                                        *ngIf="loginForm.controls.username.dirty && loginForm.controls.username.errors?.email">
+                                    <div *ngIf="loginForm.controls.username.dirty && loginForm.controls.username.errors?.email">
                                         Le nom d'utilisateur n'est pas une adresse e-mail valide.
                                     </div>
-                                    <div
-                                        *ngIf="loginForm.controls.username.dirty && loginForm.controls.username.errors?.required">
+                                    <div *ngIf="loginForm.controls.username.dirty && loginForm.controls.username.errors?.required">
                                         Le nom d'utilisateur est requis.
                                     </div>
                                 </mat-hint>
@@ -41,12 +27,10 @@
                         <div class="input-group">
                             <mat-form-field appearance="outline">
                                 <mat-label>Mot de passe...</mat-label>
-                                <input matInput type="password" formControlName="password"
-                                       placeholder="Mot de passe...">
+                                <input matInput type="password" formControlName="password" placeholder="Mot de passe...">
                                 <mat-icon matPrefix>lock_outline</mat-icon>
                                 <mat-hint>
-                                    <div
-                                        *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.errors?.required">
+                                    <div *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.errors?.required">
                                         Le mot de passe est requis.
                                     </div>
                                 </mat-hint>
@@ -61,8 +45,8 @@
 
                     </div>
                     <div class="footer text-center">
-                        <button class="btn btn-primary btn-wd btn-lg" type="submit" [disabled]="loginForm.invalid">Se
-                            Connecter !
+                        <button class="btn btn-primary btn-wd btn-lg" type="submit" [disabled]="loginForm.invalid">
+                            Se Connecter !
                         </button>
                     </div>
                 </form>

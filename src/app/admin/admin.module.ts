@@ -8,7 +8,6 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { AdminAuthgard } from './admin.authgard';
 import { MyMaterialModule } from '../my-material/my-material.module';
-import { AdminLoginService } from './login/admin-login.service';
 import { AdminLoginComponent } from './login/admin-login.component';
 import { AdminExperiencesCreateComponent } from './experiences/create/admin-experiences-create.component';
 import { AdminTrainingListComponent } from './trainngs/list/admin-training-list.component';
@@ -18,9 +17,6 @@ import { AdminTrainingCreateComponent } from './trainngs/create/admin-training-c
 import { AdminSkillsCreateComponent } from './skills/create/admin-skills-create.component';
 import { AdminAccountComponent } from './account/admin-account.component';
 import { AdminSkillsListComponent } from './skills/list/admin-skills-list.component';
-import { AdminSkillsService } from './skills/admin-skills.service';
-import { AdminTrainingsService } from './trainngs/admin-trainings.service';
-import { AdminExperiencesService } from './experiences/admin-experiences.service';
 import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
 import { CustomHttpHandler } from '../services/errors/custom.http.handler';
@@ -57,11 +53,7 @@ import { CustomHttpHandler } from '../services/errors/custom.http.handler';
             useClass: CustomHttpHandler,
             multi: true,
         },
-        AdminAuthgard,
-        AdminLoginService,
-        AdminSkillsService,
-        AdminExperiencesService,
-        AdminTrainingsService,
+        AdminAuthgard
     ],
 })
 export class AdminModule {

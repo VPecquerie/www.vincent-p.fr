@@ -14,12 +14,10 @@ export class HomeCookieComponent implements OnInit {
     public visible = false;
     public accepted = false;
 
-
     public form = new FormGroup({
         canUseAnalytics: new FormControl('', []),
         canTrackUserActions: new FormControl('', []),
     });
-
 
     constructor(@Inject(PLATFORM_ID) private platformId: string,
                 private cookieService: CookieService,

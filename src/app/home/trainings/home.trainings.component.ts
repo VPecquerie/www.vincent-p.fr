@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeTrainingService } from './home.trainings.service';
 import { Training } from '../../entities/training';
+import { TrainingHttpService } from '../../services/entities/training.http.service';
 
 @Component({
     selector: 'app-home-trainings',
@@ -11,11 +11,13 @@ export class HomeTrainingComponent implements OnInit {
 
     public trainings: Training[];
 
-    constructor(private trainingService: HomeTrainingService) {
+    constructor(private trainingService: TrainingHttpService) {
     }
 
     ngOnInit(): void {
-        this.trainingService.getTrainings().subscribe(trainings => this.trainings = trainings);
+        this.trainingService
+            .readAll()
+            .subscribe(trainings => this.trainings = trainings);
     }
 
 }

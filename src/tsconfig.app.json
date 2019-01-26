@@ -1,15 +1,16 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "baseUrl": "./",
-    "module": "es2015",
-    "types": [
-      "node"
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "baseUrl": "./",
+        "module": "commonjs",
+        "types": [
+            "node"
+        ],
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "test.ts",
+        "**/*.spec.ts"
     ]
-  },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
 }

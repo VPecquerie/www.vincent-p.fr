@@ -1,31 +1,23 @@
-import { Experience } from './experience';
+import { autoserialize } from 'cerialize';
 
 export class Company {
+
+    @autoserialize
     public CompanyId: number;
+
+    @autoserialize
     public Name: string;
+
+    @autoserialize
     public Location: string;
+
+    @autoserialize
     public Logo: string;
-    public Experiences: Experience[];
 
-    public static deserializeArray(json: {}[]): Company[] {
-        const instances = [];
-        for (const item of json) {
-            const instance = new Company(item);
-            instances.push(instance);
-        }
-        return instances;
-    }
-
-    public constructor(json: {}) {
-        for (const key in json) {
-            if (json.hasOwnProperty(key)) {
-                if (key === 'Experiences') {
-                    this[key] = Experience.deserializeArray(json[key]);
-                } else {
-                    this[key] = json[key];
-                }
-            }
-        }
-        return this;
+    constructor(CompanyId: number, Name: string, Location: string, Logo: string) {
+        this.CompanyId = CompanyId;
+        this.Name = Name;
+        this.Location = Location;
+        this.Logo = Logo;
     }
 }
