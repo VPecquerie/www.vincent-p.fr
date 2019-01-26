@@ -2,7 +2,7 @@ FROM node:10-alpine
 USER root
 
 RUN apk add --no-cache python
-RUN npm install -g yarn protractor && chmod +x /usr/local/bin/yarn
+RUN npm install -g yarn protractor pm2 && chmod +x /usr/local/bin/yarn
 RUN mkdir -p /app && chown -R node:node /app
 RUN npm install -g @angular/cli
 USER node
