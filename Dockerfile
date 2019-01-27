@@ -20,4 +20,4 @@ RUN ./node_modules/.bin/ngw run vincent-p:server:${ANGULAR_CONFIGURATION}
 RUN ./node_modules/.bin/tsc -p server.tsconfig.json
 
 EXPOSE 4000
-CMD [ "npm", "run", "serve:ssr" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js"]
