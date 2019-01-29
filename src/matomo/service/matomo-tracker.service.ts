@@ -19,7 +19,7 @@ export class MatomoTracker {
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
         if (!isPlatformBrowser(platformId)) {
             console.warn('Matomo is not compatible on server side');
-            this.scope = {};
+            this.scope = [];
         } else {
             this.scope = window['_paq'];
         }
