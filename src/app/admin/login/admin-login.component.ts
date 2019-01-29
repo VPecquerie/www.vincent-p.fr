@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';
 import { AdminLoginFormGroupComponent } from './admin-login.form-group.component';
 import { UserHttpService } from '../../services/entities/user.http.service';
+import { SEOService } from '../../services/seo.service';
 
 @Component({
     selector: 'app-admin-login',
@@ -17,7 +18,9 @@ export class AdminLoginComponent implements OnInit {
     public constructor(private userService: UserService,
                        private userHttpService: UserHttpService,
                        private router: Router,
-                       private notificationService: NotificationService) {
+                       private notificationService: NotificationService,
+                       private seoService: SEOService) {
+        this.seoService.prependPageTitle('Connexion à l\'administration');
     }
 
     ngOnInit(): void {
