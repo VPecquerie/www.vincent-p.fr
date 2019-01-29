@@ -1,14 +1,20 @@
-const PurifyCSSPlugin = require('purifycss-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
 const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
 
+const PATHS = {
+    src: path.join(__dirname, 'src')
+};
 export default function(config) {
     config.plugins.push(
-        new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'src/**/*.html')),
-            styleExtensions: ['.css', '.scss'],
-            minimize: true
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
+        new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
         }),
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /fr|en/),
     );
