@@ -5,6 +5,7 @@ import { NotificationService } from '../../../services/notification.service';
 import { SkillForm } from './admin-skills-create.form-group';
 import { SkillgroupHttpService } from '../../../services/entities/skillgroup.http.service';
 import { SkillHttpService } from '../../../services/entities/skill.http.service';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-skills-create.component.html',
@@ -19,8 +20,10 @@ export class AdminSkillsCreateComponent {
     public constructor(private skillgroupHttpService: SkillgroupHttpService,
                        private skillHttpService: SkillHttpService,
                        private notification: NotificationService,
-                       private router: Router) {
+                       private router: Router,
+                       private seoService: SEOService) {
 
+        this.seoService.prependPageTitle('Rédaction d\'une compétence - Compétences - Administration');
         this.skillgroupHttpService
             .readAll()
             .subscribe(groups => this.groups = groups);

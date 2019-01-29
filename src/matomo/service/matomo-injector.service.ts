@@ -6,11 +6,10 @@ declare let window: any;
 @Injectable()
 export class MatomoInjector {
 
-    private scope: any;
-
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         if (isPlatformBrowser(platformId)) {
-            this.scope = window['_paq'] || [];
+            window['_paq'] = [];
+            console.log('Initialisation de matomo côté client...');
         } else {
             console.log('Matomo couldn\'t be use on server platform.');
         }
@@ -18,12 +17,12 @@ export class MatomoInjector {
 
     init(url: string, id: number) {
         if (isPlatformBrowser(this.platformId)) {
-            this.scope.push(['trackPageView']);
-            this.scope.push(['enableLinkTracking']);
+            window['_paq'].push(['trackPageView']);
+            window['_paq'].push(['enableLinkTracking']);
             (() => {
                 const u = url;
-                this.scope.push(['setTrackerUrl', u + 'piwik.php']);
-                this.scope.push(['setSiteId', id.toString()]);
+                window['_paq'].push(['setTrackerUrl', u + 'piwik.php']);
+                window['_paq'].push(['setSiteId', id.toString()]);
                 const d = document,
                     g = d.createElement('script'),
                     s = d.getElementsByTagName('script')[0];

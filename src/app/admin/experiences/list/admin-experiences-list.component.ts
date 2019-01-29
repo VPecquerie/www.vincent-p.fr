@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-experiences-list.component.html',
@@ -14,7 +15,10 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
     public experiences: Experience[];
 
-    constructor(private experienceHttpService: ExperienceHttpService, private router: Router) {
+    constructor(private experienceHttpService: ExperienceHttpService,
+                private router: Router,
+                private seoService: SEOService) {
+        this.seoService.prependPageTitle('Liste des experiences - Experiences - Administration');
     }
 
     ngOnInit(): void {
@@ -34,7 +38,6 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     delete(experience): boolean {
         const self = this;
         this.experienceHttpService.delete(experience.ExperienceId).subscribe(() => {
-
             const index = _.indexOf(this.experiences, experience);
             self.experiences.splice(index, 1);
             self.router.navigate(['/admin/experiences']);

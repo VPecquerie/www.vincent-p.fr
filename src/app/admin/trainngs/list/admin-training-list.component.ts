@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Training } from '../../../entities/training';
 import { Router } from '@angular/router';
 import { TrainingHttpService } from '../../../services/entities/training.http.service';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-training-list.component.html',
@@ -10,7 +11,11 @@ import { TrainingHttpService } from '../../../services/entities/training.http.se
 export class AdminTrainingListComponent implements OnInit {
     public trainings: Training[];
 
-    public constructor(private trainingHttpService: TrainingHttpService, private router: Router) { }
+    public constructor(private trainingHttpService: TrainingHttpService,
+                       private router: Router,
+                       private seoService: SEOService) {
+        this.seoService.prependPageTitle('Liste des formations - Formations - Administration');
+    }
 
     ngOnInit(): void {
         this.trainingHttpService

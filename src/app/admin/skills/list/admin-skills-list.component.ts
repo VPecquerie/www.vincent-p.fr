@@ -5,6 +5,7 @@ import { SkillgroupHttpService } from '../../../services/entities/skillgroup.htt
 import { SkillHttpService } from '../../../services/entities/skill.http.service';
 
 import * as _ from 'lodash';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-skills-list.component.html',
@@ -15,7 +16,9 @@ export class AdminSkillsListComponent implements OnInit {
     public form: Skill;
 
     constructor(private skillgroupHttpService: SkillgroupHttpService,
-                private skillHttpService: SkillHttpService) {
+                private skillHttpService: SkillHttpService,
+                private seoService: SEOService) {
+        this.seoService.prependPageTitle('Rédaction d\'une compétence - Compétences - Administration');
     }
 
     ngOnInit(): void {
