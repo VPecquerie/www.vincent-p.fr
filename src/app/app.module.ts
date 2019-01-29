@@ -40,6 +40,7 @@ import { TextEntityHttpService } from './services/entities/text.entity.http.serv
 import { TokeninfoHttpService } from './services/entities/tokeninfo.http.service';
 import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
+import { SEOService } from './services/seo.service';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { UserHttpService } from './services/entities/user.http.service';
         TextEntityHttpService,
         TokeninfoHttpService,
         TrainingHttpService,
-        UserHttpService
+        UserHttpService,
+        SEOService
     ],
     bootstrap: [AppComponent],
 })
