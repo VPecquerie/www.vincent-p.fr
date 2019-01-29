@@ -1,5 +1,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../environments/environment';
+import { MatomoInjector } from './matomo-injector.service';
 
 /**
  * Wrapper for functions available for the Matomo Javascript tracker.
@@ -16,16 +18,15 @@ export class MatomoTracker {
      *
      * @memberof MatomoTracker
      */
-    constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    constructor(@Inject(PLATFORM_ID) private platformId: object, private matomoInjector: MatomoInjector) {
         if (!isPlatformBrowser(platformId)) {
             console.warn('Matomo is not compatible on server side');
             this.scope = [];
         } else {
+            if (typeof this.scope === 'undefined') {
+                this.matomoInjector.init(environment.matomo.url, environment.matomo.id);
+            }
             this.scope = window['_paq'];
-        }
-
-        if (typeof this.scope === 'undefined') {
-            console.warn('Matomo has not yet been initialized! (Did you forget to inject it?)');
         }
     }
 
@@ -243,7 +244,7 @@ export class MatomoTracker {
         contentInteraction: string,
         contentName: string,
         contentPiece: string,
-        contentTarget: string
+        contentTarget: string,
     ): void {
         try {
             const args: any[] = [contentInteraction, contentName, contentPiece, contentTarget];
@@ -829,7 +830,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignName())
+                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignName()),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -848,7 +849,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignKeyword())
+                    () => resolve(window['Piwik'].getTracker().getAttributionCampaignKeyword()),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -867,7 +868,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerTimestamp())
+                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerTimestamp()),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -886,7 +887,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerUrl())
+                    () => resolve(window['Piwik'].getTracker().getAttributionReferrerUrl()),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -994,7 +995,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getCustomVariable(index, scope))
+                    () => resolve(window['Piwik'].getTracker().getCustomVariable(index, scope)),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1069,7 +1070,7 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 this.scope.push([
-                    () => resolve(window['Piwik'].getTracker().getCustomDimension(customDimensionId))
+                    () => resolve(window['Piwik'].getTracker().getCustomDimension(customDimensionId)),
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1145,7 +1146,7 @@ export class MatomoTracker {
         productSKU: string,
         productName: string,
         categoryName: string,
-        price: number
+        price: number,
     ): void {
         try {
             const args: any[] = [productSKU, productName, categoryName, price];
@@ -1172,7 +1173,7 @@ export class MatomoTracker {
         productName?: string,
         productCategory?: string,
         price?: number,
-        quantity?: number
+        quantity?: number,
     ): void {
         try {
             const args: any[] = [productSKU];
@@ -1231,7 +1232,7 @@ export class MatomoTracker {
         subTotal?: number,
         tax?: number,
         shipping?: number,
-        discount?: number
+        discount?: number,
     ): void {
         try {
             const args: any[] = [orderId, grandTotal];
