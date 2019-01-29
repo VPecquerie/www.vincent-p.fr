@@ -5,6 +5,7 @@ import { TrainingForm } from './admin-training-create.form-group';
 import { TrainingHttpService } from '../../../services/entities/training.http.service';
 
 import * as moment from 'moment';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-training-create.component.html',
@@ -18,7 +19,10 @@ export class AdminTrainingCreateComponent implements OnInit {
 
     constructor(private trainingHttpService: TrainingHttpService,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router,
+                private seoService: SEOService) {
+        this.seoService.prependPageTitle('Rédaction d\'une formation - Formations - Administration');
+    }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {

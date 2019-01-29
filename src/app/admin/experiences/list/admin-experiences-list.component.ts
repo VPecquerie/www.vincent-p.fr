@@ -18,7 +18,7 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
     constructor(private experienceHttpService: ExperienceHttpService,
                 private router: Router,
                 private seoService: SEOService) {
-        this.seoService.prependPageTitle('Rédaction d\'une experience - Experiences - Administration');
+        this.seoService.prependPageTitle('Liste des experiences - Experiences - Administration');
     }
 
     ngOnInit(): void {
