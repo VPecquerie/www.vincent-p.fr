@@ -10,10 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RavenModule } from 'ngx-raven';
 import { MyMaterialModule } from './my-material/my-material.module';
 import { UserService } from './services/user.service';
-import { CustomHttpHandler } from './services/errors/custom.http.handler';
+import { CustomHttpHandlerService } from './services/errors/custom.http.handler.service';
 import { NotificationService } from './services/notification.service';
 import { RoutingService } from './services/routing.service';
-import { MomentJsPipe } from './pipes/momentjs.pipe';
+import { MomentjsPipe } from './pipes/momentjs.pipe';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -26,7 +26,7 @@ import { HomeContactComponent } from './home/contact/home.contact.component';
 import { HomeContactService } from './home/contact/home.contact.service';
 import { HomeExperienceComponent } from './home/experience/home.experience.component';
 import { HomeSkillsComponent } from './home/skills/home.skills.component';
-import { HomeTrainingComponent } from './home/trainings/home.trainings.component';
+import { HomeTrainingsComponent } from './home/trainings/home.trainings.component';
 import { LegalMentionsComponent } from './home/legal-mentions/legal-mentions.component';
 import { HomeCookieComponent } from './home/cookie/home.cookie.component';
 import { CookieService } from './services/cookie.service';
@@ -40,7 +40,7 @@ import { TextEntityHttpService } from './services/entities/text.entity.http.serv
 import { TokeninfoHttpService } from './services/entities/tokeninfo.http.service';
 import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
-import { SEOService } from './services/seo.service';
+import { SeoService } from './services/seo.service';
 
 
 @NgModule({
@@ -54,10 +54,10 @@ import { SEOService } from './services/seo.service';
         HomeSkillsComponent,
         HomeExperienceComponent,
         HomeContactComponent,
-        HomeTrainingComponent,
+        HomeTrainingsComponent,
         HomeCookieComponent,
         LegalMentionsComponent,
-        MomentJsPipe,
+        MomentjsPipe,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'www-vincent-p-fr' }),
@@ -79,7 +79,7 @@ import { SEOService } from './services/seo.service';
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: CustomHttpHandler,
+            useClass: CustomHttpHandlerService,
             multi: true,
         },
         CookieService,
@@ -97,7 +97,7 @@ import { SEOService } from './services/seo.service';
         TokeninfoHttpService,
         TrainingHttpService,
         UserHttpService,
-        SEOService
+        SeoService
     ],
     bootstrap: [AppComponent],
 })

@@ -5,30 +5,13 @@ stages:
     - test
     - build
 
-
-lint-html:
-    image: node:alpine
+test:
+    image: trion/ng-cli-karma:latest
     stage: test
     script:
-        - apk add --no-cache python g++ make
         - rm -rf node_modules || true && rm yarn.lock || true && yarn install --network-timeout 100000
-        - npm run lint:html
-
-lint-css:
-    image: node:alpine
-    stage: test
-    script:
-        - apk add --no-cache python g++ make
-        - rm -rf node_modules || true && rm yarn.lock || true && yarn install --network-timeout 100000
-        - npm run lint:css
-
-lint-ts:
-    image: node:alpine
-    stage: test
-    script:
-        - apk add --no-cache python g++ make
-        - rm -rf node_modules || true && rm yarn.lock || true && yarn install --network-timeout 100000
-        - npm run lint:ts
+        - npm run lint
+        - npm run test
 
 build-master:
     image: docker:dind

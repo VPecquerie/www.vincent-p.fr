@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CustomHttpHandler } from '../../services/errors/custom.http.handler';
+import { CustomHttpHandlerService } from '../../services/errors/custom.http.handler.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ export class HomeSplashScreenComponent implements OnInit {
 
     ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {
-            CustomHttpHandler.onLoad.subscribe(value => {
+            CustomHttpHandlerService.onLoad.subscribe(value => {
                 this.isLoading = value !== 0;
             });
         } else {
