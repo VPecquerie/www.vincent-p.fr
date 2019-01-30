@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { AdminAccountForm } from './admin-account.from-group.component';
 import { UserHttpService } from '../../services/entities/user.http.service';
-import { SEOService } from '../../services/seo.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
     templateUrl: './admin-account.component.html',
@@ -13,7 +13,7 @@ export class AdminAccountComponent implements OnInit {
 
     public constructor(private userService: UserService,
                        private userHttpService: UserHttpService,
-                       private seoService: SEOService) {
+                       private seoService: SeoService) {
         this.seoService.prependPageTitle('Mon Profil - Administration');
     }
 
@@ -23,14 +23,15 @@ export class AdminAccountComponent implements OnInit {
 
     ngOnInit(): void {
         const user = this.userService.getUser();
-        const formData = {
-            password: '',
-            passwordValidation: '',
-            Email: user.Email,
-            Firstname: user.Firstname,
-            Lastname: user.Lastname,
-        };
-        this.accountForm.setValue(formData);
+        if (user) {
+            const formData = {
+                password: '',
+                passwordValidation: '',
+                Email: user.Email,
+                Firstname: user.Firstname,
+                Lastname: user.Lastname,
+            };
+            this.accountForm.setValue(formData);
+        }
     }
-
 }

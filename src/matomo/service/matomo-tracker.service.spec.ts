@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MatomoTracker } from './matomo-tracker.service';
+import { MatomoInjector } from './matomo-injector.service';
 
 describe('MatomoTracker', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [MatomoTracker]
+            providers: [MatomoTracker, MatomoInjector]
         });
     });
 
@@ -15,8 +16,4 @@ describe('MatomoTracker', () => {
             expect(service).toBeTruthy();
         })
     );
-
-    // it('should return 42 from getMeaning', inject([LibService], (service: LibService) => {
-    //     expect(service.getMeaning()).toBe(42);
-    // }));
 });

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
-import { SEOService } from '../../../services/seo.service';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-experiences-list.component.html',
@@ -17,7 +17,7 @@ export class AdminExperiencesListComponent implements OnInit, OnDestroy {
 
     constructor(private experienceHttpService: ExperienceHttpService,
                 private router: Router,
-                private seoService: SEOService) {
+                private seoService: SeoService) {
         this.seoService.prependPageTitle('Liste des experiences - Experiences - Administration');
     }
 

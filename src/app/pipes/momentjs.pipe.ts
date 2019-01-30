@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({ name: 'momentjs' })
-export class MomentJsPipe implements PipeTransform {
+export class MomentjsPipe implements PipeTransform {
 
     private locale = 'fr';
 
