@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class CustomHttpHandler implements HttpInterceptor {
+export class CustomHttpHandlerService implements HttpInterceptor {
     private static nbOfQueries = 0;
     public static onLoad: EventEmitter<any> = new EventEmitter();
 
@@ -53,7 +53,7 @@ export class CustomHttpHandler implements HttpInterceptor {
     }
 
     setNumberOfQueries(additionnalValue: number) {
-        CustomHttpHandler.nbOfQueries += additionnalValue;
-        CustomHttpHandler.onLoad.emit(CustomHttpHandler.nbOfQueries);
+        CustomHttpHandlerService.nbOfQueries += additionnalValue;
+        CustomHttpHandlerService.onLoad.emit(CustomHttpHandlerService.nbOfQueries);
     }
 }

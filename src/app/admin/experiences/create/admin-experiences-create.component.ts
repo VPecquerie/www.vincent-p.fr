@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { CreateExperienceForm } from './admin-experiences-create.form-group.component';
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
 import { CompanyHttpService } from '../../../services/entities/company.http.service';
-import { SEOService } from '../../../services/seo.service';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-experiences-create.component.html',
@@ -25,7 +25,7 @@ export class AdminExperiencesCreateComponent implements OnInit {
                        private companyHttpService: CompanyHttpService,
                        private route: ActivatedRoute,
                        private router: Router,
-                       private seoService: SEOService) {
+                       private seoService: SeoService) {
         this.seoService.prependPageTitle('Rédaction d\'une experience - Experiences - Administration');
     }
 

@@ -7,7 +7,7 @@ import { TrainingHttpService } from '../../services/entities/training.http.servi
     templateUrl: './home.trainings.component.html',
     styleUrls: ['./home.trainings.component.scss'],
 })
-export class HomeTrainingComponent implements OnInit {
+export class HomeTrainingsComponent implements OnInit {
 
     public trainings: Training[];
 

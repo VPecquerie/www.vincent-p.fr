@@ -17,7 +17,8 @@ export class HomeAboutComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.textEntityHttpService.readOne('Introduction')
+        this.textEntityHttpService
+            .readOne('Introduction')
             .subscribe((text) => this.introduction = text);
     }
 }

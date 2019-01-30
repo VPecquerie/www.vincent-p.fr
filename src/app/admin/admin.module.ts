@@ -19,7 +19,7 @@ import { AdminAccountComponent } from './account/admin-account.component';
 import { AdminSkillsListComponent } from './skills/list/admin-skills-list.component';
 import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
-import { CustomHttpHandler } from '../services/errors/custom.http.handler';
+import { CustomHttpHandlerService } from '../services/errors/custom.http.handler.service';
 
 
 @NgModule({
@@ -50,7 +50,7 @@ import { CustomHttpHandler } from '../services/errors/custom.http.handler';
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: CustomHttpHandler,
+            useClass: CustomHttpHandlerService,
             multi: true,
         },
         AdminAuthgard

@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
 @Injectable({
     providedIn: 'root'
 })
-export class SEOService {
+export class SeoService {
     constructor(@Inject(DOCUMENT) private document: Document,
                 private title: Title) {
         this.createLinkForCanonicalURL();
