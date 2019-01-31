@@ -12,8 +12,7 @@
                             <div class="row">
                                 <mat-form-field appearance="outline" class="col-md-12">
                                     <mat-label>Adresse E-mail...</mat-label>
-                                    <input matInput type="email" formControlName="Email"
-                                           placeholder="Adresse E-mail...">
+                                    <input matInput type="email" formControlName="Email" placeholder="Adresse E-mail...">
                                     <mat-icon matPrefix>email</mat-icon>
                                     <mat-hint>
                                         <div
@@ -31,18 +30,19 @@
                             <div class="row">
                                 <mat-form-field appearance="outline" class="col-md-6">
                                     <mat-label>Mot de passe...</mat-label>
-                                    <input matInput type="password" formControlName="password"
-                                           placeholder="Mot de passe...">
+                                    <input matInput type="password"
+                                        formControlName="password"
+                                        placeholder="Mot de passe...">
                                     <mat-icon matPrefix>lock_outline</mat-icon>
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" class="col-md-6">
                                     <mat-label>Confirmation...</mat-label>
-                                    <input matInput type="password" formControlName="passwordValidation"
-                                           placeholder="Confirmation du mot de passe...">
+                                    <input matInput type="password"
+                                        formControlName="passwordValidation"
+                                        placeholder="Confirmation du mot de passe...">
                                     <mat-icon matPrefix>lock_outline</mat-icon>
                                     <mat-hint>
-
                                         <div
                                             *ngIf="accountForm.controls.passwordValidation.dirty && accountForm.errors?.Mismatch">
                                             Le mot de passe et sa confirmation ne correspondent pas.

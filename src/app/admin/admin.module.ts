@@ -2,7 +2,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
@@ -26,7 +25,6 @@ import { CustomHttpHandlerService } from '../services/errors/custom.http.handler
     declarations: [
         NavbarComponent,
         SidebarComponent,
-        FooterComponent,
         AdminLayoutComponent,
         AdminHomeComponent,
         AdminLoginComponent,

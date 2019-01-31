@@ -13,18 +13,85 @@ import { AdminLoginComponent } from './login/admin-login.component';
 import { AdminAuthgard } from './admin.authgard';
 
 export const adminRoutes = [
-    { path: 'login', component: AdminLoginComponent },
-    { path: 'home', title: 'Dashboard', icon: 'dashboard', class: '', component: AdminHomeComponent, canActivate: [AdminAuthgard] },
-    { path: 'account', title: 'Mon Compte', icon: 'person', class: '', component: AdminAccountComponent, canActivate: [AdminAuthgard] },
-    { path: 'trainings', title: 'Formations', icon: 'school', class: '', component: AdminTrainingListComponent, canActivate: [AdminAuthgard] },
-    { path: 'trainings/edit', title: 'Formations', component: AdminTrainingCreateComponent, canActivate: [AdminAuthgard] },
-    { path: 'trainings/edit/:id', title: 'Formations', component: AdminTrainingCreateComponent, canActivate: [AdminAuthgard] },
-    { path: 'experiences', title: 'Experiences', icon: 'work', class: '', component: AdminExperiencesListComponent, canActivate: [AdminAuthgard] },
-    { path: 'experiences/edit', title: 'Experiences', component: AdminExperiencesCreateComponent, canActivate: [AdminAuthgard] },
-    { path: 'experiences/edit/:id', title: 'Experiences', component: AdminExperiencesCreateComponent, canActivate: [AdminAuthgard] },
-    { path: 'skills', title: 'Compétences', icon: 'timeline', class: '', component: AdminSkillsListComponent, canActivate: [AdminAuthgard] },
-    { path: 'skills/create', title: 'Compétences', component: AdminSkillsCreateComponent, canActivate: [AdminAuthgard] },
-    { path: '**', redirectTo: '/admin/home', pathMatch: 'full' },
+    {
+        path: 'login',
+        component: AdminLoginComponent,
+    },
+    {
+        path: 'home',
+        title: 'Dashboard',
+        icon: 'dashboard',
+        class: '',
+        component: AdminHomeComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'account',
+        title: 'Mon Compte',
+        icon: 'person',
+        class: '',
+        component: AdminAccountComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'trainings',
+        title: 'Formations',
+        icon: 'school',
+        class: '',
+        component: AdminTrainingListComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'trainings/edit',
+        title: 'Formations',
+        component: AdminTrainingCreateComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'trainings/edit/:id',
+        title: 'Formations',
+        component: AdminTrainingCreateComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'experiences',
+        title: 'Experiences',
+        icon: 'work',
+        class: '',
+        component: AdminExperiencesListComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'experiences/edit',
+        title: 'Experiences',
+        component: AdminExperiencesCreateComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'experiences/edit/:id',
+        title: 'Experiences',
+        component: AdminExperiencesCreateComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'skills',
+        title: 'Compétences',
+        icon: 'timeline',
+        class: '',
+        component: AdminSkillsListComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'skills/create',
+        title: 'Compétences',
+        component: AdminSkillsCreateComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: '**',
+        redirectTo: '/admin/home',
+        pathMatch: 'full',
+    },
 ];
 
 @NgModule({
