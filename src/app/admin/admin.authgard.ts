@@ -11,10 +11,10 @@ export class AdminAuthgard implements CanActivate {
     canActivate() {
         const user = this.userService.getUser();
         if (!user) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/admin/login']);
             return false;
         } else if (user.Token.hasExpired()) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/admin/login']);
             return false;
         } else {
             return true;
