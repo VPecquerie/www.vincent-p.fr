@@ -38,9 +38,13 @@ export class AdminLoginComponent implements OnInit {
         if (this.loginForm.valid) {
             this.userHttpService.login(this.loginForm.value).subscribe((user) => {
                 this.userService.setUser(user);
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/home']);
+            }, (error) => {
+                this.notificationService.Danger('Connexion Impossible', 'Vos identifiants sont incorrect ou le serveur d\'authentification est injoignable.');
+                this.router.navigate(['/admin/login']);
             });
         }
+        return false;
     }
 
 

@@ -9,9 +9,6 @@ export class MatomoInjector {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         if (isPlatformBrowser(platformId)) {
             window['_paq'] = [];
-            console.log('Initialisation de matomo côté client...');
-        } else {
-            console.log('Matomo couldn\'t be use on server platform.');
         }
     }
 
@@ -32,8 +29,6 @@ export class MatomoInjector {
                 g.src = u + 'piwik.js';
                 s.parentNode.insertBefore(g, s);
             })();
-        } else {
-            console.log('Matomo couldn\'t be use on server platform.');
         }
     }
 }
