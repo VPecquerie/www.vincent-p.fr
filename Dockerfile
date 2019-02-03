@@ -1,10 +1,15 @@
 FROM node:10-alpine 
 USER root
 
-RUN apk add --no-cache python
-RUN npm install -g yarn protractor pm2 && chmod +x /usr/local/bin/yarn
-RUN mkdir -p /app && chown -R node:node /app
-RUN npm install -g @angular/cli
+LABEL Version="1.0.0"
+LABEL Name="www-vincent-p-fr"
+
+RUN apk add --no-cache python \
+    && npm install -g yarn protractor pm2 @angular/cli \
+    && chmod +x /usr/local/bin/yarn \
+    &&  mkdir -p /app \
+    && chown -R node:node /app
+
 USER node
 WORKDIR /app
 
@@ -13,9 +18,7 @@ ARG ANGULAR_CONFIGURATION=production
 ENV ANGULAR_CONFIGURATION ${ANGULAR_CONFIGURATION}
 COPY --chown=node:node . .
 
-RUN yarn install --production=false
-# Detailled Building package.
-RUN npm run build:ssr
+RUN yarn install --production=false && npm run build:ssr
 
 EXPOSE 4000
 CMD [ "pm2-runtime", "start", "ecosystem.config.js"]
