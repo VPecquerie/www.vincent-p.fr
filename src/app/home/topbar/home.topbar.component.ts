@@ -22,8 +22,7 @@ export class HomeTopbarComponent implements OnInit {
         }
     }
 
-    redirectToAdmin() {
+    goToAdmin() {
         this.router.navigate(['/admin/login']);
-        return false;
     }
 }
