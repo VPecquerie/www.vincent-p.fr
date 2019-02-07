@@ -27,7 +27,10 @@ export class AdminLoginComponent implements OnInit {
         const user = this.userService.getUser();
         if (user != null) {
             if (user.Token.hasExpired()) {
-                this.notificationService.Warning('Session expirée !', 'Votre session a expirée, merci de vous reconnecter!');
+                this.notificationService.Warning(
+                    'Session expirée !',
+                    'Votre session a expirée, merci de vous reconnecter!',
+                );
             } else {
                 this.router.navigate(['/admin']);
             }
@@ -38,9 +41,16 @@ export class AdminLoginComponent implements OnInit {
         if (this.loginForm.valid) {
             this.userHttpService.login(this.loginForm.value).subscribe((user) => {
                 this.userService.setUser(user);
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/home']);
+            }, (error) => {
+                this.notificationService.Danger(
+                    'Connexion Impossible',
+                    'Vos identifiants sont incorrect ou le serveur d\'authentification est injoignable.',
+                );
+                this.router.navigate(['/admin/login']);
             });
         }
+        return false;
     }
 
 

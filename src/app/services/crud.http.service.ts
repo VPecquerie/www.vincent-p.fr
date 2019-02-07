@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Deserialize, Serialize } from 'cerialize';
 import { environment } from '../../environments/environment';
@@ -56,8 +56,8 @@ export abstract class CrudHttpService {
 
     protected handleError<T>(result?: T) {
         return (error: any): Observable<T> => {
-            console.error(`${this.getEntityClassName()} failed: ${error.message}`);
-            return of(result as T);
+            console.error(`${this.getEntityClassName()} failed: ${error.message}`, result);
+            return throwError(error);
         };
     }
 }

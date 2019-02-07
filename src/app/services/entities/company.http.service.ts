@@ -16,6 +16,6 @@ export class CompanyHttpService extends CrudHttpService {
     }
 
     protected getEntityClassName() {
-        return 'Comapny';
+        return 'Company';
     }
 }

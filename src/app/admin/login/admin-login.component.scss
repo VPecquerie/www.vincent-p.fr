@@ -8,8 +8,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)) center center/cover,
+                url(/assets/images/splash-home.jpg) center center/cover;
 }
 
 #login .input-group {
-    padding-bottom: 15px;
+    padding-bottom: 5px;
+}
+#login .card-title {
+    margin: 0;
+}
+
+#login .card-body {
+    padding-bottom: 0;
+}
+#login .footer {
+    padding-bottom: 10px;
+    cursor: pointer;
 }

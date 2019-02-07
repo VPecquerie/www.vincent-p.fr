@@ -9,7 +9,6 @@ import { SeoService } from '../../../services/seo.service';
 
 @Component({
     templateUrl: './admin-training-create.component.html',
-    styleUrls: ['./admin-training-create.component.scss'],
 })
 export class AdminTrainingCreateComponent implements OnInit {
 

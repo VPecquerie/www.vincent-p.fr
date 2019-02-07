@@ -5,8 +5,7 @@ import { UserHttpService } from '../../services/entities/user.http.service';
 import { SeoService } from '../../services/seo.service';
 
 @Component({
-    templateUrl: './admin-account.component.html',
-    styleUrls: ['./admin-account.component.scss'],
+    templateUrl: './admin-account.component.html'
 })
 export class AdminAccountComponent implements OnInit {
     public accountForm = AdminAccountForm;
