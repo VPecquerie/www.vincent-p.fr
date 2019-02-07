@@ -1,5 +1,24 @@
 @import "../../../../styles/variables";
 
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: $admin-sidebar-subitem-bg;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
 #sidebar {
     min-width: $admin-sidebar-width;
     max-width: $admin-sidebar-width;
@@ -61,24 +80,7 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
-// Sub item
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: $admin-sidebar-subitem-bg;
-}
 
-ul.CTAs {
-    padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
 
 @media (max-width: 768px) {
     #sidebar {

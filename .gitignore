@@ -31,3 +31,5 @@ webpack.records.json
 src/matomo/service/matomo-injector\.service\.js
 
 src/matomo/service/matomo-injector\.service\.js\.map
+
+coverage/

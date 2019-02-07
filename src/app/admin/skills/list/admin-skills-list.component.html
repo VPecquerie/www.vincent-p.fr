@@ -9,10 +9,12 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="">
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Maitrise (%)</th>
-                        <th>Action</th>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Maitrise (%)</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
                         <tbody>
                         <ng-container *ngFor="let group of skillsGroups">
@@ -45,11 +47,14 @@
                                         {{form.SkillId}}
                                     </td>
                                     <td>
-                                        <input type="text" title="Nom de la compétence" [(ngModel)]="form.Name"/>
+                                        <input type="text"
+                                            title="Nom de la compétence"
+                                            [(ngModel)]="form.Name"/>
                                     </td>
                                     <td>
                                         <input type="number" min="0" max="0" step="1"
-                                               title="Niveau de maîtrise de la compétence" [(ngModel)]="form.Level"/>
+                                            title="Niveau de maîtrise de la compétence"
+                                            [(ngModel)]="form.Level"/>
                                     </td>
                                     <td>
                                         <a href="#" (click)="saveSkill(form);">

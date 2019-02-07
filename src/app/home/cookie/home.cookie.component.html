@@ -1,5 +1,4 @@
-<div class="modal fade show" id="cookie-modal" tabindex="-1" role="dialog" aria-labelledby="cookie-modal-label"
-     aria-hidden="true">
+<div class="modal fade show" id="cookie-modal" tabindex="-1" role="dialog" aria-labelledby="cookie-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,18 +19,17 @@
 
                 <form [formGroup]="form">
                     <div class="form-group">
-                        <label class="col-md-12 control-label strong" for="rgpd">Je conscent: </label>
+                        <label class="col-md-12 control-label strong" for="rgpd-0">Je conscent: </label>
                         <div class="col-md-12">
                             <div class="checkbox">
                                 <label for="rgpd-0">
-                                    <input type="checkbox" name="rgpd" id="rgpd-0" formControlName="canUseAnalytics">
+                                    <input type="checkbox" name="rgpd" id="rgpd-0" formControlName="canUseAnalytics" />
                                     A autoriser la collecte d'informations techniques à des fins statistiques.
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label for="rgpd-1">
-                                    <input type="checkbox" name="rgpd" id="rgpd-1"
-                                           formControlName="canTrackUserActions">
+                                    <input type="checkbox" name="rgpd" id="rgpd-1" formControlName="canTrackUserActions" />
                                     A autoriser la collecte des actions que je pourrais faire sur ce site.
                                 </label>
                             </div>
