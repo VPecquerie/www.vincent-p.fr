@@ -76,13 +76,11 @@
                             </div>
                             <div class="row">
                                 <div class="input-group">
-                                    <mat-form-field appearance="outline" class="col-md-12">
-                                        <mat-label>Description de la nouvelle experience...</mat-label>
-                                        <textarea matInput class="form-control input-sm input-inverse"
-                                            formControlName="Description"
-                                            placeholder="Description de la nouvelle experience..." rows="5">
-                                    </textarea>
-                                    </mat-form-field>
+
+
+                                        <quill-editor formControlName="Description" placeholder="Description de la nouvelle experience...">
+                                        </quill-editor>
+
                                 </div>
                             </div>
 
