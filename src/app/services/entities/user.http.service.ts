@@ -20,7 +20,7 @@ export class UserHttpService extends CrudHttpService {
         return 'User';
     }
 
-    public login(data)  {
+    public login(data) {
         const url = environment.api.url + environment.api.entities.Users.login;
         const jsonData = Serialize(data);
         return this.http.post(url, jsonData).pipe(
