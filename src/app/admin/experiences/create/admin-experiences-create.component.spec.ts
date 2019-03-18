@@ -9,10 +9,11 @@ import { MyMaterialModule } from '../../../my-material/my-material.module';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import { AdminLayoutComponent } from '../../layout/admin.layout.component';
-import { AdminAccountComponent } from '../../account/admin-account.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
 import { CompanyHttpService } from '../../../services/entities/company.http.service';
+import { QuillModule } from 'ngx-quill';
+import { NotificationService } from '../../../services/notification.service';
 
 describe('AdminExperiencesCreateComponent', () => {
     let component: AdminExperiencesCreateComponent;
@@ -21,7 +22,7 @@ describe('AdminExperiencesCreateComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SidebarComponent, NavbarComponent, AdminLayoutComponent, AdminExperiencesCreateComponent],
-            providers: [ExperienceHttpService, CompanyHttpService],
+            providers: [ExperienceHttpService, CompanyHttpService, NotificationService],
             imports: [
                 CommonModule,
                 FormsModule,
@@ -29,8 +30,9 @@ describe('AdminExperiencesCreateComponent', () => {
                 NoopAnimationsModule,
                 HttpClientModule,
                 RouterTestingModule,
-                MyMaterialModule
-            ]
+                MyMaterialModule,
+                QuillModule,
+            ],
         })
             .compileComponents();
     }));
