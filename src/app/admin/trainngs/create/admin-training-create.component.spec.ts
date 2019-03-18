@@ -12,6 +12,7 @@ import { MyMaterialModule } from '../../../my-material/my-material.module';
 import { TrainingHttpService } from '../../../services/entities/training.http.service';
 import { NotificationService } from '../../../services/notification.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { QuillModule } from 'ngx-quill';
 
 describe('AdminTrainingCreateComponent', () => {
     let component: AdminTrainingCreateComponent;
@@ -28,7 +29,8 @@ describe('AdminTrainingCreateComponent', () => {
                 NoopAnimationsModule,
                 HttpClientModule,
                 RouterTestingModule,
-                MyMaterialModule
+                MyMaterialModule,
+                QuillModule
             ]
         })
             .compileComponents();
