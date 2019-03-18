@@ -35,18 +35,14 @@
                                     </mat-form-field>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="input-group">
-                                    <mat-form-field appearance="outline" class="col-md-12">
-                                        <mat-label>Description de la nouvelle formation...</mat-label>
-                                        <textarea matInput class="form-control input-sm input-inverse"
-                                            formControlName="Description"
-                                            placeholder="Description de la nouvelle formation..." rows="5">
-                                    </textarea>
-                                    </mat-form-field>
+                                    <quill-editor formControlName="Description" placeholder="Description de la nouvelle formation..." [style]="{height: '200px'}" class="col-md-12">
+                                    </quill-editor>
                                 </div>
                             </div>
-
+                            <br />
                             <button class="btn btn-info pull-right mat-raised-button" mat-raised-button="" type="submit">
                                 <span class="mat-button-wrapper">Sauvegarder</span>
                             </button>

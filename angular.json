@@ -43,12 +43,18 @@
                             }
                         ],
                         "styles": [
-                            "src/styles/styles.scss"
+                            "src/styles/styles.scss",
+
+                            "node_modules/quill/dist/quill.bubble.css",
+                            "node_modules/quill/dist/quill.snow.css",
+                            "node_modules/quill-emoji/dist/quill-emoji.css",
+                            "node_modules/quill-mention/dist/quill.mention.min.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.slim.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            "node_modules/bootstrap-notify/bootstrap-notify.min.js"
+                            "node_modules/bootstrap-notify/bootstrap-notify.min.js",
+                            "node_modules/quill/dist/quill.min.js"
                         ]
                     },
                     "configurations": {

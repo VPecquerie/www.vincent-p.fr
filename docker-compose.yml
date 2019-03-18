@@ -7,7 +7,7 @@ services:
       - "traefik.backend=front-${COMPOSE_PROJECT_NAME}"
       - "traefik.frontend.rule=Host:${FRONT_HOST}"
       - "traefik.port=4000"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.docker.network=reverse_proxy"
       - "traefik.frontend.headers.SSLRedirect=true"
       - "traefik.frontend.headers.STSSeconds=315360000"
       - "traefik.frontend.headers.browserXSSFilter=true"
@@ -25,7 +25,7 @@ services:
       - back
     networks:
       - default
-      - traefik_proxy
+      - reverse_proxy
 
   back:
     image: registry.gitlab.com/vincent-p/api-vincent-p-fr:${VERSION}
@@ -34,7 +34,7 @@ services:
       - "traefik.backend=back-${COMPOSE_PROJECT_NAME}"
       - "traefik.frontend.rule=Host:${BACK_HOST}"
       - "traefik.port=5000"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.docker.network=reverse_proxy"
       - "traefik.frontend.headers.SSLRedirect=true"
       - "traefik.frontend.headers.STSSeconds=315360000"
       - "traefik.frontend.headers.browserXSSFilter=true"
@@ -84,7 +84,7 @@ services:
       - database
     networks:
       - default
-      - traefik_proxy
+      - reverse_proxy
 
   database:
     image: microsoft/mssql-server-linux:latest
@@ -95,11 +95,14 @@ services:
       - database-volume:/var/opt/mssql/data
     networks:
       - default
-
+    labels:
+      - "traefik.enable=false"
+    restart: always
+    
 volumes:
   database-volume:
 
 networks:
-  traefik_proxy:
+  reverse_proxy:
     external: true
   default:

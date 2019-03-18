@@ -7,6 +7,7 @@ import { CreateExperienceForm } from './admin-experiences-create.form-group.comp
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
 import { CompanyHttpService } from '../../../services/entities/company.http.service';
 import { SeoService } from '../../../services/seo.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
     templateUrl: './admin-experiences-create.component.html',
@@ -25,7 +26,8 @@ export class AdminExperiencesCreateComponent implements OnInit {
                        private companyHttpService: CompanyHttpService,
                        private route: ActivatedRoute,
                        private router: Router,
-                       private seoService: SeoService) {
+                       private seoService: SeoService,
+                       private notificationService: NotificationService) {
         this.seoService.prependPageTitle('Rédaction d\'une experience - Experiences - Administration');
     }
 
@@ -68,6 +70,9 @@ export class AdminExperiencesCreateComponent implements OnInit {
                     self.router.navigate(['/admin/experiences']);
                 });
             }
+        } else {
+            this.notificationService.Warning('Formulaire invalide', 'Le contenu du formulaire est invalide.');
+            return false;
         }
     }
 }

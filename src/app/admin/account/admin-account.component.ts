@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { AdminAccountForm } from './admin-account.from-group.component';
 import { UserHttpService } from '../../services/entities/user.http.service';
 import { SeoService } from '../../services/seo.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
     templateUrl: './admin-account.component.html'
@@ -12,12 +13,17 @@ export class AdminAccountComponent implements OnInit {
 
     public constructor(private userService: UserService,
                        private userHttpService: UserHttpService,
-                       private seoService: SeoService) {
+                       private seoService: SeoService,
+                       private notificationService: NotificationService) {
         this.seoService.prependPageTitle('Mon Profil - Administration');
     }
 
     public updateProfile() {
-        this.userHttpService.update('me', this.accountForm.getRawValue());
+        if (this.accountForm.valid) {
+            this.userHttpService.update('me', this.accountForm.getRawValue());
+        } else {
+            this.notificationService.Warning('Formulaire Invalide', 'Le contenu du formulaire n\'est pas valide.');
+        }
     }
 
     ngOnInit(): void {

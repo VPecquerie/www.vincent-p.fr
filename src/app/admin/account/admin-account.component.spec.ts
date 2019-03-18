@@ -12,6 +12,7 @@ import { MyMaterialModule } from '../../my-material/my-material.module';
 import { UserService } from '../../services/user.service';
 import { UserHttpService } from '../../services/entities/user.http.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationService } from '../../services/notification.service';
 
 describe('AdminAccountComponent', () => {
     let component: AdminAccountComponent;
@@ -20,7 +21,7 @@ describe('AdminAccountComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SidebarComponent, NavbarComponent, AdminLayoutComponent, AdminAccountComponent],
-            providers: [UserService, UserHttpService],
+            providers: [UserService, UserHttpService, NotificationService],
             imports: [
                 CommonModule,
                 FormsModule,

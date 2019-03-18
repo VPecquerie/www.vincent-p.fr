@@ -19,7 +19,7 @@ import { AdminSkillsListComponent } from './skills/list/admin-skills-list.compon
 import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
 import { CustomHttpHandlerService } from '../services/errors/custom.http.handler.service';
-
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     declarations: [
@@ -44,6 +44,7 @@ import { CustomHttpHandlerService } from '../services/errors/custom.http.handler
         HttpClientModule,
         RouterModule,
         MyMaterialModule,
+        QuillModule
     ],
     providers: [
         {
