@@ -66,7 +66,7 @@ import { SeoService } from './services/seo.service';
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         RavenModule.forRoot({
             dsn: environment.sentry.configUrl,
-            reportDialog: !environment.production,
+            reportDialog: !environment.production, // optional, false by default
             enabled: environment.production,
         }),
         HttpClientModule,
