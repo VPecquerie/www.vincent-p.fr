@@ -8,4 +8,3 @@ export const routes: Route[] = [
     { path: 'not-found', component: NotFoundComponent },
     { path: '**', redirectTo: 'not-found' },
 ];
-
