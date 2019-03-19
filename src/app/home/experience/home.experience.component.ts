@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Experience } from '../../entities/experience';
 import { ExperienceHttpService } from '../../services/entities/experience.http.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-home-experience',
@@ -15,6 +16,8 @@ export class HomeExperienceComponent implements OnInit {
 
     ngOnInit(): void {
         this.experienceHttpService.readAll()
-            .subscribe(experiences => (this.experiences = experiences));
+            .subscribe(experiences => {
+                this.experiences = _.orderBy(experiences, ['Start'], ['desc']);
+            });
     }
 }
