@@ -1,6 +1,11 @@
 services:
     - docker:dind
 
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        - node_modules/
+
 stages:
     - test
     - build
@@ -9,7 +14,7 @@ test:
     image: trion/ng-cli-karma:latest
     stage: test
     script:
-        - rm -rf node_modules || true && rm yarn.lock || true && yarn install --network-timeout 100000
+        - yarn install --network-timeout 100000
         - npm run lint
         - npm run test
 
