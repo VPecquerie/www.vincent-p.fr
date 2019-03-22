@@ -44,4 +44,40 @@ describe('AdminAccountComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('form invalid when empty', () => {
+        component.accountForm.setValue({
+            password: '',
+            passwordValidation: '',
+            Email: '',
+            Firstname: '',
+            Lastname: '',
+        });
+        expect(component.accountForm.valid).toBeFalsy();
+    });
+
+    it('form valid when filled without password', () => {
+        const formData = {
+            password: '',
+            passwordValidation: '',
+            Email: 'john.doe@test.fr',
+            Firstname: 'john',
+            Lastname: 'doe',
+        };
+        component.accountForm.setValue(formData);
+        expect(component.accountForm.valid).toBeTruthy();
+    });
+
+    it('form valid when filled with password', () => {
+        const formData = {
+            password: 'u>tJeuTu#,i52]8T$G&7sH,Y6)B8Bb66',
+            passwordValidation: 'u>tJeuTu#,i52]8T$G&7sH,Y6)B8Bb66',
+            Email: 'john.doe@test.fr',
+            Firstname: 'john',
+            Lastname: 'doe',
+        };
+
+        component.accountForm.setValue(formData);
+        expect(component.accountForm.valid).toBeTruthy();
+    });
 });
