@@ -38,7 +38,7 @@
         "bundle-report": "webpack-bundle-analyzer dist/browser/stats.json",
         "build": "ng build",
         "build:stats": "ng build --prod --stats-json",
-        "build:client": "ng build --prod -c $ANGULAR_CONFIGURATION",
+        "build:client": "ng build --prod -c $ANGULAR_CONFIGURATION --subresource-integrity",
         "build:server-bundle": "ng run vincent-p:server:$ANGULAR_CONFIGURATION",
         "build:client-and-server-bundles": "npm run build:client && npm run build:server-bundle",
         "build:prerender": "npm run build:client-and-server-bundles && npm run compile:server && npm run generate:prerender",
