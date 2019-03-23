@@ -11,6 +11,8 @@ import { AdminAccountComponent } from './account/admin-account.component';
 import { AdminSkillsListComponent } from './skills/list/admin-skills-list.component';
 import { AdminLoginComponent } from './login/admin-login.component';
 import { AdminAuthgard } from './admin.authgard';
+import { BlogListArticleComponent } from './blog/articles/list/blog.list.article.component';
+import { BlogCreateArticleComponent } from './blog/articles/create/blog.create.article.component';
 
 export const adminRoutes = [
     {
@@ -79,6 +81,19 @@ export const adminRoutes = [
         icon: 'timeline',
         class: '',
         component: AdminSkillsListComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
+        path: 'blog/articles/create',
+        title: 'Blog',
+        component: BlogCreateArticleComponent,
+        canActivate: [AdminAuthgard],
+    },    {
+        path: 'blog/articles',
+        title: 'Blog',
+        icon: 'article',
+        class: '',
+        component: BlogListArticleComponent,
         canActivate: [AdminAuthgard],
     },
     {

@@ -20,8 +20,8 @@ import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
 import { CustomHttpHandlerService } from '../services/errors/custom.http.handler.service';
 import { QuillModule } from 'ngx-quill';
-import { ListComponent } from './blog/list/list.component';
-import { CreateComponent } from './blog/create/create.component';
+import { BlogListArticleComponent } from './blog/articles/list/blog.list.article.component';
+import { BlogCreateArticleComponent } from './blog/articles/create/blog.create.article.component';
 
 @NgModule({
     declarations: [
@@ -37,8 +37,8 @@ import { CreateComponent } from './blog/create/create.component';
         AdminExperiencesCreateComponent,
         AdminSkillsListComponent,
         AdminSkillsCreateComponent,
-        ListComponent,
-        CreateComponent,
+        BlogListArticleComponent,
+        BlogCreateArticleComponent,
     ],
     imports: [
         CommonModule,

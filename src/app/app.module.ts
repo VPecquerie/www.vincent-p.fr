@@ -41,6 +41,7 @@ import { TokeninfoHttpService } from './services/entities/tokeninfo.http.service
 import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
 import { SeoService } from './services/seo.service';
+import { ArticleHttpService } from './services/entities/article.http.service';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { SeoService } from './services/seo.service';
         BrowserAnimationsModule,
         MyMaterialModule
     ],
+    bootstrap: [AppComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
@@ -84,10 +86,12 @@ import { SeoService } from './services/seo.service';
         CookieService,
         NotificationService,
         UserService,
+        SeoService,
         HomeContactService,
         RoutingService,
         MatomoInjector,
         MatomoTracker,
+        ArticleHttpService,
         CompanyHttpService,
         ExperienceHttpService,
         SkillHttpService,
@@ -95,10 +99,8 @@ import { SeoService } from './services/seo.service';
         TextEntityHttpService,
         TokeninfoHttpService,
         TrainingHttpService,
-        UserHttpService,
-        SeoService
+        UserHttpService
     ],
-    bootstrap: [AppComponent],
 })
 export class AppModule {
 }
