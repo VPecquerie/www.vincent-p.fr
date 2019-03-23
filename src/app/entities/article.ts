@@ -1,4 +1,5 @@
 import { autoserialize, autoserializeAs } from 'cerialize';
+import { Comment } from './comment';
 
 export class Article {
     @autoserialize
@@ -21,4 +22,7 @@ export class Article {
 
     @autoserialize
     public IsPublished: boolean;
+
+    @autoserializeAs(Comment)
+    public Comments: Comment[];
 }

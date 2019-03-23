@@ -1,4 +1,5 @@
 export const entities = {
+    Article: '/Articles',
     TextEntity: '/Texts',
     Contact: '/Contact',
     Training: '/Trainings',

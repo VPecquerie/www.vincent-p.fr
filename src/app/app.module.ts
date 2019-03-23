@@ -42,6 +42,7 @@ import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
 import { SeoService } from './services/seo.service';
 import { ArticleHttpService } from './services/entities/article.http.service';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,6 @@ import { ArticleHttpService } from './services/entities/article.http.service';
         HomeTrainingsComponent,
         HomeCookieComponent,
         LegalMentionsComponent,
-        MomentjsPipe,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'www-vincent-p-fr' }),
@@ -74,7 +74,8 @@ import { ArticleHttpService } from './services/entities/article.http.service';
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule
+        MyMaterialModule,
+        PipesModule
     ],
     bootstrap: [AppComponent],
     providers: [

@@ -22,6 +22,8 @@ import { CustomHttpHandlerService } from '../services/errors/custom.http.handler
 import { QuillModule } from 'ngx-quill';
 import { BlogListArticleComponent } from './blog/articles/list/blog.list.article.component';
 import { BlogCreateArticleComponent } from './blog/articles/create/blog.create.article.component';
+import { MomentjsPipe } from '../pipes/momentjs.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -48,7 +50,8 @@ import { BlogCreateArticleComponent } from './blog/articles/create/blog.create.a
         HttpClientModule,
         RouterModule,
         MyMaterialModule,
-        QuillModule
+        QuillModule,
+        PipesModule
     ],
     providers: [
         {
