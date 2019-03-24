@@ -19,8 +19,24 @@
                             </div>
                             <div class="row">
                                 <div class="input-group">
-                                    <quill-editor formControlName="Description" placeholder="Contenu du nouvel article..." [style]="{height: '200px'}" class="col-md-12">
+                                    <quill-editor formControlName="Content" placeholder="Contenu du nouvel article..." [style]="{height: '200px'}" class="col-md-12">
                                     </quill-editor>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group">
+                                    <mat-checkbox formControlName="IsPublished" class="col-md-12" (change)="isPublished = !isPublished">
+                                        Article publié ?
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="isPublished">
+                                <div class="input-group">
+                                    <mat-form-field appearance="outline" class="col-md-12">
+                                        <mat-label>Date de publication</mat-label>
+                                        <input matInput type="date" placeholder="Date de la publication"
+                                               formControlName="PublishedDate">
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <br />

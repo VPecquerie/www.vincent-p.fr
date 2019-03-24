@@ -22,13 +22,19 @@
                             <tr>
                                 <td>{{article.ArticleId}}</td>
                                 <td>{{article.Title}}</td>
-                                <td>{{article.Comments.length}}</td>
+                                <td>
+                                    <ng-container *ngIf="article.Comments">
+                                        {{article.Comments?.length}}
+                                    </ng-container>
+                                    <ng-container *ngIf="!article.Comments">
+                                        0
+                                    </ng-container>
+                                </td>
                                 <td>
                                     <ng-container *ngIf="article.IsPublished">
-                                        Depuis le {{ article.PublishedDate | momentjs:'dd/mm/YYYY'}}
+                                        Depuis le {{ article.PublishedDate | momentjs:'DD/MM/YYYY'}}
                                     </ng-container>
-                                    -
-                                    <ng-container *ngIf="!experience.IsPublished">
+                                    <ng-container *ngIf="!article.IsPublished">
                                         Non
                                     </ng-container>
 
