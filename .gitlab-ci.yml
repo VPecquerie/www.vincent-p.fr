@@ -7,8 +7,19 @@ cache:
         - node_modules/
 
 stages:
+    - analysis
     - test
     - build
+
+sonarqube:
+    stage: analysis
+    image: ciricihq/gitlab-sonar-scanner
+    variables:
+        SONAR_URL: https://sonarqube.we-program-it.com
+        SONAR_GITLAB_PROJECT_ID: 9193568
+        SONAR_ANALYSIS_MODE: publish
+    script:
+        - gitlab-sonar-scanner
 
 test:
     image: trion/ng-cli-karma:latest
