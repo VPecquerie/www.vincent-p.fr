@@ -7,19 +7,9 @@ cache:
         - node_modules/
 
 stages:
-    - analysis
     - test
+    - analysis
     - build
-
-sonarqube:
-    stage: analysis
-    image: ciricihq/gitlab-sonar-scanner
-    variables:
-        SONAR_URL: https://sonarqube.we-program-it.com
-        SONAR_GITLAB_PROJECT_ID: 9193568
-        SONAR_ANALYSIS_MODE: publish
-    script:
-        - gitlab-sonar-scanner
 
 test:
     image: trion/ng-cli-karma:latest
@@ -28,6 +18,21 @@ test:
         - yarn install --network-timeout 100000
         - npm run lint
         - npm run test
+    artifacts:
+        paths:
+            - coverage
+
+sonarqube:
+    image: registry.gitlab.com/vincent-p/docker-sonar-runner
+    stage: analysis
+    dependencies:
+        - test
+    variables:
+        SONAR_URL: https://sonarqube.we-program-it.com
+        SONAR_GITLAB_PROJECT_ID: 9193568
+        SONAR_ANALYSIS_MODE: publish
+    script:
+        - gitlab-sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}
 
 build-master:
     image: docker:dind

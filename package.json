@@ -49,7 +49,7 @@
         "serve:ssr": "node dist/server",
         "serve:lint": "./node_modules/.bin/npm-watch",
         "serve:test": "ng test --browsers ChromeHeadless --reporters spec --watch true",
-        "test": "ng test --browsers ChromeHeadless --reporters spec --watch false  --code-coverage",
+        "test": "ng test --browsers ChromeHeadless --reporters spec --watch false --code-coverage",
         "lint": "npm run lint:ts && npm run lint:html && npm run lint:css && npm run lint:docker",
         "lint:ts": "ng lint vincent-p",
         "lint:html": "./node_modules/.bin/htmllint src/app/**/**/**/**/**/**/**/**/**/*.html",
