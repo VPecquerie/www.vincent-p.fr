@@ -247,30 +247,30 @@
     },
     "schematics": {
         "@schematics/angular:class": {
-            "spec": false
+            "spec": true
         },
         "@schematics/angular:component": {
-            "spec": false,
-            "inlineStyle": true,
-            "inlineTemplate": true,
+            "spec": true,
+            "inlineStyle": false,
+            "inlineTemplate": false,
             "prefix": "app",
             "styleext": "scss"
         },
         "@schematics/angular:directive": {
-            "spec": false,
+            "spec": true,
             "prefix": "app"
         },
         "@schematics/angular:guard": {
-            "spec": false
+            "spec": true
         },
         "@schematics/angular:module": {
             "spec": false
         },
         "@schematics/angular:pipe": {
-            "spec": false
+            "spec": true
         },
         "@schematics/angular:service": {
-            "spec": false
+            "spec": true
         }
     }
 }
