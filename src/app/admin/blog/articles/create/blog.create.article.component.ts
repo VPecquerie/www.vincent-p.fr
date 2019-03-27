@@ -8,7 +8,7 @@ import { BlogCreateArticleForm } from './blog.create.article.form';
 })
 export class BlogCreateArticleComponent implements OnInit {
     articleForm = BlogCreateArticleForm;
-    isPublished: boolean = false;
+    isPublished = false;
 
   constructor() { }
 
