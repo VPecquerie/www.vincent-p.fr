@@ -1,25 +1,47 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogListArticleComponent } from './blog.list.article.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
+import { PipesModule } from '../../../../pipes/pipes.module';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
+import { SidebarComponent } from '../../../layout/sidebar/sidebar.component';
+import { AdminLayoutComponent } from '../../../layout/admin.layout.component';
+import { ArticleHttpService } from '../../../../services/entities/article.http.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('BlogListArticleComponent', () => {
-  let component: BlogListArticleComponent;
-  let fixture: ComponentFixture<BlogListArticleComponent>;
+    let component: BlogListArticleComponent;
+    let fixture: ComponentFixture<BlogListArticleComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BlogListArticleComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                NavbarComponent,
+                SidebarComponent,
+                AdminLayoutComponent,
+                BlogListArticleComponent,
+            ],
+            imports: [
+                CommonModule,
+                RouterTestingModule,
+                HttpClientTestingModule,
+                PipesModule,
+            ],
+            providers: [
+                ArticleHttpService,
+            ],
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BlogListArticleComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(BlogListArticleComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
