@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-list-article',
-  templateUrl: './blog.list.article.component.html',
-  styleUrls: ['./blog.list.article.component.scss']
+  templateUrl: './blog.list.article.component.html'
 })
 export class BlogListArticleComponent implements OnInit {
     public articles: Article[];
