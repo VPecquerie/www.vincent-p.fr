@@ -1,3 +1,18 @@
 .strong {
     font-weight: bold;
 }
+
+.btn-primary {
+    background-color: #282828;
+    border-color: #282828 !important;
+}
+
+.btn-primary:hover {
+    background-color: lighten(#282828, 10%) !important;
+    border-color: #282828 !important;
+}
+
+.btn-primary:active {
+    background-color: lighten(#282828, 15%) !important;
+    border-color: #282828 !important;
+}
