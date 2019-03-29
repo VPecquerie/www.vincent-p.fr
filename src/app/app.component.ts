@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FontService } from './services/font.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -7,10 +8,13 @@ import { FontService } from './services/font.service';
         <router-outlet></router-outlet>`,
 })
 export class AppComponent implements OnInit {
-    constructor(private fontService: FontService) {
+    constructor(@Inject(PLATFORM_ID) private platformId: any,
+                private fontService: FontService) {
     }
 
     ngOnInit(): void {
-        this.fontService.load();
+        if (isPlatformBrowser(this.platformId)) {
+            this.fontService.load();
+        }
     }
 }
