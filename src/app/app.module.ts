@@ -43,6 +43,7 @@ import { UserHttpService } from './services/entities/user.http.service';
 import { SeoService } from './services/seo.service';
 import { ArticleHttpService } from './services/entities/article.http.service';
 import { PipesModule } from './pipes/pipes.module';
+import { FontService } from './services/font.service';
 
 @NgModule({
     declarations: [
@@ -100,7 +101,8 @@ import { PipesModule } from './pipes/pipes.module';
         TextEntityHttpService,
         TokeninfoHttpService,
         TrainingHttpService,
-        UserHttpService
+        UserHttpService,
+        FontService
     ],
 })
 export class AppModule {
