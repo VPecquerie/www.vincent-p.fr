@@ -7,16 +7,33 @@ cache:
         - node_modules/
 
 stages:
+    - prepare
     - test
-    - analysis
     - build
+    #- scan_docker
+
+prepare:
+    image: trion/ng-cli-karma:latest
+    stage: prepare
+    script:
+        - npm install --production=false
+
+lint:
+    image: trion/ng-cli-karma:latest
+    stage: test
+    dependencies:
+        - prepare
+    script:
+        - npm install --production=false
+        - npm run lint
 
 test:
     image: trion/ng-cli-karma:latest
     stage: test
+    dependencies:
+        - prepare
     script:
-        - yarn install --network-timeout 100000
-        - npm run lint
+        - npm install --production=false
         - npm run test
     artifacts:
         paths:
@@ -24,14 +41,15 @@ test:
 
 sonarqube:
     image: registry.gitlab.com/vincent-p/docker-sonar-runner
-    stage: analysis
+    stage: test
     dependencies:
-        - test
+        - prepare
     variables:
         SONAR_URL: https://sonarqube.we-program-it.com
         SONAR_GITLAB_PROJECT_ID: 9193568
         SONAR_ANALYSIS_MODE: publish
     script:
+        - npm install --production=false
         - gitlab-sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}
 
 build-master:
@@ -55,3 +73,18 @@ build:
         - docker push "$CI_REGISTRY_IMAGE:beta"
     except:
         - master
+
+# scan_docker:
+#     image: docker:git
+#     stage: scan_docker
+#     before_script:
+#         - apk update && apk add coreutils
+#         - docker network create scanning
+#         - docker run -p 5432:5432 -d --net=scanning --name db arminc/clair-db:$(date -d "yesterday" '+%Y-%m-%d') ; sleep 10
+#         - docker run -p 6060:6060 -d --net=scanning --name clair --link db:postgres arminc/clair-local-scan:v2.0.1 ; sleep 10
+#     script:
+#         - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#         - docker run --net=scanning --rm --name=scanner --link=clair:clair -v '/var/run/docker.sock:/var/run/docker.sock' objectiflibre/clair-scanner --clair="http://clair:6060" --ip="scanner" -t Medium $CI_REGISTRY_IMAGE:beta
+#     after_script:
+#         - docker rm -vf db clair
+#         - docker network rm scanning
