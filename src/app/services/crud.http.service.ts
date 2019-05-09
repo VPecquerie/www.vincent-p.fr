@@ -7,9 +7,11 @@ import { environment } from '../../environments/environment';
 
 export abstract class CrudHttpService {
 
-    public constructor(protected http: HttpClient) { }
+    public constructor(protected http: HttpClient) {
+    }
 
     protected abstract getEntityClassName();
+
     protected abstract getEntityClass();
 
 
@@ -23,16 +25,30 @@ export abstract class CrudHttpService {
     }
 
 
-    public readAll() {
-        const url = environment.api.url + environment.api.entities[this.getEntityClassName()];
+    public readAll(byPassCache = false) {
+
+        let url = environment.api.url + environment.api.entities[this.getEntityClassName()];
+
+        if (byPassCache) {
+            const timestamp = +new Date();
+            url = url + '?timestamp=' + timestamp;
+        }
+
         return this.http.get(url).pipe(
             map(result => Deserialize(result, this.getEntityClass())),
             catchError(this.handleError()),
         );
     }
 
-    public readOne(id: number | string) {
-        const url = environment.api.url + environment.api.entities[this.getEntityClassName()] + '/' + id;
+    public readOne(id: number | string, byPassCache = false) {
+
+        let url = environment.api.url + environment.api.entities[this.getEntityClassName()] + '/' + id;
+
+        if (byPassCache) {
+            const timestamp = +new Date();
+            url = url + '?timestamp=' + timestamp;
+        }
+
         return this.http.get(url).pipe(
             map(result => Deserialize(result, this.getEntityClass())),
             catchError(this.handleError()),

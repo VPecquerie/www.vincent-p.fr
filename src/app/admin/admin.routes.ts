@@ -88,7 +88,14 @@ export const adminRoutes = [
         title: 'Blog',
         component: BlogCreateArticleComponent,
         canActivate: [AdminAuthgard],
-    },    {
+    },
+    {
+        path: 'blog/articles/edit/:id',
+        title: 'Blog',
+        component: BlogCreateArticleComponent,
+        canActivate: [AdminAuthgard],
+    },
+    {
         path: 'blog/articles',
         title: 'Blog',
         icon: 'article',

@@ -1,32 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from '../../../../entities/article';
 import { ArticleHttpService } from '../../../../services/entities/article.http.service';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-blog-list-article',
-  templateUrl: './blog.list.article.component.html'
+    selector: 'app-blog-list-article',
+    templateUrl: './blog.list.article.component.html',
 })
-export class BlogListArticleComponent implements OnInit {
+export class BlogListArticleComponent implements OnInit, OnDestroy {
+    private subscription: Subscription;
     public articles: Article[];
 
-  constructor(private service: ArticleHttpService,
-              private router: Router) { }
+    constructor(private service: ArticleHttpService,
+                private router: Router) {
+    }
 
-  ngOnInit() {
-      this.service.readAll().subscribe(articles => {
-          console.log(articles);
-          return this.articles = articles;
-      });
-  }
+    ngOnInit() {
+        this.subscription = this.service.readAll(true).subscribe(articles => {
+            return this.articles = articles as Article[];
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
     delete(article: Article) {
-      const self = this;
+        const self = this;
         this.service.delete(article.ArticleId).subscribe(() => {
             const index = _.indexOf(this.articles, article);
             self.articles.splice(index, 1);
-            self.router.navigate(['/admin/experiences']);
+            self.router.navigate(['/admin/blog/articles']);
         });
     }
 }
