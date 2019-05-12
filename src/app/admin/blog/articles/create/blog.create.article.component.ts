@@ -58,7 +58,19 @@ export class BlogCreateArticleComponent implements OnInit {
                     console.error(error);
                 });
             } else {
-                this.articleHttpService.create(this.articleForm.getRawValue());
+                this.articleHttpService.create(this.articleForm.getRawValue()).subscribe(() => {
+                    this.notificationService.Success(
+                        'Article créé.',
+                        'L\'ensemble des modifications ont été apportés avec succès.',
+                    );
+                    this.router.navigate(['/admin/blog/articles']);
+                }, (error) => {
+                    this.notificationService.Danger(
+                        'Une erreur est survenue.',
+                        'Une erreur est survenue lors de l\'enregistrement de l\'article.',
+                    );
+                    console.error(error);
+                });;
             }
         } else {
             this.notificationService.Warning(
