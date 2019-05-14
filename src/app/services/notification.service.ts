@@ -14,7 +14,7 @@ export class NotificationService {
             title: '<h4>' + title + '</h4>',
             message: content,
         }, {
-            delay: 50000,
+            delay: 3000,
             type: type,
             placement: {
                 from: 'bottom',

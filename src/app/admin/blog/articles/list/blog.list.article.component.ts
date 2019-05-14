@@ -4,6 +4,7 @@ import { ArticleHttpService } from '../../../../services/entities/article.http.s
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
     selector: 'app-blog-list-article',
@@ -14,7 +15,8 @@ export class BlogListArticleComponent implements OnInit, OnDestroy {
     public articles: Article[];
 
     constructor(private service: ArticleHttpService,
-                private router: Router) {
+                private router: Router,
+                private notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -28,11 +30,19 @@ export class BlogListArticleComponent implements OnInit, OnDestroy {
     }
 
     delete(article: Article) {
-        const self = this;
+        event.preventDefault();
         this.service.delete(article.ArticleId).subscribe(() => {
             const index = _.indexOf(this.articles, article);
-            self.articles.splice(index, 1);
-            self.router.navigate(['/admin/blog/articles']);
+            this.articles.splice(index, 1);
+            this.notificationService.Success('Article Supprimé.', 'L\'article a bien été supprimé.');
+        }, (error) => {
+            console.error(error);
+            this.notificationService.Danger(
+                'Une erreur est survenue.',
+                'Une erreur est suvenue durant la suppresion de l\'article.',
+            );
         });
+
+        return false;
     }
 }
