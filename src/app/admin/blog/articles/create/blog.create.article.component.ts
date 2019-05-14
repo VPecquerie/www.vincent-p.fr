@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogCreateArticleForm } from './blog.create.article.form';
-import * as moment from '../../../experiences/create/admin-experiences-create.component';
+import { BlogCreateArticleForm, BlogCreateArticleFormDefaultValues } from './blog.create.article.form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleHttpService } from '../../../../services/entities/article.http.service';
 import { Article } from '../../../../entities/article';
-import { FormControl, Validators } from '@angular/forms';
 import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
@@ -49,12 +47,15 @@ export class BlogCreateArticleComponent implements OnInit {
                         'Article mis à jour.',
                         'L\'ensemble des modifications ont été apportés avec succès.',
                     );
+
+                    this.articleForm.reset(BlogCreateArticleFormDefaultValues);
                     this.router.navigate(['/admin/blog/articles']);
                 }, (error) => {
                     this.notificationService.Danger(
                         'Une erreur est survenue.',
                         'Une erreur est survenue lors de l\'enregistrement de l\'article.',
                     );
+
                     console.error(error);
                 });
             } else {
@@ -63,14 +64,17 @@ export class BlogCreateArticleComponent implements OnInit {
                         'Article créé.',
                         'L\'ensemble des modifications ont été apportés avec succès.',
                     );
+
+                    this.articleForm.reset(BlogCreateArticleFormDefaultValues);
                     this.router.navigate(['/admin/blog/articles']);
                 }, (error) => {
                     this.notificationService.Danger(
                         'Une erreur est survenue.',
                         'Une erreur est survenue lors de l\'enregistrement de l\'article.',
                     );
+
                     console.error(error);
-                });;
+                });
             }
         } else {
             this.notificationService.Warning(
