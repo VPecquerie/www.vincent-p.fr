@@ -14,6 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MyMaterialModule } from '../../../../my-material/my-material.module';
 import { QuillModule } from 'ngx-quill';
 import { BrowserModule } from '@angular/platform-browser';
+import { NotificationService } from '../../../../services/notification.service';
 
 describe('BlogCreateArticleComponent', () => {
     let component: BlogCreateArticleComponent;
@@ -41,6 +42,7 @@ describe('BlogCreateArticleComponent', () => {
             ],
             providers: [
                 ArticleHttpService,
+                NotificationService
             ],
         })
             .compileComponents();
