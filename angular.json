@@ -40,6 +40,11 @@
                                 "glob": "sitemap.xml",
                                 "input": "src/assets",
                                 "output": "/"
+                            },
+                            {
+                                "glob": "public.key",
+                                "input": "src/assets",
+                                "output": "/"
                             }
                         ],
                         "styles": [
