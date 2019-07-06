@@ -41,6 +41,9 @@ import { TokeninfoHttpService } from './services/entities/tokeninfo.http.service
 import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
 import { SeoService } from './services/seo.service';
+import { ArticleHttpService } from './services/entities/article.http.service';
+import { PipesModule } from './pipes/pipes.module';
+import { FontService } from './services/font.service';
 
 @NgModule({
     declarations: [
@@ -56,7 +59,6 @@ import { SeoService } from './services/seo.service';
         HomeTrainingsComponent,
         HomeCookieComponent,
         LegalMentionsComponent,
-        MomentjsPipe,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'www-vincent-p-fr' }),
@@ -73,8 +75,10 @@ import { SeoService } from './services/seo.service';
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule
+        MyMaterialModule,
+        PipesModule
     ],
+    bootstrap: [AppComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
@@ -84,10 +88,12 @@ import { SeoService } from './services/seo.service';
         CookieService,
         NotificationService,
         UserService,
+        SeoService,
         HomeContactService,
         RoutingService,
         MatomoInjector,
         MatomoTracker,
+        ArticleHttpService,
         CompanyHttpService,
         ExperienceHttpService,
         SkillHttpService,
@@ -96,9 +102,8 @@ import { SeoService } from './services/seo.service';
         TokeninfoHttpService,
         TrainingHttpService,
         UserHttpService,
-        SeoService
+        FontService
     ],
-    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

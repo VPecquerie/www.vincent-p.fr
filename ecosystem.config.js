@@ -3,7 +3,7 @@ module.exports = {
     name: 'front',
     script: 'dist/server.js',
     args: '',
-    instances: 8,
+    instances: 4,
     autorestart: true,
     watch: false,
     max_memory_restart: '1G',

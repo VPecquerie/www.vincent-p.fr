@@ -20,6 +20,10 @@ import { AdminRoutingModule } from './admin.routes';
 import { AdminLayoutComponent } from './layout/admin.layout.component';
 import { CustomHttpHandlerService } from '../services/errors/custom.http.handler.service';
 import { QuillModule } from 'ngx-quill';
+import { BlogListArticleComponent } from './blog/articles/list/blog.list.article.component';
+import { BlogCreateArticleComponent } from './blog/articles/create/blog.create.article.component';
+import { MomentjsPipe } from '../pipes/momentjs.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -35,6 +39,8 @@ import { QuillModule } from 'ngx-quill';
         AdminExperiencesCreateComponent,
         AdminSkillsListComponent,
         AdminSkillsCreateComponent,
+        BlogListArticleComponent,
+        BlogCreateArticleComponent,
     ],
     imports: [
         CommonModule,
@@ -44,7 +50,8 @@ import { QuillModule } from 'ngx-quill';
         HttpClientModule,
         RouterModule,
         MyMaterialModule,
-        QuillModule
+        QuillModule,
+        PipesModule
     ],
     providers: [
         {

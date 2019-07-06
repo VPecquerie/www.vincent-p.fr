@@ -20,7 +20,7 @@
                         <ng-container *ngFor="let group of skillsGroups">
                             <tr>
                                 <th colspan="3">
-                                    <i [class]="'fa ' + group.Icon"></i> {{group.Name}}
+                                    <em [class]="'fa ' + group.Icon"></em> {{group.Name}}
                                 </th>
                                 <th>
                                     <a href="#" (click)="deleteGroup(group);">
