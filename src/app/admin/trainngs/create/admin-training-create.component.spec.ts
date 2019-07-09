@@ -30,7 +30,7 @@ describe('AdminTrainingCreateComponent', () => {
                 HttpClientModule,
                 RouterTestingModule,
                 MyMaterialModule,
-                QuillModule
+                QuillModule.forRoot()
             ]
         })
             .compileComponents();

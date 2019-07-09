@@ -37,7 +37,7 @@ describe('BlogCreateArticleComponent', () => {
                 NoopAnimationsModule,
                 MyMaterialModule,
                 PipesModule,
-                QuillModule,
+                QuillModule.forRoot(),
                 BrowserModule,
             ],
             providers: [
