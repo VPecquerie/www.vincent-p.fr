@@ -44,6 +44,7 @@ import { SeoService } from './services/seo.service';
 import { ArticleHttpService } from './services/entities/article.http.service';
 import { PipesModule } from './pipes/pipes.module';
 import { FontService } from './services/font.service';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { FontService } from './services/font.service';
         BrowserModule.withServerTransition({ appId: 'www-vincent-p-fr' }),
         TransferHttpCacheModule,
         ScrollToModule.forRoot(),
+        QuillModule.forRoot(),
         RouterModule.forRoot(routes),
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         RavenModule.forRoot({
