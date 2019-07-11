@@ -11,8 +11,8 @@ import { NotificationService } from '../../../../services/notification.service';
     templateUrl: './blog.list.article.component.html',
 })
 export class BlogListArticleComponent implements OnInit, OnDestroy {
-    private subscription: Subscription;
     public articles: Article[];
+    private subscription: Subscription;
 
     constructor(private service: ArticleHttpService,
                 private router: Router,

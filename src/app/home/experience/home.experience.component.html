@@ -18,13 +18,13 @@
                         <div class="col-sm-12 date-location-box">
                             <div class="col-sm-12 col-md-12 date">
                                 <em class="material-icons">timelapse</em>
-                                {{experience.Start|momentjs:'MMM YYYY'}}
+                                {{experience.Start|date:'MMM yyyy'}}
                                 <br/>
                                 <ng-container *ngIf="experience.End == null">
                                     Aujourd'hui
                                 </ng-container>
                                 <ng-container *ngIf="experience.End != null">
-                                    {{experience.End|momentjs:'MMM YYYY'}}
+                                    {{experience.End|date:'MMM yyyy'}}
                                 </ng-container>
 
                             </div>

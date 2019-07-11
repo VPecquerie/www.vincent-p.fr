@@ -72,7 +72,6 @@ This project use the following project :
         * [Font Awesome](https://origin.fontawesome.com/).
     * Tools:
         * [Cerialize](https://github.com/weichx/cerialize).
-        * [Moment](https://momentjs.com/).
         * [Sentry](https://sentry.io/).
     * Tests: 
         * [Karma](https://karma-runner.github.io/)

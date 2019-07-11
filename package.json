@@ -97,7 +97,6 @@
         "gulp-sri-hash": "^2.1.0",
         "hammerjs": "^2.0.8",
         "jquery": "^3.4.1",
-        "moment": "^2.24.0",
         "ngx-quill": "^7.0.2",
         "ngx-raven": "^1.0.5",
         "perfect-scrollbar": "^1.4.0",

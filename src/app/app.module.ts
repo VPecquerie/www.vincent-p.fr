@@ -13,7 +13,6 @@ import { UserService } from './services/user.service';
 import { CustomHttpHandlerService } from './services/errors/custom.http.handler.service';
 import { NotificationService } from './services/notification.service';
 import { RoutingService } from './services/routing.service';
-import { MomentjsPipe } from './pipes/momentjs.pipe';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -42,7 +41,6 @@ import { TrainingHttpService } from './services/entities/training.http.service';
 import { UserHttpService } from './services/entities/user.http.service';
 import { SeoService } from './services/seo.service';
 import { ArticleHttpService } from './services/entities/article.http.service';
-import { PipesModule } from './pipes/pipes.module';
 import { FontService } from './services/font.service';
 import { QuillModule } from 'ngx-quill';
 
@@ -77,8 +75,7 @@ import { QuillModule } from 'ngx-quill';
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MyMaterialModule,
-        PipesModule
+        MyMaterialModule
     ],
     bootstrap: [AppComponent],
     providers: [

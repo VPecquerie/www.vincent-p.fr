@@ -7,7 +7,6 @@ import { AdminLayoutComponent } from '../../../layout/admin.layout.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { PipesModule } from '../../../../pipes/pipes.module';
 import { ArticleHttpService } from '../../../../services/entities/article.http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,7 +35,6 @@ describe('BlogCreateArticleComponent', () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 MyMaterialModule,
-                PipesModule,
                 QuillModule.forRoot(),
                 BrowserModule,
             ],

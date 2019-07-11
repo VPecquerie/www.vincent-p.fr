@@ -14,7 +14,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MyMaterialModule } from '../my-material/my-material.module';
-import { MomentjsPipe } from '../pipes/momentjs.pipe';
 import { HomeTopbarComponent } from './topbar/home.topbar.component';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { HomeSplashScreenComponent } from './splashscreen/home.splashscreen.component';
@@ -46,7 +45,6 @@ describe('HomeComponent', () => {
                 MatomoTracker,
             ],
             declarations: [
-                MomentjsPipe,
                 HomeTopbarComponent,
                 HomeAboutComponent,
                 HomeContactComponent,

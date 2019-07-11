@@ -32,7 +32,7 @@
                                 </td>
                                 <td>
                                     <ng-container *ngIf="article.IsPublished">
-                                        Depuis le {{ article.PublishedDate | momentjs:'DD/MM/YYYY'}}
+                                        Depuis le {{ article.PublishedDate | date:'dd/MM/yyyy'}}
                                     </ng-container>
                                     <ng-container *ngIf="!article.IsPublished">
                                         Non

@@ -3,9 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Training } from '../../../entities/training';
 import { TrainingForm } from './admin-training-create.form-group';
 import { TrainingHttpService } from '../../../services/entities/training.http.service';
-
-import * as moment from 'moment';
 import { SeoService } from '../../../services/seo.service';
+import { DateUtils } from '../../../utils/date';
 
 @Component({
     templateUrl: './admin-training-create.component.html',
@@ -32,8 +31,8 @@ export class AdminTrainingCreateComponent implements OnInit {
                     this.trainingForm.setValue({
                         Title: this.training.Title,
                         Description: this.training.Description,
-                        Begin: moment(this.training.Begin).format('YYYY-MM-DD'),
-                        End: moment(this.training.End).format('YYYY-MM-DD')
+                        Begin: DateUtils.ToFormStringFormat(this.training.Begin),
+                        End: DateUtils.ToFormStringFormat(this.training.End)
                     });
                 });
             }

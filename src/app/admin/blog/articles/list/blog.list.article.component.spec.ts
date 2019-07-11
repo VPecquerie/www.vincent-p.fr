@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlogListArticleComponent } from './blog.list.article.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
-import { PipesModule } from '../../../../pipes/pipes.module';
 import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { SidebarComponent } from '../../../layout/sidebar/sidebar.component';
 import { AdminLayoutComponent } from '../../../layout/admin.layout.component';
@@ -27,11 +26,10 @@ describe('BlogListArticleComponent', () => {
                 CommonModule,
                 RouterTestingModule,
                 HttpClientTestingModule,
-                PipesModule,
             ],
             providers: [
                 ArticleHttpService,
-                NotificationService
+                NotificationService,
             ],
         })
             .compileComponents();

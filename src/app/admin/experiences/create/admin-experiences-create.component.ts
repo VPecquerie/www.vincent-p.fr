@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Experience } from '../../../entities/experience';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../../../entities/company';
-import * as moment from 'moment';
 import { CreateExperienceForm } from './admin-experiences-create.form-group.component';
 import { ExperienceHttpService } from '../../../services/entities/experience.http.service';
 import { CompanyHttpService } from '../../../services/entities/company.http.service';
 import { SeoService } from '../../../services/seo.service';
 import { NotificationService } from '../../../services/notification.service';
+import { DateUtils } from '../../../utils/date';
 
 @Component({
     templateUrl: './admin-experiences-create.component.html',
@@ -40,8 +40,8 @@ export class AdminExperiencesCreateComponent implements OnInit {
                     this.experienceForm.setValue({
                         Title: this.experience.Title,
                         Description: this.experience.Description,
-                        Start: moment(this.experience.Start).format('YYYY-MM-DD'),
-                        End: moment(this.experience.End).format('YYYY-MM-DD'),
+                        Start: DateUtils.ToFormStringFormat(this.experience.Start),
+                        End: DateUtils.ToFormStringFormat(this.experience.End),
                         CompanyId: this.experience.Company != null ? this.experience.Company.CompanyId : -1,
                         CompanyAdd: {
                             Name: null,

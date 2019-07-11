@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MyMaterialModule } from '../../my-material/my-material.module';
-import { MomentjsPipe } from '../../pipes/momentjs.pipe';
 import { ExperienceHttpService } from '../../services/entities/experience.http.service';
 
 describe('HomeExperienceComponent', () => {
@@ -15,7 +14,7 @@ describe('HomeExperienceComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MomentjsPipe, HomeExperienceComponent],
+            declarations: [HomeExperienceComponent],
             providers: [ExperienceHttpService],
             imports: [
                 CommonModule,
