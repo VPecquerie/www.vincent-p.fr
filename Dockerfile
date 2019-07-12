@@ -19,7 +19,7 @@ ARG ANGULAR_CONFIGURATION=production
 ENV ANGULAR_CONFIGURATION ${ANGULAR_CONFIGURATION}
 COPY --chown=node:node . .
 
-RUN yarn install --production=true && npm run build:ssr && rm -rf /home/node/.cache/yarn && gulp purifyCSS && gulp sri
+RUN npm install --production=true && npm run build:ssr && npm cache clear --force && gulp purifyCSS && gulp sri
 
 EXPOSE 4000
 CMD [ "pm2-runtime", "start", "ecosystem.config.js"]
