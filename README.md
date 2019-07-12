@@ -81,7 +81,7 @@ This project use the following project :
 
 * Lint:
   * [HtmlLint](https://github.com/htmllint/htmllint)
-  * [StyleLint](https://github.com/stylelint/stylelint) 
+  * [StyleLint](https://github.com/stylelint/stylelint)
   * [TsLint](https://github.com/palantir/tslint)
 
 * Documentation:
