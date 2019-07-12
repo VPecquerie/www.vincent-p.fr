@@ -9,6 +9,7 @@ cache:
 stages:
     - prepare
     - test
+    - analysis
     - build
 
 prepare:
@@ -43,9 +44,9 @@ test:
 
 sonarqube:
     image: registry.gitlab.com/vincent-p/docker-sonar-runner
-    stage: test
+    stage: analysis
     dependencies:
-        - prepare
+        - test
     variables:
         SONAR_URL: https://sonarqube.we-program-it.com
         SONAR_GITLAB_PROJECT_ID: 9193568
@@ -53,6 +54,7 @@ sonarqube:
     script:
         - npm install --production=false
         - gitlab-sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}
+    allow_failure: true
 
 build-master:
     image: docker:dind
