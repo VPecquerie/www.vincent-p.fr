@@ -24,7 +24,7 @@ See deployment for notes on how to deploy the project on a live system.
 
 ### Installation
 
-* `npm install` or `yarn install` (you should prefer yarn).
+* `npm install` or `yarn install`.
 
 ### Development (Client-side only rendering)
 

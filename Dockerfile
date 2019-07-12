@@ -5,8 +5,7 @@ LABEL Version="1.0.0"
 LABEL Name="www-vincent-p-fr"
 
 RUN apk add --no-cache python \
-    && npm install -g yarn protractor pm2 @angular/cli gulp \
-    && chmod +x /usr/local/bin/yarn \
+    && npm install -g protractor pm2 @angular/cli gulp \
     &&  mkdir -p /app \
     && chown -R node:node /app \
     && rm -rf /root/.npm
