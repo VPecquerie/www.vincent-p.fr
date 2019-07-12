@@ -10,7 +10,6 @@ stages:
     - prepare
     - test
     - build
-    #- scan_docker
 
 prepare:
     image: trion/ng-cli-karma:latest
@@ -23,9 +22,12 @@ lint:
     stage: test
     dependencies:
         - prepare
+    before_script:
+        - npm install -g dockerlint
     script:
         - npm install --production=false
         - npm run lint
+        - dockerlint Dockerfile
 
 test:
     image: trion/ng-cli-karma:latest
