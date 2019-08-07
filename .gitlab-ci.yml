@@ -58,20 +58,24 @@ sonarqube:
 
 sast:
     stage: analysis
-    image: docker:dind
-    variables:
-        DOCKER_DRIVER: overlay2
+    image: registry.gitlab.com/gitlab-org/security-products/sast
     script:
-        - export SAST_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
-        - docker run
-            --env SAST_CONFIDENCE_LEVEL="${SAST_CONFIDENCE_LEVEL:-3}"
-            --env SAST_DISABLE_REMOTE_CHECKS="${SAST_DISABLE_REMOTE_CHECKS:-false}"
-            --volume "$PWD:/code"
-            --volume /var/run/docker.sock:/var/run/docker.sock
-            "registry.gitlab.com/gitlab-org/security-products/sast:$SAST_VERSION" /app/bin/run /code
+        - ls -lsa
+        - /app/bin/run $(pwd)
     artifacts:
         paths: [gl-sast-report.json]
 
+dependency_scanning:
+    stage: analysis
+    image: registry.gitlab.com/gitlab-org/security-products/dependency-scanning:latest
+    variables:
+        DOCKER_DRIVER: overlay2
+    allow_failure: true
+    script:
+        - export directory=$(pwd) && ls -lsa
+        - dependency-scanning $directory
+    artifacts:
+        paths: [gl-dependency-scanning-report.json]
 
 build-master:
     image: docker:dind
