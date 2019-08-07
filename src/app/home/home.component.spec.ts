@@ -26,6 +26,7 @@ import { CookieService } from '../services/cookie.service';
 import { RoutingService } from '../services/routing.service';
 import { MatomoInjector } from '../../matomo/service/matomo-injector.service';
 import { MatomoTracker } from '../../matomo/service/matomo-tracker.service';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
@@ -65,6 +66,7 @@ describe('HomeComponent', () => {
                 RouterTestingModule,
                 MyMaterialModule,
                 ScrollToModule.forRoot(),
+                LazyLoadImageModule
             ],
         }).compileComponents();
     }));

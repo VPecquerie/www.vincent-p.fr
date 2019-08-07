@@ -73,6 +73,7 @@ This project use the following project :
     * [Angular](https://angular.io) + [Angular Materrial](https://material.angular.io).
     * [Bootstrap](https://getbootstrap.com/).
     * [Font Awesome](https://origin.fontawesome.com/).
+    * [ng-lazyload-image](https://www.npmjs.com/package/ng-lazyload-image)
   * Tools:
     * [Cerialize](https://github.com/weichx/cerialize).
     * [Sentry](https://sentry.io/).

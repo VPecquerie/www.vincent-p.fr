@@ -6,7 +6,7 @@ LABEL Name="www-vincent-p-fr"
 
 RUN apk add --no-cache python \
     && npm install -g protractor pm2 @angular/cli gulp \
-    &&  mkdir -p /app \
+    && mkdir -p /app \
     && chown -R node:node /app \
     && rm -rf /root/.npm
 

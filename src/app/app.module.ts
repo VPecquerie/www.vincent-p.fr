@@ -43,6 +43,7 @@ import { SeoService } from './services/seo.service';
 import { ArticleHttpService } from './services/entities/article.http.service';
 import { FontService } from './services/font.service';
 import { QuillModule } from 'ngx-quill';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { QuillModule } from 'ngx-quill';
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        LazyLoadImageModule,
         MyMaterialModule
     ],
     bootstrap: [AppComponent],

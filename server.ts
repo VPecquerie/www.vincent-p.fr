@@ -46,17 +46,17 @@ app.engine('html', (_, options, callback) => {
     renderModuleFactory(AppServerModuleNgFactory, {
         // Our index.html
         document: template,
-        url: options.req.url,
+        url: options['req']['url'],
         extraProviders: [
             provideModuleMap(LAZY_MODULE_MAP),
             // make req and response accessible when angular app runs on server
             <ValueProvider>{
                 provide: REQUEST,
-                useValue: options.req
+                useValue: options['req']
             },
             <ValueProvider>{
                 provide: RESPONSE,
-                useValue: options.req.res,
+                useValue: options['req']['res'],
             },
         ]
     }).then(html => {

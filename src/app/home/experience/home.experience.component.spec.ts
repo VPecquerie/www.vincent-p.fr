@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MyMaterialModule } from '../../my-material/my-material.module';
 import { ExperienceHttpService } from '../../services/entities/experience.http.service';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 describe('HomeExperienceComponent', () => {
     let component: HomeExperienceComponent;
@@ -22,7 +23,8 @@ describe('HomeExperienceComponent', () => {
                 ReactiveFormsModule,
                 HttpClientModule,
                 RouterTestingModule,
-                MyMaterialModule
+                MyMaterialModule,
+                LazyLoadImageModule
             ]
         })
             .compileComponents();
