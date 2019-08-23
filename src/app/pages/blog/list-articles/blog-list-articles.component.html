@@ -1,0 +1,47 @@
+<app-layout-blog>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+
+                <ng-container *ngIf="articles.length == 0">
+                    <h1>Pas d'article.</h1>
+
+                    <p>
+                        Il n'y a pas encore d'article publié sur ce blog.
+                        N'hésitez pas à revenir ultérieurement pour découvrir d'avantages de contenu.
+                    </p>
+
+                </ng-container>
+                <ng-container *ngIf="articles.length > 0">
+                    <ng-container
+                        *ngFor="let article of articles | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                        <div class="post-preview">
+                            <a href="#" routerLink="/blog/article/{{ article.ArticleId }}">
+
+
+                                <h2 class="post-title">
+                                    {{ article.Title }}
+                                </h2>
+
+                                <h3>{{ article.Resume }}</h3>
+                            </a>
+                            <p class="post-meta">
+                                Ajouté par <a href="#">Vincent PECQUERIE</a>
+                                le {{ article.PublishedDate | date:'dd MMMM yyyy'}}
+                                - {{ article.Comments != null ? article.Comments.length : 0 }} Commentaire(s).</p>
+                        </div>
+                        <hr>
+                    </ng-container>
+                </ng-container>
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-primary float-left" routerLink="/blog/pages/{{ page - 1 }}" *ngIf="page > 1">&larr;
+                        Articles plus récent </a>
+                    <a class="btn btn-primary float-right" routerLink="/blog/pages/{{ page + 1 }}"
+                       *ngIf="(pageSize * (page)) <= articles.length">Articles plus ancien &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout-blog>

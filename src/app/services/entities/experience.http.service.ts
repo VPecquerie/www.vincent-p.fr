@@ -1,7 +1,7 @@
 import { CrudHttpService } from '../crud.http.service';
-import { Experience } from '../../entities/experience';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Experience } from '../../models/entities/experience';
 
 @Injectable()
 export class ExperienceHttpService extends CrudHttpService {

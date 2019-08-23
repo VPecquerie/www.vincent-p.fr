@@ -1,0 +1,50 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as _ from 'lodash';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Experience } from '../../../../models/entities/experience';
+import { ExperienceHttpService } from '../../../../services/entities/experience.http.service';
+import { SeoService } from '../../../../services/seo.service';
+
+
+@Component({
+    templateUrl: './admin-experiences-list.component.html',
+    styleUrls: ['./admin-experiences-list.component.scss'],
+})
+export class AdminExperiencesListComponent implements OnInit, OnDestroy {
+
+    private subscription: Subscription;
+    public experiences: Experience[];
+
+    constructor(private experienceHttpService: ExperienceHttpService,
+                private router: Router,
+                private seoService: SeoService) {
+        this.seoService.prependPageTitle('Liste des experiences - Experiences - Administration');
+    }
+
+    ngOnInit(): void {
+        this.getExperiences();
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
+    getExperiences() {
+        this.subscription = this.experienceHttpService
+            .readAll()
+            .subscribe(experiences => this.experiences = experiences);
+    }
+
+    delete(experience): boolean {
+        const self = this;
+        this.experienceHttpService.delete(experience.ExperienceId).subscribe(() => {
+            const index = _.indexOf(this.experiences, experience);
+            self.experiences.splice(index, 1);
+            self.router.navigate(['/admin/experiences']);
+        });
+        return false;
+    }
+
+
+}

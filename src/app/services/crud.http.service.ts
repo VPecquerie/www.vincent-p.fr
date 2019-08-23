@@ -3,11 +3,16 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Deserialize, Serialize } from 'cerialize';
 import { environment } from '../../environments/environment';
+import { Service } from './abstract.service';
 
 
-export abstract class CrudHttpService {
+export abstract class CrudHttpService  extends Service {
 
-    public constructor(protected http: HttpClient) {
+    protected http: HttpClient;
+
+    protected constructor(http: HttpClient) {
+        super();
+        this.http = http;
     }
 
     protected abstract getEntityClassName();

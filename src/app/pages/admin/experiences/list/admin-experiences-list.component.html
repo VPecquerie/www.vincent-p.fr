@@ -1,0 +1,57 @@
+<app-admin-layout>
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title mt-0">Experiences</h4>
+                <p class="card-category">Liste des Experiences</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Entreprise</th>
+                            <th>Poste Occupé</th>
+                            <th>Période</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ng-container *ngFor="let experience of experiences">
+                            <tr>
+                                <td>{{experience.ExperienceId}}</td>
+                                <td>{{experience.Company.Name}}</td>
+                                <td>{{experience.Title}}</td>
+                                <td>
+                                    <ng-container *ngIf="experience.Start != null">
+                                        {{experience.Start?.getFullYear()}}
+                                    </ng-container>
+                                    -
+                                    <ng-container *ngIf="experience.End != null">
+                                        {{experience.End?.getFullYear()}}
+                                    </ng-container>
+
+                                </td>
+                                <td>
+                                    <a href="#" [href]="'/admin/experiences/create/' + experience.ExperienceId">
+                                        <em class="material-icons">edit</em>
+                                    </a>
+                                    <a href="#" (click)="delete(experience);">
+                                        <em class="material-icons">remove_circle_outline</em>
+                                    </a>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <a routerLink="/admin/experiences/create" class="btn btn-danger pull-right mat-raised-button">
+                    <span class="material-icons">add</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</app-admin-layout>

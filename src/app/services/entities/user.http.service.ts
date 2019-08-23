@@ -1,10 +1,10 @@
 import { CrudHttpService } from '../crud.http.service';
-import { User } from '../../entities/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import {Deserialize, Serialize} from 'cerialize';
+import { User } from '../../models/entities/user';
 @Injectable()
 export class UserHttpService extends CrudHttpService {
 

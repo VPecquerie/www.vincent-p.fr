@@ -1,7 +1,7 @@
-import { User } from '../entities/user';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Deserialize } from 'cerialize';
+import { User } from '../models/entities/user';
 @Injectable()
 export class UserService {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {

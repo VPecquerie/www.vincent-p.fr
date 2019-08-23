@@ -1,7 +1,7 @@
 import { CrudHttpService } from '../crud.http.service';
-import { TokenInfo } from '../../entities/tokeninfo';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TokenInfo } from '../../models/entities/tokeninfo';
 
 @Injectable()
 export class TokeninfoHttpService extends CrudHttpService {

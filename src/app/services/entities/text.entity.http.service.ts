@@ -1,7 +1,7 @@
 import { CrudHttpService } from '../crud.http.service';
-import { TextEntity } from '../../entities/text.entity';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TextEntity } from '../../models/entities/text.entity';
 
 @Injectable()
 export class TextEntityHttpService extends CrudHttpService {

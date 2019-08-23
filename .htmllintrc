@@ -1,6 +1,6 @@
 {
     "plugins": [],
-    "indent-width": 4,
+    "indent-width": false,
     "attr-name-style": false,
     "class-style": false,
     "id-class-style": false,

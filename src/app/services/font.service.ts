@@ -4,7 +4,8 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable()
 export class FontService {
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    }
 
     public load() {
         if (isPlatformBrowser(this.platformId)) {
@@ -17,10 +18,10 @@ export class FontService {
                         'Merriweather',
                         'Montserrat:600',
                         'Ralewa',
-                        'Lora'
-                    ]
+                        'Lora',
+                    ],
                 },
-                timeout: 1500
+                timeout: 1500,
             });
         }
     }

@@ -4,7 +4,7 @@ export const entities = {
     Contact: '/Contact',
     Training: '/Trainings',
     Experience: '/Experiences',
-    Skillgroup: '/SkillGroups',
+    SkillGroup: '/SkillGroups',
     Skill: '/Skills',
     Company: '/Companies',
     Users: {
