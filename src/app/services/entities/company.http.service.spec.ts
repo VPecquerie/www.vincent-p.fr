@@ -10,7 +10,6 @@ describe('CompanyHttpService', () => {
     let service: CompanyHttpService;
     let httpMock: HttpTestingController;
 
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
@@ -38,7 +37,7 @@ describe('CompanyHttpService', () => {
             Name: 'Company',
             Location: 'Rouen',
             Logo: '/test.png',
-        },{
+        }, {
             CompanyId: 2,
             Name: 'Company 2',
             Location: 'Rouen',

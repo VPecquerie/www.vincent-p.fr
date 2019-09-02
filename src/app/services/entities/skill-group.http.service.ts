@@ -1,7 +1,7 @@
 import { CrudHttpService } from '../crud.http.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SkillGroup } from '../../models/entities/skillGroup';
+import { SkillGroup } from '../../models/entities/skill.group';
 
 @Injectable()
 export class SkillGroupHttpService extends CrudHttpService {
@@ -10,7 +10,7 @@ export class SkillGroupHttpService extends CrudHttpService {
         super(http);
     }
 
-    protected getEntityClass() {
+    protected getEntityClass(){
         return SkillGroup;
     }
 

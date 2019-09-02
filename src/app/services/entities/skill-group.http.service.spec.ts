@@ -1,10 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
-
 import { SkillGroupHttpService } from './skill-group.http.service';
 import { environment } from '../../../environments/environment';
-import { SkillHttpService } from './skill.http.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { SkillGroup } from '../../models/entities/skillGroup';
+import { SkillGroup } from '../../models/entities/skill.group';
 
 describe('SkillGroupHttpService', () => {
 

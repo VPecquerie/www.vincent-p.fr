@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
-import { SkillGroup } from '../../../../models/entities/SkillGroup';
+import { SkillGroup } from '../../../../models/entities/skill.group';
 import { SkillForm } from '../../../../models/forms/skill.form';
 import { SkillGroupHttpService } from '../../../../services/entities/skill-group.http.service';
 import { SkillHttpService } from '../../../../services/entities/skill.http.service';

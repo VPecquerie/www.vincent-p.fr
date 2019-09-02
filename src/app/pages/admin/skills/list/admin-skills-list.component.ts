@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { Skill } from '../../../../models/entities/skill';
 import { SkillHttpService } from '../../../../services/entities/skill.http.service';
 import { SeoService } from '../../../../services/seo.service';
-import { SkillGroup } from '../../../../models/entities/SkillGroup';
+import { SkillGroup } from '../../../../models/entities/skill.group';
 import { SkillGroupHttpService } from '../../../../services/entities/skill-group.http.service';
 
 

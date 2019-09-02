@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SkillGroup } from '../../../models/entities/SkillGroup';
+import { SkillGroup } from '../../../models/entities/skill.group';
 import { SkillGroupHttpService } from '../../../services/entities/skill-group.http.service';
 import { AbstractComponent } from '../../abstract.component';
 
