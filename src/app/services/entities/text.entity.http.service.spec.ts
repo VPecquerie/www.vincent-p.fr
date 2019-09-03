@@ -1,7 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { TextEntityHttpService } from './text.entity.http.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Company } from '../../models/entities/company';
 import { environment } from '../../../environments/environment';
 import { TextEntity } from '../../models/entities/text.entity';
 
@@ -53,27 +52,21 @@ describe('TextEntityHttpService', () => {
         httpMock.verify();
     });
 
-    /*
-    @TODO: finir la fonction.
-    it('ReadOne(1) should return a text with slug:1', () => {
+    it('ReadOne(Introduction) should return a text with slug:Introduction', () => {
 
-        service.readOne(1).subscribe((company: Company) => {
-            expect(company.CompanyId).toBe(1);
-            expect(company.Name).toBe('Company');
-            expect(company.Location).toBe('Rouen');
-            expect(company.Logo).toBe('/test.png');
+        service.readOne('Introduction').subscribe((text: TextEntity) => {
+            expect(text.Slug).toBe('Introduction');
+            expect(text.Content).toBe('Content');
         });
 
 
-        const req = httpMock.expectOne(environment.api.url + environment.api.entities.Company + '/' + 1, 'Get the first Text');
+        const req = httpMock.expectOne(environment.api.url + environment.api.entities.TextEntity + '/Introduction', 'Get the Text Introduction');
         req.flush({
-            CompanyId: 1,
-            Name: 'Company',
-            Location: 'Rouen',
-            Logo: '/test.png',
+            Slug: 'Introduction',
+            Content: 'Content'
         });
 
         expect(req.request.method).toBe('GET');
         httpMock.verify();
-    });*/
+    });
 });

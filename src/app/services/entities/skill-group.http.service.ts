@@ -10,7 +10,7 @@ export class SkillGroupHttpService extends CrudHttpService {
         super(http);
     }
 
-    protected getEntityClass(){
+    protected getEntityClass() {
         return SkillGroup;
     }
 
