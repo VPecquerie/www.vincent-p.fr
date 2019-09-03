@@ -49,7 +49,6 @@
                         ],
                         "styles": [
                             "src/styles/styles.scss",
-
                             "node_modules/quill/dist/quill.bubble.css",
                             "node_modules/quill/dist/quill.snow.css",
                             "node_modules/quill-emoji/dist/quill-emoji.css",
@@ -149,6 +148,9 @@
                     "options": {
                         "main": "src/test.ts",
                         "karmaConfig": "./karma.conf.js",
+                        "codeCoverageExclude": [
+                            "src/matomo/**/*"
+                        ],
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "src/tsconfig.spec.json",
                         "scripts": [
