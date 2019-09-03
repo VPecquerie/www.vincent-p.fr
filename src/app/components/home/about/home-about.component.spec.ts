@@ -5,14 +5,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TextEntityHttpService } from '../../../services/entities/text.entity.http.service';
 import { MyMaterialModule } from '../../../modules/my-material.module';
+import { TextEntity } from '../../../models/entities/text.entity';
+import { environment } from '../../../../environments/environment';
 
 
 describe('HomeAboutComponent', () => {
     let component: HomeAboutComponent;
     let fixture: ComponentFixture<HomeAboutComponent>;
+    let getIntroductionHttpMock: HttpTestingController;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -27,6 +30,8 @@ describe('HomeAboutComponent', () => {
                 MyMaterialModule,
             ],
         }).compileComponents();
+
+        getIntroductionHttpMock = TestBed.get(HttpTestingController);
     }));
 
     beforeEach(() => {
@@ -37,5 +42,22 @@ describe('HomeAboutComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should print the Text', () => {
+
+        const req = getIntroductionHttpMock.expectOne(environment.api.url + environment.api.entities.TextEntity + '/Introduction', 'Get the Introduction');
+        req.flush({
+            'TextId': '1',
+            'Creator': null,
+            'Slug': 'Introduction',
+            'Content': 'Contenu 1',
+            'Updated': '2019-07-06T09:50:55.9633333',
+            'Created': '2018-01-01T00:00:00',
+            'IsPublished': true,
+        });
+
+        expect(req.request.method).toBe('GET');
+        getIntroductionHttpMock.verify();
     });
 });
