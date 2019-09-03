@@ -61,4 +61,7 @@ describe('TrainingHttpService', () => {
         httpMock.verify();
     });
 
+    afterAll(() => {
+        service.dispose();
+    });
 });

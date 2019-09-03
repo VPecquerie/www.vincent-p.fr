@@ -84,4 +84,8 @@ describe('ArticleHttpService', () => {
         expect(req.request.method).toBe('GET');
         httpMock.verify();
     });
+
+    afterAll(() => {
+        service.dispose();
+    });
 });

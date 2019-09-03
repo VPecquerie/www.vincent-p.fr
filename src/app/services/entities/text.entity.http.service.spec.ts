@@ -69,4 +69,8 @@ describe('TextEntityHttpService', () => {
         expect(req.request.method).toBe('GET');
         httpMock.verify();
     });
+
+    afterAll(() => {
+        service.dispose();
+    });
 });

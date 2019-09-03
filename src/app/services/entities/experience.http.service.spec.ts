@@ -105,4 +105,8 @@ describe('ExperienceHttpService', () => {
         httpMock.verify();
     });
 
+    afterAll(() => {
+        service.dispose();
+    });
+
 });

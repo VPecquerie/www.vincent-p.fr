@@ -5,7 +5,6 @@ import { ExperienceHttpService } from '../services/entities/experience.http.serv
 import { SkillHttpService } from '../services/entities/skill.http.service';
 import { SkillGroupHttpService } from '../services/entities/skill-group.http.service';
 import { TextEntityHttpService } from '../services/entities/text.entity.http.service';
-import { TokeninfoHttpService } from '../services/entities/tokeninfo.http.service';
 import { TrainingHttpService } from '../services/entities/training.http.service';
 import { UserHttpService } from '../services/entities/user.http.service';
 import { ContactService } from '../services/contact.service';
@@ -28,7 +27,6 @@ import { MatomoTracker } from '../../matomo/service/matomo-tracker.service';
         SkillHttpService,
         SkillGroupHttpService,
         TextEntityHttpService,
-        TokeninfoHttpService,
         TrainingHttpService,
         UserHttpService,
         ContactService,

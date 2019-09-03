@@ -65,4 +65,8 @@ describe('SkillHttpService', () => {
         expect(req.request.method).toBe('GET');
         httpMock.verify();
     });
+
+    afterAll(() => {
+        service.dispose();
+    });
 });
