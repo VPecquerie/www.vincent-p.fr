@@ -21,7 +21,7 @@ export class UserHttpService extends CrudHttpService {
     }
 
     public login(data) {
-        const url = environment.api.url + environment.api.entities.Users.login;
+        const url = environment.api.url + environment.api.entities[this.getEntityClassName()].login;
         const jsonData = Serialize(data);
         return this.http.post(url, jsonData).pipe(
             map(result => Deserialize(result, this.getEntityClass())),

@@ -44,7 +44,7 @@ describe('UserHttpService', () => {
             expect(user.Token.ExpiresAt.toUTCString()).toBe(date.toUTCString());
         });
 
-        const req = httpMock.expectOne(environment.api.url + environment.api.entities.Users.login, 'Log the User');
+        const req = httpMock.expectOne(environment.api.url + environment.api.entities.User.login, 'Log the User');
         req.flush({
             UserId: 1,
             Email: 'test@test.fr',

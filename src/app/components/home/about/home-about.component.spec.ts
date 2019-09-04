@@ -8,14 +8,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TextEntityHttpService } from '../../../services/entities/text.entity.http.service';
 import { MyMaterialModule } from '../../../modules/my-material.module';
-import { TextEntity } from '../../../models/entities/text.entity';
 import { environment } from '../../../../environments/environment';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 
 describe('HomeAboutComponent', () => {
     let component: HomeAboutComponent;
     let fixture: ComponentFixture<HomeAboutComponent>;
     let getIntroductionHttpMock: HttpTestingController;
+    let element: HTMLElement;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -37,11 +39,16 @@ describe('HomeAboutComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeAboutComponent);
         component = fixture.componentInstance;
+        element = fixture.nativeElement;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should be hidden if introdcution is null', () => {
+        component.introduction = null;
     });
 
     it('should print the Text', () => {
@@ -59,5 +66,9 @@ describe('HomeAboutComponent', () => {
 
         expect(req.request.method).toBe('GET');
         getIntroductionHttpMock.verify();
+        fixture.detectChanges();
+
+        const paragraph = fixture.debugElement.nativeElement.querySelector('#introduction');
+        expect(paragraph.textContent).toEqual('Contenu 1');
     });
 });
