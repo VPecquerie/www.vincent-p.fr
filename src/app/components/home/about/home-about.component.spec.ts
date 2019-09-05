@@ -49,6 +49,9 @@ describe('HomeAboutComponent', () => {
 
     it('should be hidden if introdcution is null', () => {
         component.introduction = null;
+
+        const section = fixture.debugElement.nativeElement.querySelector('#about');
+        expect(section).toBeNull();
     });
 
     it('should print the Text', () => {
