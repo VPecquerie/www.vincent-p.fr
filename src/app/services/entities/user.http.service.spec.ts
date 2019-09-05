@@ -4,6 +4,7 @@ import { UserHttpService } from './user.http.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { User } from '../../models/entities/user';
 import { environment } from '../../../environments/environment';
+import { TokenInfo } from '../../models/entities/tokeninfo';
 
 describe('UserHttpService', () => {
 
@@ -20,6 +21,10 @@ describe('UserHttpService', () => {
 
         service = TestBed.get(UserHttpService);
         httpMock = TestBed.get(HttpTestingController);
+    });
+
+    afterEach(() => {
+        service.dispose();
     });
 
     it('should be created', inject([UserHttpService], (service: UserHttpService) => {
@@ -60,7 +65,17 @@ describe('UserHttpService', () => {
         httpMock.verify();
     });
 
-    afterAll(() => {
-        service.dispose();
+    it('An expired token should have HasExpired to be true',() => {
+       const tokenInfo = new TokenInfo();
+       tokenInfo.ExpiresAt = new Date('2010-01-01');
+
+       expect(tokenInfo.hasExpired()).toBeTruthy();
+    });
+
+    it('A valid token should have HasExpired to be false',() => {
+        const tokenInfo = new TokenInfo();
+        tokenInfo.ExpiresAt = new Date('2100-01-01');
+
+        expect(tokenInfo.hasExpired()).toBeFalsy();
     });
 });
