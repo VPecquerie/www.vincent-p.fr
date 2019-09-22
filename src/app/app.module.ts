@@ -29,6 +29,7 @@ import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import { MyMaterialModule } from './modules/my-material.module';
 import { ComponentsModule } from './modules/components.module';
+import { PipesModule } from './modules/pipes.module';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -55,6 +56,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
         LazyLoadImageModule,
         MyMaterialModule,
         ComponentsModule,
+        PipesModule
     ],
     bootstrap: [AppComponent],
     providers: [

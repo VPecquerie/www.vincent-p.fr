@@ -20,6 +20,16 @@
                             </div>
                             <div class="row">
                                 <div class="input-group">
+                                    <mat-form-field appearance="outline" class="col-md-12">
+                                        <mat-label>Résumé du nouvel article...</mat-label>
+                                        <input matInput type="text"
+                                               placeholder="Résumé du nouvel article..."
+                                               formControlName="Resume" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group">
                                     <mat-checkbox formControlName="IsPublished" class="col-md-12" (change)="isPublished = !isPublished">
                                         Article publié ?
                                     </mat-checkbox>

@@ -1,3 +1,12 @@
-<app-layout-blog>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto deleniti dicta magni modi nulla officia officiis quae. Assumenda commodi expedita, libero modi totam ullam ut vel! Id similique, temporibus.
-</app-layout-blog>
+<ng-container *ngIf="article != null">
+    <app-layout-blog [title]="article.Title" [subtitle]="article.Resume" meta="Article publié le {{ article.PublishedDate | date }}">
+
+        <p [innerHTML]="article.Content"></p>
+        <hr />
+        {{ article.Comments != null ? article.Comments.length : 0 }} Commentaire(s). -
+        <a href="#">Ajouter un commentaire</a>
+
+        <app-comments-add></app-comments-add>
+
+    </app-layout-blog>
+</ng-container>

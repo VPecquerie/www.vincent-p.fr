@@ -20,6 +20,10 @@ import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MyMaterialModule } from './my-material.module';
 import { ServicesModule } from './services.module';
+import { SafePipe } from '../pipes/safe.pipe';
+import { PipesModule } from './pipes.module';
+import { CommentsAddComponent } from '../components/comments/add/comments-add.component';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -41,6 +45,8 @@ import { ServicesModule } from './services.module';
         LayoutCommonLegalMentionsComponent,
         LayoutCommonNavbarComponent,
         LayoutCommonComponent,
+
+        CommentsAddComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +56,9 @@ import { ServicesModule } from './services.module';
         RouterModule,
         LazyLoadImageModule,
         MyMaterialModule,
-        ServicesModule
+        ServicesModule,
+        PipesModule,
+        QuillModule
     ],
     exports: [
         HomeAboutComponent,
@@ -70,6 +78,7 @@ import { ServicesModule } from './services.module';
         LayoutCommonLegalMentionsComponent,
         LayoutCommonNavbarComponent,
         LayoutCommonComponent,
+        CommentsAddComponent,
     ],
     providers: [],
 })

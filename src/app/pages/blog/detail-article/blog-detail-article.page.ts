@@ -18,7 +18,6 @@ const routes: Routes = [
         FormsModule,
         ComponentsModule,
         RouterModule.forChild(routes),
-
     ],
 })
 export class BlogDetailArticlePage {

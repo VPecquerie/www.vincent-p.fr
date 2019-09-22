@@ -44,7 +44,7 @@ export class CustomHttpHandlerService implements HttpInterceptor {
                     if (err instanceof HttpErrorResponse) {
                         this.setNumberOfQueries(-1);
                         if (err.status === 401) {
-                            this.router.navigate(['/login']);
+                            this.router.navigate(['/admin/login']);
                         }
                     }
                 },
