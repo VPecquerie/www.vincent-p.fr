@@ -98,7 +98,7 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-sri-hash": "^2.2.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-lazyload-image": "^6.1.0",
     "ngx-quill": "^7.2.0",
     "ngx-raven": "^1.0.5",
